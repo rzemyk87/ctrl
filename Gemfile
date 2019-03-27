@@ -41,8 +41,6 @@ gem 'libreconv'
 gem 'responders', '~> 2.3'
 gem "rename"
 
-
-
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -52,13 +50,7 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
-  gem "capistrano"
-  gem 'capistrano-passenger'
-  gem 'capistrano-rvm' # rvm support
-  gem 'capistrano-bundler' # bundle command
-  gem 'capistrano-rails' # assets and migrations
-  gem 'capistrano-faster-assets' # skips assets precompilation if not needed
-gem 'capistrano3-git-push', github: 'goooseman/capistrano3-git-push' # automatic `git push` before deployment (handy feature)
+ # automatic `git push` before deployment (handy feature)
 end
 
 group :development do
@@ -68,6 +60,18 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+
+
+end
+
+group :development do
+  gem 'capistrano',  '~> 3.4.0'
+  gem 'capistrano-passenger'
+  gem 'capistrano-rvm' # rvm support
+  gem 'capistrano-bundler' # bundle command
+  gem 'capistrano-rails' # assets and migrations
+  gem 'capistrano-faster-assets' # skips assets precompilation if not needed
+  gem 'capistrano3-git-push'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
