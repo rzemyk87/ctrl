@@ -7,7 +7,7 @@ set :domain, 'controlcrm.pl' # required for automatic app restarts
 # at filepaths
 set :full_app_name, "#{fetch(:application)}_#{fetch(:stage)}"
 
-set :deploy_to, '/home/rzemyk87/domains/controlcrm.pl'
+set :deploy_to, '/home/rzemyk87/domains/controlcrm.pl/public_ruby'
 
 # server-based syntax
 server 's34.mydevil.net', user: 'rzemyk87', roles: %w{web app db}, primary: true
