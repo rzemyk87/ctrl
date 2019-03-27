@@ -1,0 +1,94 @@
+# logo
+
+docx.img 'app/assets/images/control_logo_nowe.png' do
+  width   176
+  height  58
+  align   :right
+end
+
+# upoważniona
+docx.p "(organizator kształcenia)", align: :left, size: 16, :color => "9e9e9e"
+
+
+# tytul
+
+docx.p
+docx.h1 'ZAŚWIADCZENIE' , style: 'Title', align: :left, bold: true, color: "009f4d"
+docx.p 'o ukończeniu szkolenia z zakresu udzielania pierwszej pomocy przedmedycznej' , align: :left, size: 24
+
+# plater
+
+docx.p
+docx.img 'app/assets/images/pierwsza.png' do
+  width   200
+  height  200
+  align   :center
+end
+
+# osoba
+
+docx.p 'Pan(i):', align: :left, size: 24
+docx.p @osoba.osoba_imie + ' ' + @osoba.osoba_nazwisko , align: :center, size: 30, bold: true, color: "009f4d"
+docx.p 'urodzony(a) dnia: ' + @osoba.osoba_data + 'r. w' + @osoba.osoba_miejsce, size: 24
+docx.p "Ukończył/a szkolenie Pierwsza Pomoc Dzieciom", align: :left, size: 24
+docx.p "zorganizowane przez Firmę Usługowo-Handlową Grzegorz Kobuszewski we Wrocławiu w formie seminarium.", align: :left, size: 24
+docx.p "Celem szkolenia było uzupełnienie wiedzy z zakresu udzielania Pierwszej Pomocy.", align: :left, size: 24
+
+
+
+# wydano
+  
+  docx.p
+  docx.p "Zaświadczenie wydano na podstawie § 16 ust. 3 rozporządzenia Ministra Gospodarki i Pracy z dnia 27 lipca 2204 r.", align: :both, size: 16, color: "9e9e9e"
+  docx.p "w sprawie szkolenia w dziedzinie bezpieczeństwa i higieny pracy (Dz. U. Nr 180,poz. 1860, z późn. zm.).", align: :both, size: 16, color: "9e9e9e"
+    
+  
+    docx.p
+
+
+  docx.p "Wrocław, dnia " + @szkol.data_wystawienia, align: :left, size: 22
+
+  docx.p
+
+    docx.p "Nr zaświadczenia wg rejestru " + @osoba.nr_zaswiadczenia.to_s + "/PPD/" + @szkol.szkolenie_id.to_s + "" + @szkol.created_at.strftime("/%Y") + " ", align: :left, size: 22
+
+
+  # pieczatka
+  
+docx.p
+docx.p
+
+# organizator2
+
+  docx.p " ( osoba upoważniona przez", align: :right, size: 16, color: "9e9e9e"
+  docx.p "   organizatora kształcenia) ", align: :right, size: 16, color: "9e9e9e"
+
+# program
+docx.p "Program szkolenia:", size: 22, bold: true
+
+# tabela
+
+      row1 = ["Lp","Tematyka szkolenia","Wymiar godzin zajęć edukacyjnych"]
+      
+      row2 = ["1.", "Stany zagrożenia życia, bezdech, monitorowanie oddechu", "30 minut"]
+    
+      row3 = ["2.", "Ciało obce w drogach oddechowych wykład + ćwiczenia", "60 minut"]
+     
+      row4 = ["3.","Resuscytacja krążeniowo oddechowa dzieci niemowląt", "90 minut"]
+
+      row5 = ["4.","Resuscytacja krążeniowo oddechowa dorosłych", "30 minut"]
+     
+      row6 = ["5.","Urazy, złamania, oparzenia – pierwsza pomoc", "30 minut"]
+
+
+    docx.table [row1.dup, row2.dup, row3.dup, row4.dup, row5.dup, row6.dup],  border_size: 4 do
+      cell_style rows[0],    bold: true, align: :center
+      cell_style cols[1],    width: 6000
+      cell_style cols[0],    align: :center
+      cell_style cols[2],    align: :center
+      cell_style cells,      size: 22, margins: { top: 100, bottom: 10, left: 100, right: 100 }
+    end
+
+
+
+ 

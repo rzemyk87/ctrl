@@ -1,0 +1,2 @@
+185.18.69.244 - - [23/Mar/2019:20:27:17 +0100] "GET / HTTP/1.1" 500 1635 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:66.0) Gecko/20100101 Firefox/66.0"
+185.18.69.244 - - [23/Mar/2019:20:27:17 +0100] "GET /favicon.ico HTTP/1.1" 200 0 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:66.0) Gecko/20100101 Firefox/66.0"

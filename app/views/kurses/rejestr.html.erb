@@ -1,0 +1,70 @@
+<body class="bck1">
+
+<div class="hero-unit">
+<h1>Rejestr szkoleń</h1>
+
+<div class="container">
+
+<table class="table table-striped">
+	<tr class="info">
+		<th>Imię</th>
+		<th>Nazwisko</th>
+		<th>Data szkolenia</th>
+		<th>Nr kursu</th>
+		<th>Ocena</th>
+		<th>akcja</th>
+	</tr>	
+<% @kursy_b.each do |kursy| %>
+	<tr>
+		<td><%= kursy.osoba_imie %></td>
+		<td><%= kursy.osoba_nazwisko %></td>
+		<td><%= kursy.biurowe.created_at %></td>
+		<td><%= kursy.biurowe.szkolenie_id %></td>
+		<td><%= kursy.osoba_ocena %></td>
+		<td><%= kursy.osoba_ocena %></td>		
+		<td>
+			<%= link_to("Drukuj",{:action => 'index'},:class => 'btn btn-xs btn-success') %>
+			<%= link_to("Edytuj",{:action => 'edycja', :id => kursy.id},:class => 'btn btn-xs btn-primary') %>
+			<%= link_to("Usun", {:action => 'usun', :id => kursy.id},:class => 'btn btn-xs btn-danger') %>
+		</td>
+	</tr>	
+<% end %>
+</table>
+
+</div>
+</div>
+
+</body><body class="bck1">
+
+<div class="hero-unit">
+<h1>Kursy Administracyjno - Biurowe</h1>
+
+<div class="container">
+
+<table class="table table-striped">
+	<tr class="info">
+		<th>Imię</th>
+		<th>Nazwisko</th>
+		<th>Nr kursu</th>
+		<th>Ocena</th>
+		<th>akcja</th>
+	</tr>	
+<% @kursy_b.each do |kursy| %>
+	<tr>
+		<td><%= kursy.osoba_imie %></td>
+		<td><%= kursy.osoba_nazwisko %></td>
+		<td><%= kursy.biurowe.szkolenie_id %></td>
+		<td><%= kursy.osoba_ocena %></td>		
+		<td>
+			<%= link_to("Drukuj",{:action => 'index'},:class => 'btn btn-xs btn-success') %>
+			<%= link_to("Edytuj",{:action => 'edycja', :id => kursy.id},:class => 'btn btn-xs btn-primary') %>
+			<%= link_to("Usun", {:action => 'usun', :id => kursy.id},:class => 'btn btn-xs btn-danger') %>
+		</td>
+	</tr>	
+<% end %>
+</table>
+
+</div>
+</div>
+
+</body>

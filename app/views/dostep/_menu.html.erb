@@ -1,0 +1,21 @@
+<div class="navbar-wrapper">
+  <div class="container">
+<nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+           <a class="navbar-brand logo" href="https://pl-pl.facebook.com/controllifepl"></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <% if session[:uzytkownik_id] == nil %>
+            <li><a href="/public">Home</a></li>
+            <% else %>
+            <li><a href="/dostep/index">Home</a></li>
+            <li><a href="/dostep/logout">Wyloguj</a></li>
+             <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

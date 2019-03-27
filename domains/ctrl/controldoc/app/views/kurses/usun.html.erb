@@ -1,0 +1,21 @@
+<div class="hero-unit">
+<h1>Usun</h1>
+
+<%= form_for(@szkolenie, :url => {:action => 'kasuj', :id => @szkolenie.id}, :method => :POST) do |pole| %>
+
+<p>Czy na pewno chcesz usunąć?</p>
+
+<p><%="Szkolenie nr: #{@szkolenie.szkolenie_id}"%></p>
+<br>
+<p><%= @szkolenie.prowadzacy %></p>
+<br>
+<p><%= @szkolenie.firma %></p>
+
+
+<div>
+	<%= submit_tag("Usuń",:class => 'btn btn-danger') %>
+	<%= link_to("Powrót", {:action => 'index', :id => @szkolenie.id},:class => 'btn btn-primary')%>
+</div>
+
+	<% end %>
+</div>

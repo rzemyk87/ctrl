@@ -1,0 +1,247 @@
+<head>
+    <script type="text/javascript">
+       
+      var globalRowCount = 2;
+        function addScreenRow(tableID)
+        {
+            var table     = document.getElementById(tableID);
+            var rowCount  = table.rows.length;
+            var row       = table.insertRow(rowCount);
+
+            var imie       = row.insertCell(0);
+            var element1    = document.createElement("input");
+            element1.type   = "text";
+            element1.required = true;
+            element1.name = `szkolenie[osobas_attributes][${globalRowCount-1}][osoba_imie]`;
+            imie.appendChild(element1);
+
+            var nazwisko       = row.insertCell(1);
+            var element2    = document.createElement("input");
+            element2.type   = "text";
+            element2.required = true;
+            element2.name = `szkolenie[osobas_attributes][${globalRowCount-1}][osoba_nazwisko]`;
+            nazwisko.appendChild(element2);
+
+
+            var zaswiadczenie = row.insertCell(2);
+            var element6    = document.createElement("input")
+            element6.type   = "hidden";
+            element6.name = `szkolenie[osobas_attributes][${globalRowCount-1}][nr_zaswiadczenia]`;
+            var nr = <%= @nr %>;
+            nr = nr + 1 + rowCount - 3;
+            element6.value = nr;
+            zaswiadczenie.appendChild(element6);
+
+            var rodzaj = row.insertCell(3);
+            var element7    = document.createElement("input");
+            element7.type   = "hidden";
+            element7.name = `szkolenie[osobas_attributes][${globalRowCount-1}][rodzaj_id]`;
+            element7.value = 6;
+            rodzaj.appendChild(element7);
+            
+            globalRowCount++;
+
+        }
+      
+        function delScreenRow(tableID)
+        {
+            try {
+                var table    = document.getElementById(tableID);
+                var rowCount = table.rows.length;
+               
+                table.deleteRow(rowCount-1)
+
+            }
+            catch(e) {
+                alert(e);
+            }
+        }
+
+    </script>
+
+</head>
+
+<div class="znak">
+	<%= image_tag("pierwsza_dziec1.jpg",:size => '200x200', :class => "img-circle center-block") %>
+</div>
+
+<div class="content2">
+	<div class="row">
+  		<div class="col-md-2"></div>
+  			<div class="col-md-3">
+  				<h3 class="text-center">Pierwsza Pomoc Dzieciom</h3>
+  			</div>
+ 
+  	</div>
+  	<br>
+  	
+  	<div class="row">
+	  <div class="form-group">
+  		<div class="col-md-2"></div>
+      <div class="col-md-2">
+          <%= image_tag("text_nr_szkolenia.png") %>
+        </div>
+      <div class="col-xs-2">
+      <%= pole.text_field(:szkolenie_id, :class => 'form-control', :value => @szkolenie_last, readonly: true ) %>
+      </div>
+      </div>
+  	</div>
+  		<br>
+  		
+	<div class="row">
+	  <div class="form-group">
+  		<div class="col-md-2"></div>
+        <div class="col-md-2">
+            <%= image_tag("text_prowadzacy.png") %>
+        </div>
+        <div class="col-md-2">
+      <%= pole.text_field(:prowadzacy, :class => 'form-control') %>
+
+      </div>
+  			<div class="col-md-1"></div>
+  			<div class="col-md-2">
+  				<%= image_tag("text_data_od.png") %>
+  			</div>
+  			<div class="col-md-2">
+  			  <div class="form-group">
+                <div class='input-group date' id='datetimepicker1'>
+                <%= pole.text_field :data_od, class: 'form-control', data: { date_format: 'DD.MM.YYYY' }, :required => 'required' %>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+              </div>
+        	</div>
+
+            <script type="text/javascript">
+          		  $(function () {
+             	   $('#datetimepicker1').datetimepicker({
+             	   	  format: 'DD.MM.YYYY'});
+             	   });
+       		</script>
+
+  	  </div>
+	</div>
+	<div class="row">
+	  <div class="form-group">
+        <div class="col-md-2"></div>
+  		  <div class="col-md-2">
+          <%= image_tag("text_data_wystawienia.png") %>
+        </div>
+              <div class="col-md-2">
+          <div class="form-group">
+                <div class='input-group date' id='datetimepicker3'>
+                <%= pole.text_field :data_wystawienia, class: 'form-control', data: { date_format: 'DD.MM.YYYY' }, :required => 'required' %>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+              </div>
+
+            <script type="text/javascript">
+                $(function () {
+                 $('#datetimepicker3').datetimepicker({
+                    format: 'DD.MM.YYYY'});
+                 });
+          </script>
+
+
+      </div>
+        <div class="col-md-1"></div>
+  			<div class="col-md-2">
+  				<%= image_tag("text_data_do.png") %>
+  			</div>
+  			<div class="col-md-2">
+  			  <div class="form-group">
+                <div class='input-group date' id='datetimepicker2'>
+                	 <%= pole.text_field :data_do, class: 'form-control', data: { date_format: 'DD.MM.YYYY' }, :required => 'required' %>
+
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+              </div>
+        	</div>
+
+            <script type="text/javascript">
+          		  $(function () {
+             	   $('#datetimepicker2').datetimepicker({
+             	   	  format: 'DD.MM.YYYY'});
+             	   });
+       		</script>
+  	  </div>
+	</div>
+    <div class="row">
+
+
+    </div>
+
+	<div class="row">
+	  <div class="form-group">
+  		<div class="col-md-2"></div>
+			<div class="col-md-2">
+  				<%= image_tag("text_firma.png") %>
+  			</div>
+			<div class="col-md-7">
+			<%= pole.text_field(:firma, :class => 'form-control') %>
+  			</div>
+  	  </div>
+	</div>
+
+
+
+</div>
+<div class="content3">
+  <div class="hero-unit">	
+  	<%= image_tag("text_osoby.png") %>
+
+<br>
+<br>
+
+  	<table class="table table-striped", id="dataTable">
+		<tr class="info">
+			<th><%= image_tag("text_imie.png") %></th>
+			<th><%= image_tag("text_nazwisko.png") %></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+            <th></th>
+		</tr>	
+		<tr>
+		<tbody>
+ <%= pole.fields_for(:osobas) do |o| %>
+
+		<td><%= o.text_field(:osoba_imie, :required => 'required') %></td>
+		<td><%= o.text_field(:osoba_nazwisko, :required => 'required') %></td>
+
+<%= o.hidden_field(:nr_zaswiadczenia, :id => 'zasw', :value => @nr) %>
+<%= o.hidden_field(:rodzaj_id, :value => 6) %>
+
+
+
+	</tr>
+
+	<% end %>
+	</tbody>
+	</table>

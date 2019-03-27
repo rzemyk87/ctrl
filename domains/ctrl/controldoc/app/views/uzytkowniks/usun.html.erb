@@ -1,0 +1,17 @@
+<div class="hero-unit">
+<h1>Usun Uzytkownika</h1>
+
+<%= form_for(:uzytkownik, :url => {:action => 'kasuj', :id => @uzytkownik.id}) do |pole| %>
+
+<p>Czy na pewno chcesz usunąć?</p>
+
+<p><%= @uzytkownik.imie + " " + @uzytkownik.nazwisko %></p>
+
+
+<div>
+	<%= submit_tag("Usuń",:class => 'btn btn-danger') %>
+	<%= link_to("Powrót", {:action => 'index'},:class => 'btn btn-primary')%>
+</div>
+
+	<% end %>
+</div>

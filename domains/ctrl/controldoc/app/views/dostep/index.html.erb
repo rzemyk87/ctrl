@@ -1,0 +1,69 @@
+
+<body class="bck1">
+<% @tytul_strony = "Logowanie" %>
+<div class="content2">
+
+  <!-- Trzy kolumny zdjęcia + opis + linki początek -->
+  	<div class="row">
+  	    <div class="col-lg-4">
+  	    <a href="/szkolenias/index">
+  	      <%= image_tag("rejestr2.jpg",:size => '200x200', :class => "img-circle") %>
+  	      <p> </p>
+    	<h3>Szkolenia</h3>
+  	 	 </a>
+  	    </div>
+
+  	    <div class="col-lg-4">
+  	    <a href="/kurses/index">
+  	      <%= image_tag("rejestr4.jpg",:size => '200x200', :class => "img-circle") %>
+  	      <h3>Resjetr szkoleń</h3>
+  	 	</a>
+  	    </div>
+  	    <div class="col-lg-4">
+  	    <a href="/dostep/logout">
+  	      <%= image_tag("hand.jpg",:size => '200x200', :class => "img-circle") %>
+  	      <h3>Wyloguj</h3>
+  	  	</a>
+  	    </div>
+	</div>
+
+	<br>
+	<br>
+  	
+  	<div class="row">
+  	<div class="col-md-1">   </div>
+  	<div class="col-md-1">   </div>
+  	<div class="col-md-1">   </div>
+  	    <div class="col-md-1">
+        <a href="/szkolenias/index_pomoc">
+          <%= image_tag("pierwsza2.jpg",:size => '200x200', :class => "img-circle") %>
+      </a>
+  	    </div>
+  	<div class="col-md-1">   </div>
+  	<div class="col-md-1">   </div>
+  	<div class="col-md-1">   </div>
+  	     <div class="col-md-1">
+        <a href="/uzytkowniks/index">
+          <%= image_tag("pracownicy.jpg",:size => '200x200', :class => "img-circle") %>
+        </a>
+  	    </div>
+
+	</div>
+	<div class="row">
+  		<div class="col-md-3"> </div>
+  		<div class="col-md-3"> 	
+  		<a href="/kontrahenci/index">
+          <h3>Pierwsza Pomoc</h3>
+		</a>
+		</div>
+  		<div class="col-md-3">   
+  		<a href="/rejestr/index">
+  			<h3 class="text-right">Użytkownicy</h3>
+  		</a>
+  		</div>
+	</div>
+
+  </div>
+
+</body>
+

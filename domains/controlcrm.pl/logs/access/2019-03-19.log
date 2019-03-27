@@ -1,0 +1,6 @@
+5.173.225.222 - - [19/Mar/2019:18:35:11 +0100] "GET /favicon.ico HTTP/1.1" 200 0 "http://controlcrm.pl/" "Mozilla/5.0 (Linux; Android 9; CLT-L29) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.96 Mobile Safari/537.36"
+5.173.225.222 - - [19/Mar/2019:18:35:26 +0100] "GET / HTTP/1.1" 499 0 "-" "Mozilla/5.0 (Linux; Android 9; CLT-L29) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.96 Mobile Safari/537.36"
+5.173.225.222 - - [19/Mar/2019:18:35:35 +0100] "GET / HTTP/1.1" 500 4384 "-" "Mozilla/5.0 (Linux; Android 9; CLT-L29) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.96 Mobile Safari/537.36"
+5.173.225.222 - - [19/Mar/2019:22:44:28 +0100] "GET / HTTP/1.1" 500 4384 "-" "Mozilla/5.0 (Linux; Android 9; CLT-L29) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.96 Mobile Safari/537.36"
+78.8.119.81 - - [19/Mar/2019:23:35:41 +0100] "GET / HTTP/1.1" 500 4384 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0"
+78.8.119.81 - - [19/Mar/2019:23:35:41 +0100] "GET /favicon.ico HTTP/1.1" 200 0 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0"

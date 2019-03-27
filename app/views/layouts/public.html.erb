@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Control Life <%= " | #{@tytul_strony}" if @tytul_strony %></title>
+    <%= stylesheet_link_tag('application', :media => 'all') %>
+    <%= javascript_include_tag('application') %>
+</head>
+<body class="bck2">
+
+	<!-- nawigacja poczatek -->
+	<%= render(:partial=>"menu") %>
+	<!-- nawigacja koniec -->
+
+	<!-- treść poczatek -->
+	<div id="content">
+  <% if !flash[:notice].blank? %>
+  <div class="alert alert-success" style="text-align: center;">
+    <%= flash[:notice] %>
+  </div>
+  <% end %>
+    <%= yield %>
+	</div>
+
+	<!-- treść koniec -->
+
+	<!-- stopka poczatek -->
+
+	<!-- stopka koniec -->
+
+
+</body>
+</html>

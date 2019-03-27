@@ -1,0 +1,19 @@
+<div class="hero-unit">
+<h1>Edycja <%= %></h1>
+
+<%= form_for(@osoba, :url => {:action => 'aktualizuj_osobe', :id_osoba => @osoba.id, :id => @szkol.id}, :method => :POST) do |pole| %>
+
+<% if @szkol.rodzaj_id == 5 || @szkol.rodzaj_id == 6 %>
+	<%= render(:partial => "pierwsza_osoba_form", :locals => {:pole => pole}) %>
+<% else %>
+	<%= render(:partial => "osoba_form", :locals => {:pole => pole}) %>
+<% end %>
+<div style="text-align: center;">
+<br><br>
+
+	<%= submit_tag("Aktualizuj",:class => 'btn btn-primary') %>
+	<%= link_to("Powrót", {:action => 'nowy', :id => @szkol.id},:class => 'btn btn-warning')%>
+</div>
+
+	<% end %>
+</div>

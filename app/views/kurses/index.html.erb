@@ -1,0 +1,71 @@
+<% @tytul_strony = "Kursy" %>
+<body class="bck1">
+
+<div class="hero-unit">
+  <br>
+        <%= image_tag("text_rejestr_big.png") %>
+
+<div class="container">
+
+<!-- Wyszukiwanie -->
+<div class="input-group">
+
+<div class="content4">
+<%= form_tag(kurses_index_path, :method => "get", id: "search-form") do %>
+
+<%= text_field_tag :search_firma, params[:search_firma], placeholder: "Firma", :size => 15 %>
+<%= text_field_tag :search_prowadzacy, params[:search_prowadzacy], placeholder: "Prowadzący" , :size => 15 %>
+
+<div class="col-md-2">
+    <div class='input-group date'>
+        <%= text_field_tag :search_data, params[:search_data], class: 'form-control datetimepicker', :id => 'datetimepicker1', placeholder: "Data"%>
+    <span class="input-group-addon">
+        <span class="glyphicon glyphicon-calendar"></span>
+    </span>
+    </div>
+</div>
+                
+              
+            <script type="text/javascript">
+                $(function () {
+                 $('#datetimepicker1').datetimepicker({
+                    format: 'YYYY-MM-DD'});
+                 });
+          </script>
+<%= text_field_tag :search_imie, params[:search_os], placeholder: "Imię", :size => 15 %>
+<%= text_field_tag :search_nazwisko, params[:search_os], placeholder: "Nazwisko", :size => 15 %>
+<%= submit_tag "Szukaj" %>
+<% end %>
+
+</div>
+</div>
+<br><br>
+<table class="table table-striped">
+  <tr class="info">
+    <th class="text-center"><%= image_tag("text_nr_szkolenia_small.png") %></th>
+    <th class="text-center"><%= image_tag("text_data_szkolenia_small.png") %></th>
+    <th class="text-center"><%= image_tag("text_prowadzacy_small.png") %></th>
+    <th class="text-center"><%= image_tag("text_firma_small.png") %></th>
+    <th class="text-center"><%= image_tag("text_rodzaj_small.png") %></th>
+    <th class="text-center"><%= image_tag("text_akcja_small.png") %></th>
+  </tr> 
+<% @kursy.each do |kursy| %>
+  <tr>
+    <td class="text-center"><%= kursy.szkolenie_id %></td>
+    <td class="text-center"><%= kursy.data_od.strftime("%d.%m.%Y") %></td>
+    <td class="text-center"><%= kursy.prowadzacy %></td>
+    <td class="text-center"><%= kursy.firma %></td>
+    <td class="text-center"><%= Rodzaj.find(kursy.rodzaj_id).rodzaj %></td>
+    <td class="text-center">
+      <%= link_to("Pokaż",{:action => 'nowy', :id => kursy.id},:class => 'btn btn-xs btn-success') %>
+      <%= link_to("Edytuj",{:action => 'edycja', :id => kursy.id},:class => 'btn btn-xs btn-primary') %>
+      <%= link_to("Usuń", {:action => 'usun', :id => kursy.id},:class => 'btn btn-xs btn-danger') %>
+    </td>
+  </tr> 
+<% end %>
+</table>
+
+</div>
+</div>
+
+</body>

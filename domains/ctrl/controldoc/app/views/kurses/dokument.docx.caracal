@@ -1,0 +1,279 @@
+# logo
+
+docx.img 'app/assets/images/control_logo_nowe.png' do
+  width   176
+  height  58
+  align   :right
+end
+
+# tytul
+
+docx.p
+docx.h1 'Zaświadczenie' , style: 'Title', align: :center, bold: true
+docx.p
+docx.p 'o ukończeniu szkolenia w dziedzinie bezpieczeństwa i higieny pracy' , align: :center, size: 24
+
+# osoba
+
+docx.p 'Pan(i):', align: :left, size: 24
+docx.p
+docx.p @osoba.osoba_imie + ' ' + @osoba.osoba_nazwisko , align: :center, size: 30, bold: true
+docx.p
+docx.p 'urodzony(a) dnia ' + @osoba.osoba_data + ' w ' + @osoba.osoba_miejsce , align: :center, size: 24
+docx.p
+
+# szkolenie
+
+docx.p 'ukończył(a):' , align: :lett, size: 24
+docx.p
+  if @osoba.rodzaj_id == 1
+    docx.p 'szkolenie okresowe dla pracowników' , align: :center, size: 30, bold: true
+    docx.p "zatrudnionych na stanowiskach administracyjno-biurowych", align: :center, size: 30, bold: true
+  elsif @osoba.rodzaj_id == 2
+    docx.p "szkolenie okresowe dla pracowników", align: :center, size: 30, bold: true
+    docx.p "zatrudnionych na stanowiskach robotniczych", align: :center, size: 30, bold: true
+  elsif @osoba.rodzaj_id == 3
+    docx.p "szkolenie okresowe dla pracowników", align: :center, size: 30, bold: true
+    docx.p "zatrudnionych na stanowiskach inżynieryjno-technicznych", align: :center, size: 30, bold: true
+  else
+    docx.p "szkolenie okresowe", align: :center, size: 30, bold: true
+    docx.p "dla pracodawców i osób kierujących pracownikami", align: :center, size: 30, bold: true
+  end 
+
+# zorganizowane
+docx.p
+
+  if @szkol.forma == "Seminarium"
+    docx.p "zorganizowane w formie seminarium przez Firma Usługowo Handlowa Grzegorz Kobuszewski", align: :both, size: 22
+    docx.p "w okresie od " + @szkol.data_od.strftime("%d.%m.%Y") + "r. do " + @szkol.data_do.strftime("%d.%m.%Y") + "r.", align: :both, size: 22
+  elsif @szkol.forma == "Samokształcenie Kier."
+    docx.p "zorganizowane w formie samokształcenie kierowane przez Firma Usługowo Handlowa Grzegorz Kobuszewski", align: :both, size: 22
+    docx.p "w okresie od " + @szkol.data_od.strftime("%d.%m.%Y") + "r. do " + @szkol.data_do.strftime("%d.%m.%Y") + "r.", align: :both, size: 22
+  elsif @szkol.forma == "Seminarium + SK"
+    docx.p "zorganizowane w formie seminarium oraz samokształcenie kierowane przez Firma Usługowo Handlowa Grzegorz Kobuszewski", align: :both, size: 22
+    docx.p "w okresie od " + @szkol.data_od.strftime("%d.%m.%Y") + "r. do " + @szkol.data_do.strftime("%d.%m.%Y") + "r.", align: :both, size: 22
+  else
+    docx.p "zorganizowane w formie instruktażu przez Firma Usługowo Handlowa Grzegorz Kobuszewski", align: :both, size: 22
+    docx.p "w okresie od " + @szkol.data_od.strftime("%d.%m.%Y") + "r. do " + @szkol.data_do.strftime("%d.%m.%Y") + "r.", align: :both, size: 22
+  end
+
+  # cele
+
+  docx.p
+  docx.p do
+    text "Celem szkolenia była aktualizacja, uzupełnienie wiedzy i umiejętności z zakresu:", align: :both, size: 22
+    end
+  if @osoba.rodzaj_id == 1
+  docx.ul do
+    li "oceny zagrożeń związanych z wykonywaną pracą,", align: :both, size: 22
+    li "metod ochrony przed zagrożeniami dla zdrowia i bezpieczeństwa pracowników,", align: :both, size: 22
+    li "kształtowania warunków pracy w sposób zgodny z przepisami i zasadami bezpieczeństwa i higieny pracy, ", align: :both, size: 22
+    li "postępowania w razie wypadku oraz w sytuacjach awaryjnych.", align: :left, size: 22
+  end
+    elsif @osoba.rodzaj_id == 2
+  docx.ul do
+    li "przepisów i zasad bezpieczeństwa i higieny pracy związanych z wykonywaną pracą,", align: :left, size: 22
+    li "zagrożeń związanych z wykonywaną pracą oraz metod ochrony przed tymi zagrożeniami, ", align: :left, size: 22
+    li "postępowania w razie wypadku i w sytuacjach zagrożeń.", align: :left, size: 22
+  end
+    elsif @osoba.rodzaj_id == 3
+  docx.ul do
+    li "oceny zagrożeń występujących w procesach pracy oraz ryzyka związanego z tymi zagrożeniami,", align: :left, size: 22
+    li "kształtowania bezpiecznych i higienicznych warunków pracy,", align: :left, size: 22
+    li "ochrony pracowników przed zagrożeniami związanymi z wykonywaną pracą. ", align: :left, size: 22
+  end
+  else
+  docx.ul do
+    li "oceny zagrożeń występujących w procesach pracy oraz ryzyka związanego z tymi zagrożeniami,", align: :left, size: 22
+    li "kształtowania bezpiecznych i higienicznych warunków pracy,", align: :left, size: 22
+    li "ochrony pracowników przed zagrożeniami związanymi z wykonywaną pracą. ", align: :left, size: 22
+  end
+  end
+
+# wydano
+  
+  docx.p
+  docx.p "Zaświadczenie wydano na podstawie § 16 ust. 3 rozporządzenia Ministra Gospodarki i Pracy z dnia 27 lipca 2204 r.", align: :both, size: 16, color: "9e9e9e"
+  docx.p "w sprawie szkolenia w dziedzinie bezpieczeństwa i higieny pracy (Dz. U. Nr 180,poz. 1860, z późn. zm.).", align: :both, size: 16, color: "9e9e9e"
+    
+   2.times do
+    docx.p
+   end
+
+  docx.p "Wrocław, dnia " + @szkol.data_wystawienia, align: :left, size: 22
+
+  docx.p
+
+  if @osoba.rodzaj_id == 1
+    docx.p "Nr zaświadczenia wg rejestru " + @osoba.nr_zaswiadczenia.to_s + "/AB/" + @szkol.szkolenie_id.to_s + "" + @szkol.created_at.strftime("/%Y") + " ", align: :left, size: 22
+  elsif @osoba.rodzaj_id == 2 
+    docx.p "Nr zaświadczenia wg rejestru " + @osoba.nr_zaswiadczenia.to_s + "/R/" + @szkol.szkolenie_id.to_s + "" + @szkol.created_at.strftime("/%Y") + " ", align: :left, size: 22
+  elsif @osoba.rodzaj_id == 3
+    docx.p "Nr zaświadczenia wg rejestru " + @osoba.nr_zaswiadczenia.to_s + "/IT/" + @szkol.szkolenie_id.to_s + "" + @szkol.created_at.strftime("/%Y") + " ", align: :left, size: 22
+  else
+    docx.p "Nr zaświadczenia wg rejestru " + @osoba.nr_zaswiadczenia.to_s + "/K/" + @szkol.szkolenie_id.to_s + "" + @szkol.created_at.strftime("/%Y") + " ", align: :left, size: 22
+  end
+
+  # pieczatka
+  
+  docx.p
+
+  docx.p " (pieczęć i podpis osoby upoważnionej", align: :right, size: 16, color: "9e9e9e"
+  docx.p "    przez organizatora kształcenia) ", align: :right, size: 16, color: "9e9e9e"
+
+# logo
+
+docx.img 'app/assets/images/control_logo_nowe.png' do
+  width   176
+  height  58
+  align   :right
+end
+
+# program
+docx.p "Program szkolenia:", size: 22, bold: true
+
+# tabela
+
+  if @osoba.rodzaj_id == 1
+
+      row1 = ["Lp","Tematyka szkolenia", "Liczba godzin"]
+      
+      row2 = ["1.", "Wybrane regulacje prawne z zakresu prawa pracy dotyczące bezpieczeństwa i higieny pracy:
+         a) praw i obowiązków pracowników i pracodawców 
+            w zakresie higieny pracy, z uwzględnieniem:
+               •  bezpieczeństwa i higieny pracy oraz odpowiedzialności za 
+                  naruszenie przepisów i zasad bhp,
+         b) ochrony pracy kobiet i młodocianych, 
+         c) wypadków przy pracy i chorób zawodowych oraz świadczeń
+            z nimi związanych", "2"]
+    
+      row3 = ["2.", "Postęp w zakresie oceny zagrożeń czynnikami występującymi w procesach pracy oraz w zakresie metod ochrony przed zagrożeniami dla zdrowia i życia pracowników", "2"]
+     
+      row4 = ["3.","Problemy związane z organizacją stanowisk pracy biurowej, z uwzględnieniem zasad ergonomii, w tym stanowisk wyposażonych w monitory ekranowe i inne urządzenia biurowe","2"]
+
+      row5 = ["4.","Postępowanie w razie wypadków i w sytuacjach zagrożeń (np. pożaru, awarii), w tym zasady udzielania pierwszej pomocy w razie wypadku","2"]
+     
+      row6 = ["","Razem:","8"]
+
+    docx.table [row1.dup, row2.dup, row3.dup, row4.dup, row5.dup, row6.dup],  border_size: 4 do
+      cell_style rows[0],    bold: true, align: :center
+      cell_style rows[-1],   bold: true,   background: 'dddddd'
+      cell_style cols[1],    width: 7000
+      cell_style cols[0],    align: :center
+      cell_style cols[2],    align: :center
+      cell_style cells,      size: 22, margins: { top: 100, bottom: 10, left: 100, right: 100 }
+    end
+
+    9.times do
+    docx.p
+    end
+
+    docx.p "1) Wpisać nazwę formy szkolenia zgodnie z § 13 ust. 1 oraz § 15 ust. 1 i 2 rozporządzenia Ministra Gospodarki i Pracy z dnia 27 lipca 2004 r. w sprawie szkolenia w dziedzinie bezpieczeństwa i higieny pracy (Dz. U. Nr 180, poz. 1860, z późn. zm.).", align: :both, size: 16, :color => "9e9e9e"
+
+  elsif @osoba.rodzaj_id == 2 
+
+    row1 = ["Lp","Tematyka szkolenia", "Liczba godzin"]
+
+    row2 = ["1.", "Regulacje prawne z zakresu bezpieczeństwa i higieny pracy, z uwzględnieniem przepisów związanych z wykonywaną pracą", "1"]
+
+    row3 = ["2.", "Zagrożenia czynnikami występującymi w procesach pracy oraz zasady i metody likwidacji lub ograniczenia oddziaływania tych czynników na pracowników z uwzględnieniem zmian w technologii, organizacji pracy i stanowisk pracy, stosowania środków ochrony zbiorowej i indywidualnej, wprowadzenia nowych urządzeń, sprzętu i narzędzi pracy", "3"]
+      
+    row4 = ["3.","Zasady postępowania w razie wypadku w czasie pracy i w sytuacjach zagrożeń (pożaru, awarii), w tym zasady udzielania pierwszej pomocy w razie wypadku","2"]
+      
+    row5 = ["4.","Okoliczności i przyczyny charakterystycznych dla wykonywanej pracy wypadków przy pracy oraz związana z nimi profilaktyka","2"]
+    
+    row6 = ["","Razem:","8"]
+
+    docx.table [row1.dup, row2.dup, row3.dup, row4.dup, row5.dup, row6.dup],  border_size: 4 do
+      cell_style rows[0],    bold: true, align: :center
+      cell_style rows[-1],   bold: true,   background: 'dddddd'
+      cell_style cols[1],    width: 7000
+      cell_style cols[0],    align: :center
+      cell_style cols[2],    align: :center
+      cell_style cells,      size: 22, margins: { top: 100, bottom: 10, left: 100, right: 100 }
+    end
+
+    15.times do
+    docx.p
+    end
+
+    docx.p "1) Wpisać nazwę formy szkolenia zgodnie z § 13 ust. 1 oraz § 15 ust. 1 i 2 rozporządzenia Ministra Gospodarki i Pracy z dnia 27 lipca 2004 r. w sprawie szkolenia w dziedzinie bezpieczeństwa i higieny pracy (Dz. U. Nr 180, poz. 1860, z późn. zm.).", align: :both, size: 16, :color => "9e9e9e"
+
+
+  elsif @osoba.rodzaj_id == 3
+
+    row1 = ["Lp","Tematyka szkolenia", "Liczba godzin"]
+
+    row2 = ["1.", "Regulacje prawne z zakresu bezpieczeństwa i higieny pracy, z uwzględnieniem przepisów związanych z wykonywaną pracą", "1"]
+    
+    row3 = ["2.", "Zagrożenia czynnikami występującymi w procesach pracy oraz zasady i metody likwidacji lub ograniczenia oddziaływania tych czynników na pracowników z uwzględnieniem zmian w technologii, organizacji pracy i stanowisk pracy, stosowania środków ochrony zbiorowej i indywidualnej, wprowadzenia nowych urządzeń, sprzętu i narzędzi pracy", "3"]
+
+    row4 = ["3.","Zasady postępowania w razie wypadku w czasie pracy i w sytuacjach zagrożeń (pożaru, awarii), w tym zasady udzielania pierwszej pomocy w razie wypadku","2"]
+
+    row5 = ["4.","Okoliczności i przyczyny charakterystycznych dla wykonywanej pracy wypadków przy pracy oraz związana z nimi profilaktyka","2"]
+
+    row6 = ["","Razem:","8"]
+
+      docx.table [row1.dup, row2.dup, row3.dup, row4.dup, row5.dup, row6.dup],  border_size: 4 do
+      cell_style rows[0],    bold: true, align: :center
+      cell_style rows[-1],   bold: true,   background: 'dddddd'
+      cell_style cols[1],    width: 7000
+      cell_style cols[0],    align: :center
+      cell_style cols[2],    align: :center
+      cell_style cells,      size: 22, margins: { top: 100, bottom: 10, left: 100, right: 100 }
+    end
+
+    15.times do
+    docx.p
+    end
+
+    docx.p "1) Wpisać nazwę formy szkolenia zgodnie z § 13 ust. 1 oraz § 15 ust. 1 i 2 rozporządzenia Ministra Gospodarki i Pracy z dnia 27 lipca 2004 r. w sprawie szkolenia w dziedzinie bezpieczeństwa i higieny pracy (Dz. U. Nr 180, poz. 1860, z późn. zm.).", align: :both, size: 16, :color => "9e9e9e"
+
+  else
+
+    row1 = ["Lp","Tematyka szkolenia", "Liczba godzin"]
+    
+    row2 = ["1.", "Wybrane zagadnienia z prawa pracy, prawa międzynarodowego 
+      (Dyrektywy WE, Konwencji MOP)
+        • odpowiedzialność za naruszenia przepisów BHP,
+        • ochrona pracy kobiet i młodocianych,
+        • profilaktyka opieki zdrowotnej,
+        • szkolenia w zakresie BHP,
+        • nadzór i kontrola warunków pracy", "3"]
+    
+    row3 = ["2.", "Identyfikacja, analiza i ocena zagrożeń czynników szkodliwych dla zdrowia, uciążliwych i niebezpiecznych oraz ocena ryzyka związanego z tymi zagrożeniami", "3"]
+    
+    row4 = ["3.","Organizacja i metody kształtowania bezpiecznych i higienicznych warunków pracy","3"]
+    
+    row5 = ["4.","Analiza wypadków przy pracy i chorób zawodowych, profilaktyka, omówienie przyczyn wypadków","2"]
+
+    row6 = ["5.","Organizacja i metodyka szkoleń w zakresie BHP z uwzględnieniem metod prowadzenia instruktażu stanowiskowego oraz kształtowanie bezpiecznych zachowań pracowników w procesie pracy","2"]
+
+    row7 = ["6.","Zasady postępowania w razie wypadków w czasie pracy i w sytuacjach zagrożenia w tym zasady udzielania pierwszej pomocy przedlekarskiej ","1"]
+
+    row8 = ["7.","Skutki ekonomiczne niewłaściwych warunków pracy","1"]
+
+    row9 = ["8.","Ochrona przeciwpożarowa, ochrona środowiska","1"]
+
+    row10 = ["","Razem:","16"]
+
+
+    docx.table [row1.dup, row2.dup, row3.dup, row4.dup, row5.dup, row6.dup, row7.dup, row8.dup, row9.dup, row10.dup],  border_size: 4 do
+      cell_style rows[0],    bold: true, align: :center
+      cell_style rows[-1],   bold: true,   background: 'dddddd'
+      cell_style cols[1],    width: 7000
+      cell_style cols[0],    align: :center
+      cell_style cols[2],    align: :center
+      cell_style cells,      size: 20, margins: { top: 100, bottom: 10, left: 100, right: 100 }
+    end
+
+    8.times do
+    docx.p
+    end
+
+    docx.p "1) Wpisać nazwę formy szkolenia zgodnie z § 13 ust. 1 oraz § 15 ust. 1 i 2 rozporządzenia Ministra Gospodarki i Pracy z dnia 27 lipca 2004 r. w sprawie szkolenia w dziedzinie bezpieczeństwa i higieny pracy (Dz. U. Nr 180, poz. 1860, z późn. zm.).", align: :both, size: 16, :color => "9e9e9e"
+
+  end
+
+
+ 

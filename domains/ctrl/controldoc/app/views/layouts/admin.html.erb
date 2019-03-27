@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Control Life <%= " | #{@tytul_strony}" if @tytul_strony %></title>
+  <%= stylesheet_link_tag('application', :media => 'all' ) %>
+  <%= javascript_include_tag('application') %>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<% if session[:uzytkownik_id] == nil %>
+  <body class="bck2">
+<% else %>
+<body class="bck1">
+<% end %>
+  
+ <!-- menu -->
+<div class="navbar-wrapper">
+  <div class="container">
+<nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+           <a class="navbar-brand logo" href="https://pl-pl.facebook.com/controllifepl"></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <% if session[:uzytkownik_id] == nil %>
+            <li><a href="/public">Home</a></li>
+            <% else %>
+            <li><a href="/dostep/index">Home</a></li>
+            <li><a href="/szkolenias/index">Dodaj Szkolenie</a></li>
+            <li><a href="/szkolenias/index_pomoc">Pierwsza Pomoc</a></li>
+            <li><a href="/kurses/index">Rejestr Szkoleń</a></li>
+            <li><a href="/uzytkowniks/index">Administratorzy</a></li>
+            <li><a href="/dostep/logout">Wyloguj</a></li>
+             <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- główna -->
+  <div id="content">
+    <% if !flash[:notice].blank? %>
+      <div class="alert alert-success" style="text-align: center;">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+
+   <%= yield %>
+
+
+  </div>
+<!-- główna koniec --> 
+
+  
+<!-- stopka -->
+</body>
+</html>

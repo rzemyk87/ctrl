@@ -1,0 +1,123 @@
+<div class="container">
+
+<table class="table table-striped">
+<% if @szkol.rodzaj_id == 5 || @szkol.rodzaj_id == 6 %>
+	<tr class="info">
+		<th class="text-center">Imię</th>
+		<th class="text-center">Nazwisko</th>
+		<th class="text-center">Rodzaj Szkolenia</th>
+		<th class="text-center">Numer Zaświadczenia</th>
+		<th class="text-center">akcja</th>
+	</tr>	
+<% @kursy_b.each do |kursy| %>
+	<tr>
+		<td class="text-center"><%= kursy.osoba_imie %></td>
+		<td class="text-center"><%= kursy.osoba_nazwisko %></td>
+		<td class="text-center"><%= Rodzaj.find(kursy.szkolenie.rodzaj_id).rodzaj %></td>
+
+		<% if kursy.rodzaj_id == 1 %>
+			<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/AB/#{@szkol.szkolenie_id}/2018" %></td>
+		<% elsif kursy.rodzaj_id == 2 %>
+			<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/R/#{@szkol.szkolenie_id}/2018" %></td>
+		<% elsif kursy.rodzaj_id == 3 %>
+			<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/IT/#{@szkol.szkolenie_id}/2018" %></td>
+		<% elsif kursy.rodzaj_id == 4 %>
+			<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/K/#{@szkol.szkolenie_id}/2018" %></td>
+		<% elsif kursy.rodzaj_id == 5 %>
+			<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/PP/#{@szkol.szkolenie_id}/2018" %></td>
+		<% else %>
+			<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/PPD/#{@szkol.szkolenie_id}/2018" %></td>
+		<% end %>
+
+		<td class="text-center">
+		<% if kursy.rodzaj_id == 5 %>
+			<%= link_to "PDF", {:action => "pierwsza_pdf", :format => 'pdf', :id_osoba => kursy.id, :id_szkol => @szkol.id}, :class => 'btn btn-xs btn-success' %>
+			<%= link_to "DOC", {:action => "pierwszapomoc", :format => 'docx', :id => @szkol.id, :id_osoba => kursy.id}, :class => 'btn btn-xs btn-default' %>
+		<% elsif kursy.rodzaj_id == 6 %>
+			<%= link_to "PDF", {:action => "dzieci_pdf", :format => 'pdf', :id_osoba => kursy.id, :id_szkol => @szkol.id}, :class => 'btn btn-xs btn-success' %>
+			<%= link_to "DOC", {:action => "dziecipomoc", :id => @szkol.id, :id_osoba => kursy.id}, :class => 'btn btn-xs btn-default' %>
+		<% else %>
+			<%= link_to "PDF", {:action => "pdf", :format => 'pdf', :id_osoba => kursy.id, :id_szkol => @szkol.id}, :class => 'btn btn-xs btn-success' %>
+			<%= link_to "DOC", {:action => "dokument", :id => @szkol.id, :id_osoba => kursy.id}, :class => 'btn btn-xs btn-default' %>
+		<% end %>
+			<%= link_to("Edytuj",{:action => 'edycja_osoba', :id_osoba => kursy.id, :id => @szkol.id},:class => 'btn btn-xs btn-primary') %>
+			<%= link_to("Usun", {:action => 'usun_osoba', :id_osoba => kursy.id, :id => @szkol.id},:class => 'btn btn-xs btn-danger') %>
+		</td>
+	</tr>	
+<% end %>
+</table>
+
+<% else %>
+	<tr class="info">
+		<th class="text-center">Imię</th>
+		<th class="text-center">Nazwisko</th>
+		<th class="text-center">Data urodzenia</th>
+		<th class="text-center">Miejsce urodzenia</th>
+		<th class="text-center">Rodzaj Szkolenia</th>
+		<th class="text-center">Ocena</th>
+		<th class="text-center">Numer Zaświadczenia</th>
+		<th class="text-center">akcja</th>
+	</tr>	
+<% @kursy_b.each do |kursy| %>
+	<tr>
+		<td class="text-center"><%= kursy.osoba_imie %></td>
+		<td class="text-center"><%= kursy.osoba_nazwisko %></td>
+		<td class="text-center"><%= kursy.osoba_data %></td>
+		<td class="text-center"><%= kursy.osoba_miejsce %></td>
+		<td class="text-center"><%= Rodzaj.find(kursy.szkolenie.rodzaj_id).rodzaj %></td>
+		<td class="text-center"><%= "#{kursy.osoba_ocena} %" %></td>
+
+		<% if kursy.nr_zaswiadczenia == 0 %>
+			<td class="text-center"><%= "" %></td>	
+			<td class="text-center">
+			<button type="button" class="btn btn-xs btn-outline-secondary">PDF</button>
+			<button type="button" class="btn btn-xs btn-outline-dark">DOC</button>
+			<%= link_to("Edytuj",{:action => 'edycja_osoba', :id_osoba => kursy.id, :id => @szkol.id},:class => 'btn btn-xs btn-primary') %>
+			<%= link_to("Usun", {:action => 'usun_osoba', :id_osoba => kursy.id, :id => @szkol.id},:class => 'btn btn-xs btn-danger') %>
+
+			</td>		
+		<% else %>
+			<% if kursy.rodzaj_id == 1 %>
+				<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/AB/#{@szkol.szkolenie_id}/2018" %></td>
+			<% elsif kursy.rodzaj_id == 2 %>
+				<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/R/#{@szkol.szkolenie_id}/2018" %></td>
+			<% elsif kursy.rodzaj_id == 3 %>
+				<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/IT/#{@szkol.szkolenie_id}/2018" %></td>
+			<% elsif kursy.rodzaj_id == 4 %>
+				<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/K/#{@szkol.szkolenie_id}/2018" %></td>
+			<% elsif kursy.rodzaj_id == 5 %>
+				<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/PP/#{@szkol.szkolenie_id}/2018" %></td>
+			<% else %>
+				<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/PPD/#{@szkol.szkolenie_id}/2018" %></td>
+			<% end %>
+			<td class="text-center">
+			<%= link_to "PDF", {:action => "pdf", :format => 'pdf', :id_osoba => kursy.id, :id_szkol => @szkol.id}, :class => 'btn btn-xs btn-success' %>
+			<%= link_to "DOC", {:action => "dokument", :id => @szkol.id, :id_osoba => kursy.id}, :class => 'btn btn-xs btn-default' %>
+			<%= link_to("Edytuj",{:action => 'edycja_osoba', :id_osoba => kursy.id, :id => @szkol.id},:class => 'btn btn-xs btn-primary') %>
+			<%= link_to("Usun", {:action => 'usun_osoba', :id_osoba => kursy.id, :id => @szkol.id},:class => 'btn btn-xs btn-danger') %>
+
+			</td>
+		<% end %>
+
+
+	</tr>	
+<% end %>
+</table>
+<% end %>
+
+		<%= link_to("Dodaj Osobę",{:action => 'dodaj', :id => @szkol.id},:class => 'btn btn-ml btn-success') %>
+		<% if @szkol.rodzaj_id == 5 %>
+			<%= link_to("Drukuj Dziennik",{:action => 'dziennik_pp', :format => 'pdf', :id => @szkol.id},:class => 'btn btn-ml btn-default') %>
+			<%= link_to("Drukuj Zaświadczenia",{:action => 'zaswiadczenia_pp', :format => 'pdf', :id => @szkol.id},:class => 'btn btn-ml btn-danger') %>
+		<% elsif @szkol.rodzaj_id == 6 %>
+			<%= link_to("Drukuj Dziennik",{:action => 'dziennik_ppd', :format => 'pdf', :id => @szkol.id},:class => 'btn btn-ml btn-default') %>
+			<%= link_to("Drukuj Zaświadczenia",{:action => 'zaswiadczenia_ppd', :format => 'pdf', :id => @szkol.id},:class => 'btn btn-ml btn-danger') %>
+		<% else %>
+			<%= link_to("Drukuj Dziennik",{:action => 'dziennik_pdf', :format => 'pdf', :id => @szkol.id},:class => 'btn btn-ml btn-default') %>
+			<%= link_to("Drukuj Zaświadczenia",{:action => 'zaswiadczenia_pdf', :format => 'pdf', :id => @szkol.id},:class => 'btn btn-ml btn-danger') %>
+		<% end %>
+
+<br><br>
+			<%= link_to("Cofnij",{:action => 'index'},:class => 'btn btn-ml btn-info') %>
+
+</div>

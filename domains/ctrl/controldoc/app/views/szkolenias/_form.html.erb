@@ -1,0 +1,503 @@
+<head>
+    <script type="text/javascript">
+       
+      var globalRowCount = 2;
+      var licz;
+
+      function setLicz()
+      {
+        licz = 0;
+   //     alert(licz);
+      }
+
+      function changeLicz()
+      {
+        licz = 1;
+     //   alert(licz);
+      }
+
+        function addScreenRow(tableID)
+        {
+            var table     = document.getElementById(tableID);
+            var rowCount  = table.rows.length;
+            var row       = table.insertRow(rowCount);
+
+            var imie       = row.insertCell(0);
+            var element1    = document.createElement("input");
+            element1.type   = "text";
+            element1.required = true;
+            element1.size   = "15"
+            element1.className = "form-control"
+            element1.name = `szkolenie[osobas_attributes][${globalRowCount-1}][osoba_imie]`;
+            imie.appendChild(element1);
+
+            var nazwisko       = row.insertCell(1);
+            var element2    = document.createElement("input");
+            element2.type   = "text";
+            element2.required = true;
+            element2.size   = "15"
+            element2.className = "form-control"
+            element2.name = `szkolenie[osobas_attributes][${globalRowCount-1}][osoba_nazwisko]`;
+            nazwisko.appendChild(element2);
+
+            var data       = row.insertCell(2);
+            var element3    = document.createElement("input");
+            element3.type   = "text";
+            element3.setAttribute("id", "date2");
+            element3.required = true;
+            element3.className = "form-control"
+            element3.name = `szkolenie[osobas_attributes][${globalRowCount-1}][osoba_data]`;
+            element3.size   = "10"
+            data.appendChild(element3);
+
+// WSTAWIANIE KROPKI DO POLA DATA
+
+function checkValue(str, max) {
+  if (str.charAt(0) !== '0' || str == '00') {
+    var num = parseInt(str);
+    if (isNaN(num) || num <= 0 || num > max) num = 1;
+    str = num > parseInt(max.toString().charAt(0)) && num.toString().length == 1 ? '0' + num : num.toString();
+  };
+  return str;
+};
+
+element3.addEventListener('input', function(e) {
+  this.type = 'text';
+  var input = this.value;
+  if (/\D\/$/.test(input)) input = input.substr(0, input.length - 3);
+  var values = input.split('.').map(function(v) {
+    return v.replace(/\D/g, '')
+  });
+  if (values[0]) values[0] = checkValue(values[0], 31);
+  if (values[1]) values[1] = checkValue(values[1], 12);
+  var output = values.map(function(v, i) {
+    return v.length == 2 && i < 2 ? v + '.' : v;
+  });
+  this.value = output.join('').substr(0, 14);
+});
+
+element3.addEventListener('blur', function(e) {
+  this.type = 'text';
+  var input = this.value;
+  var values = input.split('.').map(function(v, i) {
+    return v.replace(/\D/g, '')
+  });
+  var output = '';
+  
+  if (values.length == 3) {
+    var year = values[2].length !== 4 ? parseInt(values[2]) + 2000 : parseInt(values[2]);
+    var month = parseInt(values[1]) - 1;
+    var day = parseInt(values[0]);
+    var d = new Date(year, month, day);
+    if (!isNaN(d)) {
+      document.getElementById('result').innerText = d.toString();
+      var dates = [d.getDate(), d.getMonth() + 1, d.getFullYear()];
+      output = dates.map(function(v) {
+        v = v.toString();
+        return v.length == 1 ? '0' + v : v;
+      }).join('.');
+    };
+  };
+  this.value = output;
+});
+
+// KONIEC KROPKA DATA
+
+            var miejsce       = row.insertCell(3);
+            var element4    = document.createElement("input");
+            element4.type   = "text";
+            element4.required = true;
+            element4.name = `szkolenie[osobas_attributes][${globalRowCount-1}][osoba_miejsce]`;
+            element4.size   = "15"
+            element4.className = "form-control"
+            miejsce.appendChild(element4);
+
+            var ocena       = row.insertCell(4);
+            var element5    = document.createElement("input");
+            element5.type   = "number";
+            var id1 = "" + globalRowCount;
+            element5.id     = id1;
+            element5.min    = 0;
+            element5.max    = 100;
+            element5.required = true;
+            element5.className = "form-control"
+            element5.name = `szkolenie[osobas_attributes][${globalRowCount-1}][osoba_ocena]`;
+            element5.size   = "10"
+            ocena.appendChild(element5);
+
+            var zaswiadczenie = row.insertCell(5);
+            var element6    = document.createElement("input");
+            element6.type   = "hidden";
+            element6.name = `szkolenie[osobas_attributes][${globalRowCount-1}][nr_zaswiadczenia]`;
+
+// wstawianie nr_zasw = 0 jesli ocena < 50
+
+            var id2 = "#" + globalRowCount
+              $(id2).change( function () {
+                  if(this.value < 50) {
+
+                      element6.value = 0;
+                  }
+                  else
+                  {
+                      var nr = <%= $nr %> + licz;
+                      licz++;
+                      element6.value = nr;
+                  }        
+              });
+
+            zaswiadczenie.appendChild(element6);
+
+<% if @rodzaj == 1 %>
+
+            var rodzaj = row.insertCell(6);
+            var element7    = document.createElement("input");
+            element7.type   = "hidden";
+            element7.name = `szkolenie[osobas_attributes][${globalRowCount-1}][rodzaj_id]`;
+            element7.value = 1;
+            rodzaj.appendChild(element7);
+
+  <% elsif @rodzaj == 2 %>
+
+            var rodzaj = row.insertCell(6);
+            var element7    = document.createElement("input");
+            element7.type   = "hidden";
+            element7.name = `szkolenie[osobas_attributes][${globalRowCount-1}][rodzaj_id]`;
+            element7.value = 2;
+            rodzaj.appendChild(element7);
+
+  <% elsif @rodzaj == 3 %>;
+
+            var rodzaj = row.insertCell(6);
+            var element7    = document.createElement("input");
+            element7.type   = "hidden";
+            element7.name = `szkolenie[osobas_attributes][${globalRowCount-1}][rodzaj_id]`;
+            element7.value = 3;
+            rodzaj.appendChild(element7);
+
+  <% else %>
+
+            var rodzaj = row.insertCell(6);
+            var element7    = document.createElement("input");
+            element7.type   = "hidden";
+            element7.name = `szkolenie[osobas_attributes][${globalRowCount-1}][rodzaj_id]`;
+            element7.value = 4;
+            rodzaj.appendChild(element7);
+
+  <% end %>
+            
+            globalRowCount++;
+
+        }
+      
+        function delScreenRow(tableID)
+        {
+            try {
+                var table    = document.getElementById(tableID);
+                var rowCount = table.rows.length;
+               
+                table.deleteRow(rowCount-1)
+
+            }
+            catch(e) {
+                alert(e);
+            }
+        }
+
+    </script>
+
+</head>
+
+<div class="znak">
+  <% if @rodzaj == 1 %>
+  <%= image_tag("rejestr2.jpg",:size => '200x200', :class => "img-circle center-block") %>
+<% elsif @rodzaj == 2 %>
+  <%= image_tag("szkolenia1.jpg",:size => '200x200', :class => "img-circle center-block") %>
+<% elsif @rodzaj == 3 %>
+  <%= image_tag("rejestr3.jpg",:size => '200x200', :class => "img-circle center-block") %>
+<% else %>
+  <%= image_tag("pracodawcow.jpg",:size => '200x200', :class => "img-circle center-block") %>
+<% end %>
+
+</div>
+
+<div class="content2">
+	<div class="row">
+  		<div class="col-md-2"></div>
+  			<div class="col-md-2">
+  				<h3 class="text-center"><%= @tytul %></h3>
+  			</div>
+ 
+  	</div>
+  	<div class="row">
+	  <div class="form-group">
+  		<div class="col-md-2"></div>
+      <div class="col-md-2">
+          <h5 class="text-center">Szkolenie nr:</h5>
+        </div>
+      <div class="col-xs-2">
+      <%= pole.text_field(:szkolenie_id, :class => 'form-control', :value => @szkolenie_last, readonly: true ) %>
+        </div>
+   
+
+
+        </div>
+
+  		</div>
+  		<br>
+  		
+	<div class="row">
+	  <div class="form-group">
+  		<div class="col-md-2"></div>
+        <div class="col-md-2">
+            <h5 class="text-center">Prowadzący:</h5> 
+        </div>
+        <div class="col-md-2">
+      <%= pole.text_field(:prowadzacy, :class => 'form-control') %>
+
+      </div>
+  			<div class="col-md-2"></div>
+  			<div class="col-md-1">
+  				<h5 class="text-right">Data od:</h5>
+  			</div>
+  			<div class="col-md-2">
+  			  <div class="form-group">
+                <div class='input-group date' id='datetimepicker1'>
+                <%= pole.text_field :data_od, class: 'form-control', data: { date_format: 'DD.MM.YYYY' }, :required => 'required' %>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+              </div>
+        	</div>
+
+            <script type="text/javascript">
+          		  $(function () {
+             	   $('#datetimepicker1').datetimepicker({
+             	   	  format: 'DD.MM.YYYY'});
+             	   });
+       		</script>
+
+  	  </div>
+	</div>
+	<div class="row">
+	  <div class="form-group">
+  		<div class="col-md-2"></div>
+        <div class="col-md-2">
+            <h5 class="text-center">Forma:</h5>  
+        </div>
+        <div class="col-md-2">
+
+<% if @rodzaj == 1 %>
+<%= render(:partial => "b", :locals => {:pole => pole}) %>
+<% elsif @rodzaj == 2 %>
+<%= render(:partial => "r", :locals => {:pole => pole}) %>
+<% else %>
+<%= render(:partial => "i", :locals => {:pole => pole}) %>
+<% end %>
+
+          
+      </div>
+  			  			<div class="col-md-2"></div>
+  			<div class="col-md-1">
+  				<h5 class="text-right">Data do:</h5>
+  			</div>
+  			<div class="col-md-2">
+  			  <div class="form-group">
+                <div class='input-group date' id='datetimepicker2'>
+                	 <%= pole.text_field :data_do, class: 'form-control', data: { date_format: 'DD.MM.YYYY' }, :required => 'required' %>
+
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+              </div>
+        	</div>
+
+            <script type="text/javascript">
+          		  $(function () {
+             	   $('#datetimepicker2').datetimepicker({
+             	   	  format: 'DD.MM.YYYY'});
+             	   });
+       		</script>
+  	  </div>
+	</div>
+    <div class="row">
+       <div class="col-md-2"></div>
+            <div class="col-md-2">
+          <h5 class="text-center">Data wystawienia:</h5>
+        </div>
+      <div class="col-md-2">
+          <div class="form-group">
+                <div class='input-group date' id='datetimepicker3'>
+                <%= pole.text_field :data_wystawienia, class: 'form-control', data: { date_format: 'DD.MM.YYYY' }, :required => 'required' %>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+              </div>
+
+            <script type="text/javascript">
+                $(function () {
+                 $('#datetimepicker3').datetimepicker({
+                    format: 'DD.MM.YYYY'});
+                 });
+          </script>
+
+
+      </div>
+           <div class="col-md-1"></div>
+            <div class="col-md-2">
+          <h5 class="text-right">Ważność szkolenia:</h5>
+        </div>
+      <div class="col-md-2">
+
+<% if @rodzaj == 1 %>
+      <%= pole.text_field(:data_waznosci, :class => 'form-control', :value => (Date.today + 2190).strftime("%d.%m.%Y"), readonly: true, data: { date_format: 'DD.MM.YYYY' } ) %>
+<% elsif @rodzaj == 2 %>
+
+<%= pole.select :data_waznosci, options_for_select([(Date.today + 365).strftime("%d/%m/%Y"),(Date.today + 1095).strftime("%d/%m/%Y")], :class => "col-md-2"),:class => 'form-control' %>
+
+<% else %>
+      <%= pole.text_field(:data_waznosci, :class => 'form-control', :value => (Date.today + 1825).strftime("%d.%m.%Y"), readonly: true, data: { date_format: 'DD.MM.YYYY' } ) %>
+<% end %>
+
+</div>
+    </div>
+
+	<div class="row">
+	  <div class="form-group">
+  		<div class="col-md-2"></div>
+			<div class="col-md-2">
+  				<h5 class="text-center">Firma:</h5>
+  			</div>
+			<div class="col-md-7">
+			<%= pole.text_field(:firma, :class => 'form-control') %>
+  			</div>
+  	  </div>
+	</div>
+
+
+
+</div>
+<div class="content3">
+  <div class="hero-unit">	
+  	<h4 class="text-left">Osoby szkolone:</h4>
+
+<br>
+
+  	<table class="table table-striped", id="dataTable">
+		<tr class="info">
+			<th>Imię</th>
+			<th>Nazwisko</th>
+			<th>Data Urodzenia</th>
+			<th>Miejsce Urodzenia</th>
+			<th>Ocena</th>
+			<th></th>
+		</tr>	
+		<tr>
+		<tbody>
+ <%= pole.fields_for(:osobas) do |o| %>
+	<tr>
+		<td><%= o.text_field(:osoba_imie, :size => "15", :required => 'required', :class => 'form-control') %></td>
+		<td><%= o.text_field(:osoba_nazwisko, :size => "15", :required => 'required', :class => 'form-control') %></td>
+		<td><%= o.text_field(:osoba_data, :id => 'date1', :size => "10", :required => 'required', :class => 'form-control') %></td>
+		<td><%= o.text_field(:osoba_miejsce, :size => "15", :required => 'required', :class => 'form-control') %></td>
+		<td><%= o.number_field(:osoba_ocena, :id => 'ocena1' , :size => "10", :min => 0 ,:max => 100, :required => 'required', :value => 0, :class => 'form-control') %></td>  
+
+<%= o.hidden_field(:nr_zaswiadczenia, :id => 'zasw', :value => $nr) %>
+
+ <script type="text/javascript">
+  
+var value = $('#ocena1').val();
+$('#ocena1').on('keyup change click', function () {
+    if(this.value < 50) {
+        var zasw = document.getElementById('zasw');
+        zasw.value = 0;
+        setLicz();
+    }
+    else
+    {
+        var zasw = document.getElementById('zasw');
+        zasw.value =  <%= $nr %>;
+        changeLicz();
+    }        
+});
+
+
+</script>
+
+<% if @rodzaj == 1 %>
+    <%= o.hidden_field(:rodzaj_id, :value => 1) %>
+<% elsif @rodzaj == 2 %>
+    <%= o.hidden_field(:rodzaj_id, :value => 2) %>
+<% elsif @rodzaj == 3 %>
+    <%= o.hidden_field(:rodzaj_id, :value => 3) %>
+<% else %>
+    <%= o.hidden_field(:rodzaj_id, :value => 4) %>
+<% end %>
+
+<!-- Wstawianie kropki do pola data -->
+
+<script type="text/javascript">
+var date = document.getElementById('date1');
+
+function checkValue(str, max) {
+  if (str.charAt(0) !== '0' || str == '00') {
+    var num = parseInt(str);
+    if (isNaN(num) || num <= 0 || num > max) num = 1;
+    str = num > parseInt(max.toString().charAt(0)) && num.toString().length == 1 ? '0' + num : num.toString();
+  };
+  return str;
+};
+
+date.addEventListener('input', function(e) {
+  this.type = 'text';
+  var input = this.value;
+  if (/\D\/$/.test(input)) input = input.substr(0, input.length - 3);
+  var values = input.split('.').map(function(v) {
+    return v.replace(/\D/g, '')
+  });
+  if (values[0]) values[0] = checkValue(values[0], 31);
+  if (values[1]) values[1] = checkValue(values[1], 12);
+  var output = values.map(function(v, i) {
+    return v.length == 2 && i < 2 ? v + '.' : v;
+  });
+  this.value = output.join('').substr(0, 14);
+});
+
+date.addEventListener('blur', function(e) {
+  this.type = 'text';
+  var input = this.value;
+  var values = input.split('.').map(function(v, i) {
+    return v.replace(/\D/g, '')
+  });
+  var output = '';
+  
+  if (values.length == 3) {
+    var year = values[2].length !== 4 ? parseInt(values[2]) + 2000 : parseInt(values[2]);
+    var month = parseInt(values[1]) - 1;
+    var day = parseInt(values[0]);
+    var d = new Date(year, month, day);
+    if (!isNaN(d)) {
+      document.getElementById('result').innerText = d.toString();
+      var dates = [d.getDate(),d.getMonth() + 1, d.getFullYear()];
+      output = dates.map(function(v) {
+        v = v.toString();
+        return v.length == 1 ? '0' + v : v;
+      }).join('.');
+    };
+  };
+  this.value = output;
+});
+</script>
+
+	</tr>	
+	</tr>
+
+
+
+	<% end %>
+	</tbody>
+
+	</table>

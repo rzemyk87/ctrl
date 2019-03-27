@@ -1,0 +1,31 @@
+<% @tytul_strony = "Strona Główna" %>
+
+<!-- Trzy kolumny -->
+<br><br>
+<div class="container marketing">
+
+<div class="row">
+	<% @artykuly.each do |artykul| %>
+	<div class="col-lg-4">
+		<%= image_tag(artykul.zdjecie.url, :size => "200x200", :class => "img-circle") %>
+		<h2><%= artykul.nazwa %></h2>
+		<p><%= truncate(artykul.zawartosc, :length => 200, :omission =>"[...]") %></p>
+		<p><%= link_to("Zobacz", {:action => "nowosci", :artykul_id => artykul.id}, :class => "btn btn-default") %></p>
+	</div>
+	<% end %>
+</div>
+<!-- Trzy kolumny - koniec -->
+	<% @galerie.each do |galeria| %>
+		<hr class = "featurette-divider">
+			<div class="row featurette">
+			<div class="col-md-7">
+				<h2 class="featurette-heading"><%= galeria.nazwa %></h2>
+				<p class="lead"><%= truncate(galeria.opis, :length => 200, :omission =>"[...]") %></p>
+				<p><%= link_to("Zobacz", {:action => "galeria", :galeria_id => galeria.id}, :class => "btn btn-default") %></p>
+			</div>
+			<div class="col-md-5">
+				<%= image_tag(galeria.zdjecie.url, :size => "600x600", :class => "featurette-image img-responsive") %>
+			</div>
+<% end %>
+<hr class = "featurette-divider">
+</div>

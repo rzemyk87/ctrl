@@ -1,0 +1,16 @@
+<div class="hero-unit">
+<h1>Edycja Szkolenia</h1>
+
+<%= form_for(@szkolenie, :url => {:action => 'aktualizuj', :id => @szkolenie.id}, :method => :POST) do |pole| %>
+<% @rodzaj = @szkolenie.rodzaj_id %>
+<%= render(:partial => "szkol_form", :locals => {:pole => pole}) %>
+
+<div style="text-align: center;">
+<br><br>
+
+	<%= submit_tag("Aktualizuj",:class => 'btn btn-primary') %>
+	<%= link_to("Powrót", {:action => 'index', :id => @szkolenie.id},:class => 'btn btn-warning')%>
+</div>
+
+	<% end %>
+</div>
