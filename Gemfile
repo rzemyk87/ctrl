@@ -43,10 +43,6 @@ gem 'responders', '~> 2.3'
 gem "rename"
 gem 'uglifier'
 
-group :production do
-  gem 'pg'
-end
-
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
