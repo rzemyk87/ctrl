@@ -41,6 +41,7 @@ gem 'caracal-rails'
 gem 'libreconv'
 gem 'responders', '~> 2.3'
 gem "rename"
+gem 'uglifier'
 
 group :production do
   gem 'pg'
