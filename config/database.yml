@@ -28,7 +28,7 @@ production:
   encoding: unicode
   database: p1355_controlcrm
   pool: 5
-  username: rzemyk87
+  username: p1355_controlcrm
   password: d3v3Lopm3nt
   host: localhost
 
