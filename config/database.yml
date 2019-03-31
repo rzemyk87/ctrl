@@ -29,7 +29,7 @@ production:
   database: p1355_controlcrm
   pool: 5
   username: rzemyk87
-  password: d3v3lopm3nt
+  password: d3v3Lopm3nt
 
 
 
