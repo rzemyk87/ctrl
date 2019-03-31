@@ -3,7 +3,7 @@ lock '3.11.0'
 
 set :deploy_user, 'rzemyk87'
 set :application, 'control'
-set :repo_url, 'git@github.com:rzemyk87/control.git'
+set :repo_url, 'git@github.com:rzemyk87/ctrl.git'
 
 before :deploy, 'git:push'
 
