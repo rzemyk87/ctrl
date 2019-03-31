@@ -43,11 +43,6 @@ gem 'responders', '~> 2.3'
 gem "rename"
 gem 'uglifier'
 
-require 'rbconfig'
- if RbConfig::CONFIG['target_os'] =~ /(?i-mx:bsd|dragonfly)/
-   gem 'rb-kqueue', '>= 0.2'
- end
-
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
