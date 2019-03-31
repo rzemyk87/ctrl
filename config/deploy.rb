@@ -1,9 +1,9 @@
 # config valid only for current version of Capistrano
-lock '3.4.1'
+lock '3.11.0'
 
 set :deploy_user, 'rzemyk87'
 set :application, 'control'
-set :repo_url, 'git@github.com:rzemyk87/ctrl.git'
+set :repo_url, 'git@github.com:rzemyk87/control.git'
 
 before :deploy, 'git:push'
 
