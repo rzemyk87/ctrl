@@ -30,7 +30,7 @@ production:
   pool: 5
   username: rzemyk87
   password: d3v3Lopm3nt
-  host: localhost
+  host: pgsql34.mydevil.net
 
 
 
