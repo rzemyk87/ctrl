@@ -64,13 +64,13 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
  # gem 'sqlite3', '~> 1.3.6'
-  #gem 'capistrano',  '~> 3.4.0'
-  #gem 'capistrano-passenger'
-  #gem 'capistrano-rvm' # rvm support
-  #gem 'capistrano-bundler' # bundle command
-  #gem 'capistrano-rails' # assets and migrations
-  #gem 'capistrano-faster-assets' # skips assets precompilation if not needed
-  #gem 'capistrano3-git-push'
+  gem 'capistrano',  '~> 3.4.0'
+  gem 'capistrano-passenger'
+  gem 'capistrano-rvm' # rvm support
+  gem 'capistrano-bundler' # bundle command
+  gem 'capistrano-rails' # assets and migrations
+  gem 'capistrano-faster-assets' # skips assets precompilation if not needed
+  gem 'capistrano3-git-push'
 
 end
 
