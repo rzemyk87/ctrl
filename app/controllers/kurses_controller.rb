@@ -14,8 +14,10 @@ class KursesController < ApplicationController
 
   	if @szkol.blank?
   		@kursy_b = Osoba.sortuj
+      @data_sz = @szkol.created_at.strftime("%Y")
   	else
   		@kursy_b = @szkol.osobas.sortuj
+      @data_sz = @szkol.created_at.strftime("%Y")
   	end
   end
 

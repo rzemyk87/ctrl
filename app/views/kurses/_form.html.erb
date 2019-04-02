@@ -16,17 +16,17 @@
 		<td class="text-center"><%= Rodzaj.find(kursy.szkolenie.rodzaj_id).rodzaj %></td>
 
 		<% if kursy.rodzaj_id == 1 %>
-			<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/AB/#{@szkol.szkolenie_id}/2018" %></td>
+			<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/AB/#{@szkol.szkolenie_id}/#{@data_sz}" %></td>
 		<% elsif kursy.rodzaj_id == 2 %>
-			<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/R/#{@szkol.szkolenie_id}/2018" %></td>
+			<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/R/#{@szkol.szkolenie_id}/#{@data_sz}" %></td>
 		<% elsif kursy.rodzaj_id == 3 %>
-			<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/IT/#{@szkol.szkolenie_id}/2018" %></td>
+			<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/IT/#{@szkol.szkolenie_id}/#{@data_sz}" %></td>
 		<% elsif kursy.rodzaj_id == 4 %>
-			<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/K/#{@szkol.szkolenie_id}/2018" %></td>
+			<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/K/#{@szkol.szkolenie_id}/#{@data_sz}" %></td>
 		<% elsif kursy.rodzaj_id == 5 %>
-			<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/PP/#{@szkol.szkolenie_id}/2018" %></td>
+			<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/PP/#{@szkol.szkolenie_id}/#{@data_sz}" %></td>
 		<% else %>
-			<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/PPD/#{@szkol.szkolenie_id}/2018" %></td>
+			<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/PPD/#{@szkol.szkolenie_id}/#{@data_sz}" %></td>
 		<% end %>
 
 		<td class="text-center">
@@ -78,17 +78,17 @@
 			</td>		
 		<% else %>
 			<% if kursy.rodzaj_id == 1 %>
-				<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/AB/#{@szkol.szkolenie_id}/2018" %></td>
+				<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/AB/#{@szkol.szkolenie_id}/#{@data_sz}" %></td>
 			<% elsif kursy.rodzaj_id == 2 %>
-				<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/R/#{@szkol.szkolenie_id}/2018" %></td>
+				<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/R/#{@szkol.szkolenie_id}/#{@data_sz}" %></td>
 			<% elsif kursy.rodzaj_id == 3 %>
-				<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/IT/#{@szkol.szkolenie_id}/2018" %></td>
+				<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/IT/#{@szkol.szkolenie_id}/#{@data_sz}" %></td>
 			<% elsif kursy.rodzaj_id == 4 %>
-				<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/K/#{@szkol.szkolenie_id}/2018" %></td>
+				<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/K/#{@szkol.szkolenie_id}/#{@data_sz}" %></td>
 			<% elsif kursy.rodzaj_id == 5 %>
-				<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/PP/#{@szkol.szkolenie_id}/2018" %></td>
+				<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/PP/#{@szkol.szkolenie_id}/#{@data_sz}" %></td>
 			<% else %>
-				<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/PPD/#{@szkol.szkolenie_id}/2018" %></td>
+				<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/PPD/#{@szkol.szkolenie_id}/#{@data_sz}" %></td>
 			<% end %>
 			<td class="text-center">
 			<%= link_to "PDF", {:action => "pdf", :format => 'pdf', :id_osoba => kursy.id, :id_szkol => @szkol.id}, :class => 'btn btn-xs btn-success' %>

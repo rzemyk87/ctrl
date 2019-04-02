@@ -23,6 +23,7 @@ class ABPdf < Prawn::Document
     stopka
   end
 
+
   def logo
 	image "app/assets/images/control_bhp.png", :scale => 0.06, :position => 380
   end

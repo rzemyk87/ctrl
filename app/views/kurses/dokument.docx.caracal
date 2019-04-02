@@ -1,6 +1,6 @@
 # logo
 
-docx.img 'app/assets/images/control_logo_nowe.png' do
+docx.img 'app/assets/images/control_bhp.png' do
   width   176
   height  58
   align   :right

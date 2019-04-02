@@ -180,7 +180,7 @@ def tematyka
 end
 
 def tabela
-	bounding_box([50, 650], :width => 450, :height => 400) do
+	bounding_box([50, 650], :width => 450, :height => 450) do
 		text "Program szkolenia:", :align => :left, size: 12, :indent_paragraphs => 46, :style => :bold
 	move_down 10
 	if @osoba[$licznik].rodzaj_id == 1
