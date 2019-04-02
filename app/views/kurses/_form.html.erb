@@ -1,7 +1,7 @@
 <div class="container">
 
 <table class="table table-striped">
-<% if @szkol.rodzaj_id == 5 || @szkol.rodzaj_id == 6 %>
+<% if @szkol.rodzaj_id == 5 || @szkol.rodzaj_id == 6 || @szkol.rodzaj_id == 7 %>
 	<tr class="info">
 		<th class="text-center">Imię</th>
 		<th class="text-center">Nazwisko</th>
@@ -25,8 +25,10 @@
 			<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/K/#{@szkol.szkolenie_id}/#{@data_sz}" %></td>
 		<% elsif kursy.rodzaj_id == 5 %>
 			<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/PP/#{@szkol.szkolenie_id}/#{@data_sz}" %></td>
+				<% elsif kursy.rodzaj_id == 6 %>
+			<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/PPD/#{@szkol.szkolenie_id}/#{@data_sz}" %></td>	
 		<% else %>
-			<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/PPD/#{@szkol.szkolenie_id}/#{@data_sz}" %></td>
+			<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/PPOŻ/#{@szkol.szkolenie_id}/#{@data_sz}" %></td>
 		<% end %>
 
 		<td class="text-center">
@@ -36,6 +38,9 @@
 		<% elsif kursy.rodzaj_id == 6 %>
 			<%= link_to "PDF", {:action => "dzieci_pdf", :format => 'pdf', :id_osoba => kursy.id, :id_szkol => @szkol.id}, :class => 'btn btn-xs btn-success' %>
 			<%= link_to "DOC", {:action => "dziecipomoc", :id => @szkol.id, :id_osoba => kursy.id}, :class => 'btn btn-xs btn-default' %>
+		<% elsif kursy.rodzaj_id == 7 %>
+			<%= link_to "PDF", {:action => "pozar_pdf", :format => 'pdf', :id_osoba => kursy.id, :id_szkol => @szkol.id}, :class => 'btn btn-xs btn-success' %>
+			<%= link_to "DOC", {:action => "dokument", :format => 'docx', :id => @szkol.id, :id_osoba => kursy.id}, :class => 'btn btn-xs btn-default' %>
 		<% else %>
 			<%= link_to "PDF", {:action => "pdf", :format => 'pdf', :id_osoba => kursy.id, :id_szkol => @szkol.id}, :class => 'btn btn-xs btn-success' %>
 			<%= link_to "DOC", {:action => "dokument", :id => @szkol.id, :id_osoba => kursy.id}, :class => 'btn btn-xs btn-default' %>
@@ -87,8 +92,10 @@
 				<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/K/#{@szkol.szkolenie_id}/#{@data_sz}" %></td>
 			<% elsif kursy.rodzaj_id == 5 %>
 				<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/PP/#{@szkol.szkolenie_id}/#{@data_sz}" %></td>
-			<% else %>
+			<% elsif kursy.rodzaj_id == 6 %>
 				<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/PPD/#{@szkol.szkolenie_id}/#{@data_sz}" %></td>
+			<% else %>
+				<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/PPOŻ/#{@szkol.szkolenie_id}/#{@data_sz}" %></td>
 			<% end %>
 			<td class="text-center">
 			<%= link_to "PDF", {:action => "pdf", :format => 'pdf', :id_osoba => kursy.id, :id_szkol => @szkol.id}, :class => 'btn btn-xs btn-success' %>
@@ -112,6 +119,9 @@
 		<% elsif @szkol.rodzaj_id == 6 %>
 			<%= link_to("Drukuj Dziennik",{:action => 'dziennik_ppd', :format => 'pdf', :id => @szkol.id},:class => 'btn btn-ml btn-default') %>
 			<%= link_to("Drukuj Zaświadczenia",{:action => 'zaswiadczenia_ppd', :format => 'pdf', :id => @szkol.id},:class => 'btn btn-ml btn-danger') %>
+		<% elsif @szkol.rodzaj_id == 7 %>
+			<%= link_to("Drukuj Dziennik",{:action => 'dziennik_pozar', :format => 'pdf', :id => @szkol.id},:class => 'btn btn-ml btn-default') %>
+			<%= link_to("Drukuj Zaświadczenia",{:action => 'zaswiadczenia_pozar', :format => 'pdf', :id => @szkol.id},:class => 'btn btn-ml btn-danger') %>
 		<% else %>
 			<%= link_to("Drukuj Dziennik",{:action => 'dziennik_pdf', :format => 'pdf', :id => @szkol.id},:class => 'btn btn-ml btn-default') %>
 			<%= link_to("Drukuj Zaświadczenia",{:action => 'zaswiadczenia_pdf', :format => 'pdf', :id => @szkol.id},:class => 'btn btn-ml btn-danger') %>

@@ -1,0 +1,31 @@
+<% @tytul_strony = "Przeciwpożarowa" %>
+
+<%= form_for(@szkolenie, :url=> {:action =>'utworz'}) do |pole| %>
+<% @tytul ="Administracyjno - Biurowe" %>
+<%= pole.hidden_field(:rodzaj_id, :value => 7) %>
+<%= pole.hidden_field(:firma_id, :value => @current_user.firma_id) %>
+<% @rodzaj = 7 %>
+
+<%= render(:partial => "pozar_form", :locals => {:pole => pole}) %>
+
+<div class="row">
+
+	<div class="col-md-2">
+
+		<button type="button" class="btn btn-danger btn-circle" onclick="delScreenRow('dataTable')" ><i class="glyphicon glyphicon-minus"></i></button>
+
+		<button type="button" class="btn btn-success btn-circle"  onclick="addScreenRow('dataTable')" ><i class="glyphicon glyphicon-plus"></i></button>
+	</div>
+		
+	<div class="col-md-8"></div>
+	<div class="col-md-1">
+		<%= submit_tag("Zapisz", :class => 'btn btn-success') %>
+	</div>
+	<div class="col-md-1">
+		<button type="button" class="btn btn-danger">Anuluj</button>
+	</div>
+	</div>
+  </div>
+
+</div>
+	<% end %>

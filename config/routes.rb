@@ -16,6 +16,10 @@ Rails.application.routes.draw do
 
   get 'kurses/pierwsza_pdf/:id', to: "kurses#pierwsza_pdf", :defaults => { :format => 'pdf' }
 
+  get 'kurses/pozar_pdf'
+
+  get 'kurses/pozar_pdf/:id', to: "kurses#pozar_pdf", :defaults => { :format => 'pdf' }
+
   #root to: 'kurses#dokument', format: 'docx'
 
   #root to: 'kurses#pierwszapomoc', format: 'docx'

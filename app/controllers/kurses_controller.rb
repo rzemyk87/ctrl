@@ -85,6 +85,28 @@ def pierwsza_pdf
 
 end
 
+def pozar_pdf
+    
+  if params[:id_osoba]
+    @osoba = Osoba.joins(:szkolenie).find(params[:id_osoba])
+    @szkol1 = Szkolenie.find(params[:id_szkol])
+    @data = @osoba.created_at.strftime("%Y")
+  end
+
+  require 'prawn'
+      
+  respond_to do |format|
+    format.html
+    format.pdf do
+    pdf = ::PozarPdf.new(@osoba, @szkol1)
+      send_data pdf.render, filename: "#{@osoba.nr_zaswiadczenia}/#{@szkol1.szkolenie_id}/#{@data}.pdf",
+                            type: "application/pdf",
+                            disposition: "inline"
+      end
+  end
+
+end
+
 def dzieci_pdf
     
   if params[:id_osoba]
@@ -146,6 +168,25 @@ def dziennik_pp
 
 end
 
+def dziennik_pozar
+    
+  @szkol = Szkolenie.find(params[:id])
+  @osoba = @szkol.osobas
+
+  require 'prawn'
+      
+  respond_to do |format|
+    format.html
+    format.pdf do
+    pdf = ::DziennikPozar.new(@osoba, @szkol)
+      send_data pdf.render, filename: "dziennik obecnosci.pdf",
+                            type: "application/pdf",
+                            disposition: "inline"
+      end
+  end
+
+end
+
 def dziennik_ppd
     
   @szkol = Szkolenie.find(params[:id])
@@ -195,6 +236,25 @@ def zaswiadczenia_pp
     format.html
     format.pdf do
     pdf = ::ZaswPP.new(@osoba, @szkol)
+      send_data pdf.render, filename: "zaswiadczenia.pdf",
+                            type: "application/pdf",
+                            disposition: "inline"
+      end
+  end
+
+end
+
+def zaswiadczenia_pozar
+    
+  @szkol = Szkolenie.find(params[:id])
+  @osoba = @szkol.osobas
+
+  require 'prawn'
+      
+  respond_to do |format|
+    format.html
+    format.pdf do
+    pdf = ::ZaswPozar.new(@osoba, @szkol)
       send_data pdf.render, filename: "zaswiadczenia.pdf",
                             type: "application/pdf",
                             disposition: "inline"

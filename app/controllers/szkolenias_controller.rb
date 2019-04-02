@@ -137,6 +137,22 @@ class SzkoleniasController < ApplicationController
     $l = 0
   end
 
+  def pozar
+
+    @szkolenie = Szkolenie.new()
+    @szkolenie.osobas.new
+
+    szkolenie_last1 = Szkolenie.where(:firma_id => @current_user.firma_id).limit(1).order('szkolenie_id desc').pluck(:szkolenie_id).map(&:to_i)
+    if szkolenie_last1.blank?
+        @szkolenie_last = 1
+    else
+        @szkolenie_last = szkolenie_last1.at(0) + 1
+    end
+
+    #nr_zasw_i = Osoba.limit(1).where(rodzaj_id: 3).order('created_at desc').pluck(:nr_zaswiadczenia).map(&:to_i)
+    @nr = 1
+  end
+
 private
 
 def nowe_parametry
