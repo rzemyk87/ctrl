@@ -30,7 +30,7 @@
             <li class="dropdown navbar-inverse"><a>Szkolenia</a>
               <ul class="dropdown-menu navbar-inverse">
                 <li>
-                  <a href="/szkolenias/index" style="color:white">Podstwawowe</a>
+                  <a href="/szkolenias/index" style="color:white">BHP</a>
                 </li>
                 <li>
                   <a href="/szkolenias/index_pomoc" style="color:white">Pierwsza Pomoc</a>
@@ -41,8 +41,25 @@
               </ul>
             </li>
             <li><a href="/kurses/index">Rejestr Szkoleń</a></li>
-            <li><a href="/uzytkowniks/index">Użytkownicy</a></li>
-            <li><a href="/dostep/logout">Wyloguj</a></li>
+            <li><a>Terminarz</a></li>
+
+          </ul>
+    <ul class="nav navbar-nav navbar-right">
+    <span class="navbar-text white-text">
+      Zalogowany jako 
+      <%= session[:uzytkownik] %>
+       firma 
+       <%= session[:log_in] %>
+    </span>
+
+    <li class="dropdown navbar-inverse">
+        <a href="#"><span class="glyphicon glyphicon-user"></span> ⮟</a>
+          <ul class="dropdown-menu navbar-inverse">
+            <li><a href="/uzytkowniks/index" style="color:white">Użytkownicy</a></li>
+            <li><a href="/dostep/logout" style="color:white">Wyloguj</a></li>
+          </ul>
+    </li>
+    
              <% end %>
           </ul>
         </div>

@@ -24,6 +24,7 @@ before_action :sprawdz_logowanie, :except => [:login, :logowanie, :logout]
   		session[:uzytkownik_id] = admin_autoryzacja.id
   		session[:uzytkownik] = admin_autoryzacja.uzytkownik
       session[:firma_id] = admin_autoryzacja.firma_id
+      session[:log_in] = @firma.log_in
   		redirect_to(:action => 'index')
   	else
   		flash[:notice] = "Błąd logowania - Zły login, firma lub hasło"
@@ -43,7 +44,6 @@ private
 def szukaj
   if params[:firma]
       @firma = Firma.where(:log_in => params[:firma]).first
-
   end
 end
 
