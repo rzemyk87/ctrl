@@ -49,12 +49,12 @@
     <th class="text-center"><%= image_tag("text_rodzaj_small.png") %></th>
     <th class="text-center"><%= image_tag("text_akcja_small.png") %></th>
   </tr> 
-<% @kursy.each do |kursy| %>
+<% @kursy.all.each do |kursy| %>
   <tr>
     <td class="text-center"><%= kursy.szkolenie_id %></td>
     <td class="text-center"><%= kursy.data_od.strftime("%d.%m.%Y") %></td>
     <td class="text-center"><%= kursy.prowadzacy %></td>
-    <td class="text-center"><%= kursy.firma %></td>
+    <td style="width: 350px; overflow: hidden" class="text-center"><%= kursy.firma %></td>
     <td class="text-center"><%= Rodzaj.find(kursy.rodzaj_id).rodzaj %></td>
     <td class="text-center">
       <%= link_to("Pokaż",{:action => 'nowy', :id => kursy.id},:class => 'btn btn-xs btn-success') %>

@@ -36,6 +36,7 @@ before_action :sprawdz_logowanie, :except => [:login, :logowanie, :logout]
   	session[:uzytkownik_id] = nil
   	session[:uzytkownik] =nil
     session[:firma_id] = nil
+    session[:log_in] = nil
   	redirect_to(:action => 'login')
   end
 

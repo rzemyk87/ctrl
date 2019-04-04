@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190320203917) do
+ActiveRecord::Schema.define(version: 20190404190641) do
+
+  create_table "cache_items", force: :cascade do |t|
+    t.string "key"
+    t.text "value"
+    t.text "meta_info"
+    t.datetime "expires_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["expires_at"], name: "index_cache_items_on_expires_at"
+    t.index ["key"], name: "index_cache_items_on_key", unique: true
+    t.index ["updated_at"], name: "index_cache_items_on_updated_at"
+  end
 
   create_table "firmas", force: :cascade do |t|
     t.integer "firma_id"
