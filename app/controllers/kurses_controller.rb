@@ -29,6 +29,7 @@ class KursesController < ApplicationController
   search_nazwisko = params[:search_nazwisko]
   search_data = params[:search_data]
 
+
   kursy = Szkolenie.where(:firma_id => @current_user.firma_id).joins(:osobas)
 
   if params[:search_firma || :search_prowadzacy || :search_data || :search_imie || :search_nazwisko]

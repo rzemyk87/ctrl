@@ -38,9 +38,6 @@ GEM
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    activesupport-db-cache (0.0.3)
-      activerecord (>= 3.0.0)
-      activesupport (>= 3.0.0)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
     arel (8.0.0)
@@ -231,7 +228,6 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
-  activesupport-db-cache
   bcrypt (~> 3.1.7)
   bootstrap (~> 4.3.1)
   bootstrap3-datetimepicker-rails (~> 4.14.30)
