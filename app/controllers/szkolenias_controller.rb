@@ -40,13 +40,34 @@ class SzkoleniasController < ApplicationController
   def utworz
     @szkolenie = Szkolenie.new(nowe_parametry)
 
-     if @szkolenie.save
-      redirect_to( :controller => 'kurses', :action=> 'nowy', :id => @szkolenie.id, :tytul => @szkolenie.rodzaj_id)
+    if !Szkolenie.exists?(:szkolenie_id => @szkolenie.szkolenie_id)
+
+      if @szkolenie.save
+        redirect_to( :controller => 'kurses', :action=> 'nowy', :id => @szkolenie.id, :tytul => @szkolenie.rodzaj_id)
+      else
+        @licznik = Szkolenie.count + 1
+        render('index')
+      end
+
     else
-      @licznik = Szkolenie.count + 1
-      render('nowe')
+
+      until !Szkolenie.exists?(:szkolenie_id => @szkolenie.szkolenie_id)
+        @szkolenie.szkolenie_id = @szkolenie.szkolenie_id + 1
+      end
+
+      @szkolenie.save
+
+      if @szkolenie.save
+        redirect_to( :controller => 'kurses', :action=> 'nowy', :id => @szkolenie.id, :tytul => @szkolenie.rodzaj_id)
+      else
+        @licznik = Szkolenie.count + 1
+        render('index')
+      end
+
     end
+
   end
+
 
   def pierwsza
 
@@ -75,6 +96,7 @@ class SzkoleniasController < ApplicationController
     else
         @szkolenie_last = szkolenie_last1.at(0) + 1
     end
+
 
     #nr_zasw_i = Osoba.limit(1).where(rodzaj_id: 3).order('created_at desc').pluck(:nr_zaswiadczenia).map(&:to_i)
     @nr = 1
