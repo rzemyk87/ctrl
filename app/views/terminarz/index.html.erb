@@ -1,37 +1,68 @@
 <% @tytul_strony = "Terminarz" %>
 <body class="bck1">
-
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">  
+    </head>
 <div class="hero-unit">
-  <br>
-        <%= image_tag("text_rejestr_big.png") %>
+  <br><br><br>
+        <%= image_tag("text_terminarz_big.png") %>
 
 <div class="container">
 
 <!-- Wyszukiwanie -->
 
 <br><br>
+
+<% if @osoby.blank? %>
+
+  <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <script src="bootbox.js"></script>
+        <script>
+          $(function(){
+
+            bootbox.alert({
+            message: "Nie masz zbliżających się terminów osób wymagających szkolenia",
+            className: 'fadeInDown animated'
+            });
+
+          });
+        </script>
+
+<% else %>
+
 <table class="table table-striped">
   <tr class="info">
-    <th class="text-center"><%= image_tag("text_nr_szkolenia_small.png") %></th>
+    <th class="text-center"><%= image_tag("text_imie_small.png") %></th>
+    <th class="text-center"><%= image_tag("text_nazwisko_small.png") %></th> 	
     <th class="text-center"><%= image_tag("text_data_szkolenia_small.png") %></th>
-    <th class="text-center"><%= image_tag("text_prowadzacy_small.png") %></th>
+    <th class="text-center"><%= image_tag("text_waznosc_small.png") %></th>
     <th class="text-center"><%= image_tag("text_firma_small.png") %></th>
     <th class="text-center"><%= image_tag("text_rodzaj_small.png") %></th>
-
+    <th class="text-center"><%= image_tag("text_ok_small.png") %></th>
   </tr> 
-<% @szkolenia.all.each do |szkolenia| %>
-  <tr>
-    <td class="text-center"><%= szkolenia.szkolenie_id %></td>
-    <td class="text-center"><%= szkolenia.data_od.strftime("%d.%m.%Y") %></td>
-    <td class="text-center"><%= szkolenia.prowadzacy %></td>
-    <td style="width: 350px; overflow: hidden" class="text-center"><%= szkolenia.firma %></td>
-    <td class="text-center"><%= Rodzaj.find(szkolenia.rodzaj_id).rodzaj %></td>
-
-  </tr> 
-<% end %>
+	<% @osoby.each do |osoby| %>
+ 	 <tr>
+  		<td class="text-center"><%= osoby.osoba_imie %></td>
+  		<td class="text-center"><%= osoby.osoba_nazwisko %></td>
+   	 	<td class="text-center"><%= osoby.szkolenie.data_od.strftime("%d.%m.%Y") %></td>
+  		<td class="text-center"><%= osoby.szkolenie.data_waznosci.strftime("%d.%m.%Y") %></td>
+   		<td style="width: 350px; overflow: hidden" class="text-center"><%= osoby.szkolenie.firma %></td>
+    	<td class="text-center"><%= Rodzaj.find(osoby.rodzaj_id).rodzaj %></td>
+      <td class="text-center"><%= check_box_tag :confirmed %></td>
+  	</tr> 
+	<% end %>
 </table>
 
+<% end %>
 </div>
 </div>
+
+        
 
 </body>

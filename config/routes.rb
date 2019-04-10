@@ -44,6 +44,8 @@ Rails.application.routes.draw do
 
   get 'szkolenias/inzynieryjne'
 
+  
+
   #resource :kurses, format: 'docx'
 
 root "public#index"

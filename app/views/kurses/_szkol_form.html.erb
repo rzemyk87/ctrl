@@ -1,4 +1,4 @@
-<div class="znak">
+ <div class="znak">
   <% if @rodzaj == 1 %>
   <%= image_tag("rejestr2.jpg",:size => '200x200', :class => "img-circle center-block") %>
 <% elsif @rodzaj == 2 %>
@@ -55,8 +55,8 @@
         </div>
         <div class="col-md-2">
           <div class="form-group">
-                <div class='input-group date' id='datetimepicker1'>
-                <%= pole.text_field :data_od, class: 'form-control', data: { date_format: 'DD.MM.YYYY' }, :required => 'required' %>
+                <div class='input-group date'>
+                <%= pole.text_field :data_od, class: 'form-control datetimepicker', :id => 'datetimepicker1', :required => 'required' %>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -102,8 +102,8 @@
         </div>
         <div class="col-md-2">
           <div class="form-group">
-                <div class='input-group date' id='datetimepicker2'>
-                   <%= pole.text_field :data_do, class: 'form-control', data: { date_format: 'DD.MM.YYYY' }, :required => 'required' %>
+                <div class='input-group date'>
+                   <%= pole.text_field :data_do, class: 'form-control datetimepicker', :id => 'datetimepicker2', :required => 'required' %>
 
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
@@ -127,8 +127,8 @@
         </div>
       <div class="col-md-2">
           <div class="form-group">
-                <div class='input-group date' id='datetimepicker3'>
-                <%= pole.text_field :data_wystawienia, class: 'form-control', data: { date_format: 'DD.MM.YYYY' }, :required => 'required' %>
+                <div class='input-group date'>
+                <%= pole.text_field :data_wystawienia, class: 'form-control datetimepicker', :id => 'datetimepicker3', :required => 'required' %>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>

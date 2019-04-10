@@ -262,8 +262,8 @@ element3.addEventListener('blur', function(e) {
   			</div>
   			<div class="col-md-2">
   			  <div class="form-group">
-                <div class='input-group date' id='datetimepicker1'>
-                <%= pole.text_field :data_od, class: 'form-control', data: { date_format: 'DD.MM.YYYY' }, :required => 'required' %>
+                <div class='input-group date'>
+                <%= pole.text_field :data_od, class: 'form-control ', :id => 'datetimepicker1', :required => 'required' %>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -272,10 +272,10 @@ element3.addEventListener('blur', function(e) {
         	</div>
 
             <script type="text/javascript">
-          		  $(function () {
-             	   $('#datetimepicker1').datetimepicker({
-             	   	  format: 'DD.MM.YYYY'});
-             	   });
+                $(function () {
+                 $('#datetimepicker1').datetimepicker({
+                    format: 'DD.MM.YYYY'});
+                 });
        		</script>
 
   	  </div>
@@ -304,8 +304,8 @@ element3.addEventListener('blur', function(e) {
   			</div>
   			<div class="col-md-2">
   			  <div class="form-group">
-                <div class='input-group date' id='datetimepicker2'>
-                	 <%= pole.text_field :data_do, class: 'form-control', data: { date_format: 'DD.MM.YYYY' }, :required => 'required' %>
+                <div class='input-group date'>
+                	 <%= pole.text_field :data_do, class: 'form-control datetimepicker', :id => 'datetimepicker2', :required => 'required' %>
 
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
@@ -315,10 +315,10 @@ element3.addEventListener('blur', function(e) {
         	</div>
 
             <script type="text/javascript">
-          		  $(function () {
-             	   $('#datetimepicker2').datetimepicker({
-             	   	  format: 'DD.MM.YYYY'});
-             	   });
+                $(function () {
+                 $('#datetimepicker2').datetimepicker({
+                    format: 'DD.MM.YYYY'});
+                 });
        		</script>
   	  </div>
 	</div>
@@ -329,8 +329,8 @@ element3.addEventListener('blur', function(e) {
         </div>
       <div class="col-md-2">
           <div class="form-group">
-                <div class='input-group date' id='datetimepicker3'>
-                <%= pole.text_field :data_wystawienia, class: 'form-control', data: { date_format: 'DD.MM.YYYY' }, :required => 'required' %>
+                <div class='input-group date'>
+                <%= pole.text_field :data_wystawienia, class: 'form-control datetimepicker', :id => 'datetimepicker3', :required => 'required' %>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -338,10 +338,12 @@ element3.addEventListener('blur', function(e) {
               </div>
 
             <script type="text/javascript">
-                $(function () {
-                 $('#datetimepicker3').datetimepicker({
-                    format: 'DD.MM.YYYY'});
+$(document).ready(function() {
+  $('#datetimepicker3').datetimepicker({
+    format: 'DD.MM.YYYY'});
                  });
+
+
           </script>
 
 

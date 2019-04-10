@@ -3,11 +3,11 @@
 <table class="table table-striped">
 <% if @szkol.rodzaj_id == 5 || @szkol.rodzaj_id == 6 || @szkol.rodzaj_id == 7 %>
 	<tr class="info">
-		<th class="text-center">Imię</th>
-		<th class="text-center">Nazwisko</th>
-		<th class="text-center">Rodzaj Szkolenia</th>
-		<th class="text-center">Numer Zaświadczenia</th>
-		<th class="text-center">akcja</th>
+		<th class="text-center"><%= image_tag("text_imie_small.png") %></th>
+		<th class="text-center"><%= image_tag("text_nazwisko_small.png") %></th>
+		<th class="text-center"><%= image_tag("text_rodzaj_szkolenia_small.png") %></th>
+		<th class="text-center"><%= image_tag("text_numer_small.png") %></th>
+		<th class="text-center"><%= image_tag("text_akcja_small.png") %></th>
 	</tr>	
 <% @kursy_b.each do |kursy| %>
 	<tr>
@@ -54,14 +54,14 @@
 
 <% else %>
 	<tr class="info">
-		<th class="text-center">Imię</th>
-		<th class="text-center">Nazwisko</th>
-		<th class="text-center">Data urodzenia</th>
-		<th class="text-center">Miejsce urodzenia</th>
-		<th class="text-center">Rodzaj Szkolenia</th>
-		<th class="text-center">Ocena</th>
-		<th class="text-center">Numer Zaświadczenia</th>
-		<th class="text-center">akcja</th>
+		<th class="text-center"><%= image_tag("text_imie_small.png") %></th>
+		<th class="text-center"><%= image_tag("text_nazwisko_small.png") %></th>
+		<th class="text-center"><%= image_tag("text_data_urodzenia_small.png") %></th>
+		<th class="text-center"><%= image_tag("text_miejsce_urodzenia_small.png") %></th>
+		<th class="text-center"><%= image_tag("text_rodzaj_szkolenia_small.png") %></th>
+		<th class="text-center"><%= image_tag("text_ocena_small.png") %></th>
+		<th class="text-center"><%= image_tag("text_numer_small.png") %></th>
+		<th class="text-center"><%= image_tag("text_akcja_small.png") %></th>
 	</tr>	
 <% @kursy_b.each do |kursy| %>
 	<tr>
