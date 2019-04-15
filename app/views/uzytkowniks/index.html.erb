@@ -13,17 +13,36 @@
 		<th>Imie i Nazwisko</th>
 		<th>e-mail</th>
 		<th>akcja</th>
-	</tr>	
-<% @uzytkownik.each do |uzytkownik| %>
-	<tr>
-		<td><%= uzytkownik.uzytkownik %></td>
-		<td><%= uzytkownik.imie + " " + uzytkownik.nazwisko %></td>
-		<td><%= mail_to(uzytkownik.email) %></td>
-		<td>
-			<%= link_to("Edytuj",{:action => 'edycja', :id => uzytkownik.id},:class => 'btn btn-xs btn-primary') %>
-			<%= link_to("Usun", {:action => 'usun', :id => uzytkownik.id},:class => 'btn btn-xs btn-danger') %>
-		</td>
-	</tr>	
+	</tr>
+<% if @current_user.uprawnienia == 1 %>	
+	<% @uzytkownik.each do |uzytkownik| %>
+		<tr>
+			<td><%= uzytkownik.uzytkownik %></td>
+			<td><%= uzytkownik.imie + " " + uzytkownik.nazwisko %></td>
+			<td><%= mail_to(uzytkownik.email) %></td>
+			<td>
+				<%= link_to("Edytuj",{:action => 'edycja', :id => uzytkownik.id},:class => 'btn btn-xs btn-primary') %>
+				<%= link_to("Usun", {:action => 'usun', :id => uzytkownik.id},:class => 'btn btn-xs btn-danger') %>
+			</td>
+		</tr>	
+	<% end %>
+<% else %>
+	<% @uzytkownik.each do |uzytkownik| %>
+		<tr>
+			<td><%= uzytkownik.uzytkownik %></td>
+			<td><%= uzytkownik.imie + " " + uzytkownik.nazwisko %></td>
+			<td><%= mail_to(uzytkownik.email) %></td>
+		<% if uzytkownik.id == @current_user.id %>
+			<td>
+				<%= link_to("Edytuj",{:action => 'edycja', :id => uzytkownik.id},:class => 'btn btn-xs btn-primary') %>
+				<%= link_to("Usun", {:action => 'usun', :id => uzytkownik.id},:class => 'btn btn-xs btn-danger') %>
+			</td>
+		<% else %>
+			<td></td>
+		<% end %> 
+
+		</tr>
+	<% end %>
 <% end %>
 </table>
 

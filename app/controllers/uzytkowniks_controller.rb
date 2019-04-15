@@ -48,7 +48,7 @@ end
       redirect_to(:action => "index")
     else
       render("edycja")
-    end
+    end 
   end
 
   def usun
@@ -68,6 +68,6 @@ def sprawdz_uzytkownika
 end
 
   def uzytkownik_parametry
-      params.require(:uzytkownik).permit(:imie, :nazwisko, :email, :uzytkownik, :password, :password_confirmation, :firma_id, :email_confirmed, :confirm_token)
+      params.require(:uzytkownik).permit(:imie, :nazwisko, :email, :uzytkownik, :password, :password_confirmation, :firma_id, :email_confirmed, :confirm_token, :uprawnienia)
   end
 end
