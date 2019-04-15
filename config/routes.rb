@@ -44,8 +44,7 @@ Rails.application.routes.draw do
 
   get 'szkolenias/inzynieryjne'
 
-  
-
+  get '/:token/confirm_email/', :to => "uzytkowniks#confirm_email", as: 'confirm_email'
   #resource :kurses, format: 'docx'
 
 root "public#index"

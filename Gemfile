@@ -44,6 +44,7 @@ gem "rename"
 gem 'uglifier'
 gem 'bootstrap3-rails'
 gem 'popper_js', '~> 1.14.5'
+
 #gem 'jquery-turbolinks'
 
 # Use Capistrano for deployment

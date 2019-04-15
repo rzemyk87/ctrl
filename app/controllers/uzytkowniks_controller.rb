@@ -5,8 +5,20 @@ layout 'admin'
 before_action :sprawdz_uzytkownika
 before_action :sprawdz_logowanie
 
+
+def confirm_email
+    uzytkownik = Uzytkownik.find_by_confirm_token(params[:token])
+    if uzytkownik
+      uzytkownik.email_activate
+      redirect_to(:action => "index")
+    else
+      flash[:notice] = "Użytkownik nie istnieje"
+      redirect_to( :controller => 'dostep', :action=> 'index')
+    end
+end
+
   def index
-    @uzytkownik = Uzytkownik.where(:firma_id => @current_user.firma_id).sortuj
+    @uzytkownik = Uzytkownik.where(:firma_id => @current_user.firma_id, :email_confirmed => true).sortuj
   end
 
   def nowy
@@ -16,10 +28,12 @@ before_action :sprawdz_logowanie
   def utworz
     @uzytkownik = Uzytkownik.new(uzytkownik_parametry)
     if @uzytkownik.save
-      flash[:notice] = "Użytkownik założony"
+      UserMailer.registration_confirmation(@uzytkownik).deliver
+      flash[:notice] = "Wysłaliśmy link aktywacyjny na Twojego maila, potwierdź go by kontynuować"
       redirect_to(:action => "index")
     else
-      render("nowy")
+      flash[:notice] = "Ooooppss, coś poszło nie tak! Skontaktuj się z Nami, by rozwiązać problem :)"
+      render("index")
     end
   end
 
@@ -54,6 +68,6 @@ def sprawdz_uzytkownika
 end
 
   def uzytkownik_parametry
-      params.require(:uzytkownik).permit(:imie, :nazwisko, :email, :uzytkownik, :password, :password_confirmation, :firma_id)
+      params.require(:uzytkownik).permit(:imie, :nazwisko, :email, :uzytkownik, :password, :password_confirmation, :firma_id, :email_confirmed, :confirm_token)
   end
 end
