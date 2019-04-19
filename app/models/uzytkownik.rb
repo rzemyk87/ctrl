@@ -31,6 +31,16 @@ def email_activate
    	save!(:validate => false)
 end
 
+def generate_password_token!
+ 	self.reset_password_token = generate_token
+ 	save!(:validate => false)
+end
+
+def reset_password
+ 	self.reset_password_token = nil
+   	save!(:validate => false)
+end
+
 private
 
 	def confirmation_token
@@ -39,5 +49,10 @@ private
       end
 	end
 
+def generate_token
+      if self.reset_password_token.blank?
+          self.reset_password_token = SecureRandom.urlsafe_base64.to_s
+      end
+end
 end	
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190415215233) do
+ActiveRecord::Schema.define(version: 20190418220148) do
 
   create_table "cache_items", force: :cascade do |t|
     t.string "key"
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 20190415215233) do
     t.boolean "email_confirmed", default: false
     t.string "confirm_token"
     t.integer "uprawnienia"
+    t.string "reset_password_token"
     t.index ["firma_id"], name: "index_uzytkowniks_on_firma_id"
   end
 

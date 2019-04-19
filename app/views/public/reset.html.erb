@@ -1,0 +1,48 @@
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+<br>
+<%= form_for(:uzytkownik, :url => {:action => 'nowe_haslo'}) do |pole| %>
+    <!-- Login Form -->
+    <form>
+
+	<div class="row">
+	<div class="fadeIn first">
+    	<div class="col-md-2"></div>
+    	<div class="col-md-2">
+			<%= image_tag("text_haslo_small") %>
+		</div>
+		<div class="col-md-1"></div>
+		<div class="col-md-4">
+		<%= pole.password_field(:password, :class => 'form-control') %>
+		</div>
+	</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="fadeIn second">
+    	<div class="col-md-2"></div>
+    	<div class="col-md-2">
+			<%= image_tag("text_powtorz_small") %>
+		</div>
+		<div class="col-md-1"></div>
+		<div class="col-md-4">
+			<%= pole.password_field(:password_confirmation, :class => 'form-control') %>
+		</div>
+		</div>
+	</div>
+			<br>
+	    <div class="row">
+    	  <div class="col-md-2"></div>
+    	  <div class="col-md-8">
+    	  	<%= submit_tag("Zresetuj") %>
+		</div>
+	</div>
+	
+	
+
+
+	<br>
+    </form>
+</div>
+</div>
+	<% end %>

@@ -20,45 +20,54 @@ $.notify(
 </script>
 
   <!-- Trzy kolumny zdjęcia + opis + linki początek -->
-  	<div class="row">
+<div class="row">
       <div class="col-sm-3"></div>
         <div class="col-sm-3">
   	     <a href="/szkolenias/index">
+  <div class="fadeIn first">
   	       <%= image_tag("rejestr2.jpg",:size => '200x200', :class => "img-circle") %>
+
   	       <p> </p>
     	     <%= image_tag("text_szkolenia.png") %>
   	 	     </a>
+    </div>
   	    </div>
 
   	    <div class="col-sm-3">
   	       <a href="/kurses/index">
+  <div class="fadeIn second">
   	         <%= image_tag("rejestr4.jpg",:size => '200x200', :class => "img-circle") %>
+
               <p> </p>
 
               <%= image_tag("text_rejestr_bold.png") %>
   	 	       </a>
+  </div>
   	    </div>
-
-	</div>
-
+</div>
 	<br>
 	<br>
-  	
-  	<div class="row">
-  	<div class="col-md-1">   </div>
-  	<div class="col-md-1">   </div>
-  	<div class="col-md-1">   </div>
+
+<div class="row">
+  <div class="col-md-1">   </div>
+  <div class="col-md-1">   </div>
+  <div class="col-md-1">   </div>
   	    <div class="col-md-1">
         <a href="/terminarz/index">
+  <div class="fadeIn third">    
           <%= image_tag("kalendarz.jpg",:size => '200x200', :class => "img-circle") %>
-      </a>
+  </div>
+        </a>
   	    </div>
+
   	<div class="col-md-1">   </div>
   	<div class="col-md-1">   </div>
 
   	     <div class="col-sm-3">
         <a href="/uzytkowniks/index">
+  <div class="fadeIn fourth">
           <%= image_tag("pracownicy.jpg",:size => '200x200', :class => "img-circle") %>
+  </div>
         </a>
   	    </div>
 
@@ -68,14 +77,18 @@ $.notify(
   		<div class="col-md-3"> 	
   		<a href="/terminarz/index">
           <p> </p>
+      <div class="fadeIn third">
           <%= image_tag("text_terminarz.png") %>
+      </div>
 		</a>
 		</div>
 
   		<div class="col-md-3">   
   		<a href="/uzytkowniks/index">
-          <p> </p>
+      <p></p>
+        <div class="fadeIn fourth">
           <%= image_tag("text_uzytkownicy.png") %>
+        </div>
   		</a>
   		</div>
 	</div>

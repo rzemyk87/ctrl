@@ -1,0 +1,42 @@
+<% @tytul_strony = "Przypomnienie" %>
+
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+<br>
+	<%= form_tag(:action => 'przypomnienie') do %>
+    <!-- Login Form -->
+    <form>
+
+    <div class="row">
+    	<div class="col-md-2"></div>
+    	<div class="col-md-8">
+    	<div class='fadeIn first'>
+    		<%= label_tag "Podaj swój adres e-mail" %>
+    	</div>
+    	</div>
+    </div>
+    <br>
+    <div class="row">
+    	  <div class="col-md-2"></div>
+    	  <div class="col-md-8">
+			<%= text_field_tag :email, nil, :class =>'fadeIn second' %>
+		</div>
+
+	</div>
+			<br>
+	    <div class="row">
+    	  <div class="col-md-2"></div>
+    	  <div class="col-md-8">
+    	  	<%= submit_tag("Wyślij") %>
+		</div>
+	</div>
+	
+	
+
+
+	<br>
+    </form>
+</div>
+</div>
+	<% end %>

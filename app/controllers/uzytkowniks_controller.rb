@@ -1,5 +1,5 @@
 class UzytkowniksController < ApplicationController
-
+ 
 layout 'admin'
 
 before_action :sprawdz_uzytkownika

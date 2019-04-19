@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'firma/index'
+
   get 'kurses/index'
 
   get 'kurses/nowy'
@@ -44,7 +46,11 @@ Rails.application.routes.draw do
 
   get 'szkolenias/inzynieryjne'
 
+  get 'dostep/przypomnienie', :to => "dostep#przypomnienie"
+
   get '/:token/confirm_email/', :to => "uzytkowniks#confirm_email", as: 'confirm_email'
+
+   get '/:token/reset/', :to => "public#reset", as: 'reset'
   #resource :kurses, format: 'docx'
 
 root "public#index"
