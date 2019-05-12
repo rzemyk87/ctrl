@@ -19,6 +19,9 @@ class PublicController < ApplicationController
 
   def utworz
 	@firma = Firma.new(firma_parametry)
+  @firma.data_wygasniecia = DateTime.now.to_date
+  @firma.aktywna = true
+  @firma.save!
 	 if @firma.save
       redirect_to(:action => "uzytkownik")
     else

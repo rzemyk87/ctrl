@@ -9,8 +9,10 @@ before_action :sprawdz_logowanie, :except => [:login, :logowanie, :logout]
   end
 
   def index
-#    koniec = Firma.limit(1).where(:firma_id => @firma.id).pluck(:data_wygasniecia)
-#    @data = ((koniec - DateTime.now.to_date).to_f / 1.day).floor
+    @przypomnienie = Osoba.joins(:szkolenie).where('data_waznosci BETWEEN ? AND ?',DateTime.now, DateTime.now+60).where('firma_id = ?', session[:firma_id]).order("data_waznosci ASC")
+
+    koniec = Firma.where(:id => session[:firma_id]).last.data_wygasniecia
+    @data = (koniec - DateTime.now.to_date).to_i
   end
 
   def logowanie

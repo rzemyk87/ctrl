@@ -6,7 +6,7 @@ layout 'admin'
   before_action :sprawdz_logowanie
 
 def index
-	@osoby = Osoba.joins(:szkolenie).where('data_waznosci BETWEEN ? AND ?',DateTime.now, DateTime.now+60).order("data_waznosci ASC")
+	@osoby = Osoba.joins(:szkolenie).where('data_waznosci BETWEEN ? AND ?',DateTime.now, DateTime.now+60).where('firma_id = ?', session[:firma_id]).order("data_waznosci ASC")
 end
 
 private

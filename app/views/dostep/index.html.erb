@@ -7,17 +7,44 @@
 
 <div class="content2">
 
+<% if @przypomnienie.size > 0 %>
   <script type="text/javascript">
+  
+  $(document).ready(function(){
+  $.notify(
+    "Masz "+<%= @przypomnienie.size %>+ " przypomnień w terminarzu", 
+    { position:"bottom right", className: "info" }
+  );    
+  });
+  </script>
+
+<% else %>
+  <script type="text/javascript">
+  
+  $(document).ready(function(){
+  $.notify(
+    "Nie masz nowych powiadomień terminarza", 
+    { position:"bottom right", className: "info" }
+  ); 
+  });
+  </script>
+<% end %>
+
+<% if @data < 30 && @data > 0 %>
+
+<script type="text/javascript">
   
 $(document).ready(function(){
 $.notify(
-  "Nie masz nowych powiadomień", 
-  { position:"bottom right", className: "info" }
+  "Pozostało Ci "+ <%= @data %> + " dni do zakończenia subskrypcji programu", 
+  { position:"bottom right", className: "warn" }
 );
     
   
   });
 </script>
+
+<% end %>
 
   <!-- Trzy kolumny zdjęcia + opis + linki początek -->
 <div class="row">
