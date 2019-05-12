@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!------ Include the above in your HEAD tag ---------->
+<% @tytul_strony = "Załóż konto" %>
+</head>
+  <body class="bck1">
+<%= form_for(@firma, :url=> {:action =>'utworz'}) do |pole| %>
+<%= pole.hidden_field(:firma_id, :value => @firma_last) %>
+ <div class="Userwrapper fadeInDown">
+  <div id="formUserContent">
+	<div class="container emp-profile">
+        <form method="post">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-img">
+                   	<%= image_tag("wykrzyknik.png") %>
+<!--
+                            <div class="file btn btn-lg btn-primary">
+                               Zmień Logo
+                                <input type="file" name="file"/>
+                            </div>
+ -->
+                </div>
+            </div>
+            <div class="col-md-6">
+            <div class="profile-head">
+
+                	<%= image_tag("text_konto.png") %>
+                <br/><br/>
+              <div class="row">
+				<div class="col-sm-4"> 
+					<%= image_tag("text_nazwa_firmy.png") %>	
+				</div>
+				<div class="col-sm-1"></div> 
+				<div class="col-sm-4">
+      			<%= pole.text_field(:Nazwa, :class => 'form-control') %>
+      			</div>
+			  </div>
+			  <br/>
+              <div class="row">
+				<div class="col-sm-4"> 
+					<%= image_tag("text_nazwa_login.png") %>	
+				</div>
+				<div class="col-sm-1"></div> 
+				<div class="col-sm-4">
+      			<%= pole.text_field(:log_in, :class => 'form-control') %>
+      			</div>
+			  </div>
+			  <br/>
+              <div class="row">
+				<div class="col-sm-4"> 
+					<%= image_tag("text_NIP.png") %>	
+				</div>
+				<div class="col-sm-1"></div> 
+				<div class="col-sm-4">
+      			<%= pole.text_field(:NIP, :class => 'form-control') %>
+      			</div>
+			  </div>
+
+			 <br/>
+			<div class="col-sm-8"> 
+ 				<%= submit_tag("Zapisz",:class => 'btn btn-primary') %>
+ 			</div>
+            </div>
+            </div>
+
+        </div>
+
+            </form>           
+        </div>
+    </div>
+</div>
+<% end %>
+  	</body>
+  	</html>

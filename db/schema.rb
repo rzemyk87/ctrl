@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190418220148) do
+ActiveRecord::Schema.define(version: 20190507204428) do
 
   create_table "cache_items", force: :cascade do |t|
     t.string "key"
@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 20190418220148) do
     t.string "NIP", limit: 16, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "data_wygasniecia"
+    t.boolean "aktywna"
   end
 
   create_table "osobas", force: :cascade do |t|

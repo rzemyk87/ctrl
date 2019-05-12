@@ -8,12 +8,17 @@ before_action :sprawdz_logowanie, :except => [:login, :logowanie, :logout]
   def login
   end
 
+  def index
+#    koniec = Firma.limit(1).where(:firma_id => @firma.id).pluck(:data_wygasniecia)
+#    @data = ((koniec - DateTime.now.to_date).to_f / 1.day).floor
+  end
+
   def logowanie
   	if params[:uzytkownik].present? && params[:haslo].present? && params[:firma].present?
       if @firma.blank?
       flash[:notice] = "Nie ma takiej firmy w bazie"
       else
-  		admin_szukam = Uzytkownik.where(:uzytkownik => params[:uzytkownik], :firma_id => @firma.firma_id).first
+  		admin_szukam = Uzytkownik.where(:uzytkownik => params[:uzytkownik], :firma_id => @firma.id).first
   		end
       if admin_szukam
   			admin_autoryzacja = admin_szukam.authenticate(params[:haslo])

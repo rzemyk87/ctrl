@@ -42,7 +42,7 @@ end
   end
 
  def plaster
-	image "app/assets/images/plaster.png", :scale => 0.5, :position => :center
+	image "app/assets/images/PPOZ.jpg", :scale => 0.5, :position => :center
   end
 
   def pieczatka

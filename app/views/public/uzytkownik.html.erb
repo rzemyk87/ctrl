@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!------ Include the above in your HEAD tag ---------->
+<% @tytul_strony = "Załóż konto" %>
+</head>
+  <body class="bck1">
+<%= form_for(@uzytkownik, :url => {:action => 'utworz_uzytkownika'}) do |pole| %>
+<%= pole.hidden_field(:firma_id, :value => @firma_last) %>
+<%= pole.hidden_field(:uprawnienia, :value => 1) %>
+ <div class="Userwrapper fadeInDown">
+  <div id="formUserContent">
+	<div class="container emp-profile">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-img">
+                   	<%= image_tag("wykrzyknik.png") %>
+<!--
+                            <div class="file btn btn-lg btn-primary">
+                               Zmień Logo
+                                <input type="file" name="file"/>
+                            </div>
+ -->
+                </div>
+            </div>
+            <div class="col-md-6">
+            <div class="profile-head">
+
+                	<%= image_tag("text_konto.png") %>
+                <br/><br/>
+              <div class="row">
+			  <br/>
+              <div class="row">
+				<div class="col-sm-4"> 
+				<%= image_tag("text_login_uzytkownika.png") %>
+				</div>
+				<div class="col-sm-1"></div> 
+				<div class="col-sm-4">
+      		<%= pole.text_field(:uzytkownik, :class => 'form-control') %>
+      			</div>
+			  </div>
+			  <br/>
+			  <div class="row">
+				<div class="col-sm-4"> 
+				<%= image_tag("text_imie_uzytkownika.png") %>	
+				</div>
+				<div class="col-sm-1"></div> 
+				<div class="col-sm-4">
+      		<%= pole.text_field(:imie, :class => 'form-control') %>
+      			</div>
+			  </div>
+			  <br/>
+			  <div class="row">
+				<div class="col-sm-4"> 
+			<%= image_tag("text_nazwisko_uzytkownika.png") %>
+				</div>
+				<div class="col-sm-1"></div> 
+				<div class="col-sm-4">
+      		<%= pole.text_field(:nazwisko, :class => 'form-control') %>
+      			</div>
+			  </div>
+			  <br/>
+              <div class="row">
+				<div class="col-sm-4"> 
+				<%= image_tag("text_email_uzytkownika.png") %>
+				</div>
+				<div class="col-sm-1"></div> 
+				<div class="col-sm-4">
+      		<%= pole.text_field(:email, :class => 'form-control') %>
+      			</div>
+			  </div> 
+			  <br/>
+              <div class="row">
+				<div class="col-sm-4"> 
+				<%= image_tag("text_haslo_uzytkownika.png") %>
+				</div>
+				<div class="col-sm-1"></div> 
+				<div class="col-sm-4">
+      	<%= pole.password_field(:password, :class => 'form-control') %>
+      			</div>
+			  </div>  
+			  <br/>
+              <div class="row">
+				<div class="col-sm-4"> 
+				<%= image_tag("text_powtorz_uzytkownika.png") %>	
+				</div>
+				<div class="col-sm-1"></div> 
+				<div class="col-sm-4">
+      	<%= pole.password_field(:password_confirmation, :class => 'form-control') %>
+      			</div>
+			  </div>   
+
+			 <br/>
+			<div class="col-sm-8"> 
+ 				<%= submit_tag("Zapisz",:class => 'btn btn-primary') %>
+<% end %>
+ 			</div>
+            </div>
+            </div>
+
+        </div>
+
+      
+        </div>
+    </div>
+</div>
+
+  	</body>
+  	</html>

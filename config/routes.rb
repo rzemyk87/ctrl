@@ -49,8 +49,10 @@ Rails.application.routes.draw do
   get 'dostep/przypomnienie', :to => "dostep#przypomnienie"
 
   get '/:token/confirm_email/', :to => "uzytkowniks#confirm_email", as: 'confirm_email'
+  
+  get '/:token/confirm_email/', :to => "public#confirm", as: 'confirm'
 
-   get '/:token/reset/', :to => "public#reset", as: 'reset'
+  get '/:token/reset/', :to => "public#reset", as: 'reset'
   #resource :kurses, format: 'docx'
 
 root "public#index"

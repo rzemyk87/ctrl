@@ -209,6 +209,7 @@ element3.addEventListener('blur', function(e) {
 </head>
 
 <div class="znak">
+<div class="fadeIn first">
   <% if @rodzaj == 1 %>
   <%= image_tag("rejestr2.jpg",:size => '200x200', :class => "img-circle center-block") %>
 <% elsif @rodzaj == 2 %>
@@ -218,17 +219,20 @@ element3.addEventListener('blur', function(e) {
 <% else %>
   <%= image_tag("pracodawcow.jpg",:size => '200x200', :class => "img-circle center-block") %>
 <% end %>
-
+</div>
 </div>
 
 <div class="content2">
 	<div class="row">
   		<div class="col-md-2"></div>
   			<div class="col-md-2">
+        <div class="fadeIn second">
   				<h3 class="text-center"><%= @tytul %></h3>
+        </div>
   			</div>
  
   	</div>
+    <div class="fadeIn third">
   	<div class="row">
 	  <div class="form-group">
   		<div class="col-md-2"></div>
@@ -378,11 +382,13 @@ $(document).ready(function() {
   			</div>
   	  </div>
 	</div>
-
+</div>
 
 
 </div>
+
 <div class="content3">
+<div class="fadeIn fourth">
   <div class="hero-unit">	
         <%= image_tag("text_osoby.png") %>
 <br>
@@ -503,3 +509,4 @@ date.addEventListener('blur', function(e) {
 	</tbody>
 
 	</table>
+</div>

@@ -3,14 +3,16 @@
 
 <div class="hero-unit">
   <br>
+  <div class="fadeIn first">
         <%= image_tag("text_rejestr_big.png") %>
-
+  </div>
 <div class="container">
 
 <!-- Wyszukiwanie -->
 <div class="input-group">
 
 <div class="content4">
+  <div class="fadeIn fourth">
 <%= form_tag(kurses_index_path, :method => "get", id: "search-form") do %>
 
 <%= text_field_tag :search_firma, params[:search_firma], placeholder: "Firma", :size => 15 %>
@@ -44,8 +46,11 @@
           </script>
 </div>
 </div>
+</div>
 <br><br>
+<div class="fadeIn second">
 <table class="table table-striped">
+  
   <tr class="info">
     <th class="text-center"><%= image_tag("text_nr_szkolenia_small.png") %></th>
     <th class="text-center"><%= image_tag("text_data_szkolenia_small.png") %></th>
@@ -68,8 +73,9 @@
     </td>
   </tr> 
 <% end %>
-</table>
 
+</table>
+</div>
 </div>
 </div>
 

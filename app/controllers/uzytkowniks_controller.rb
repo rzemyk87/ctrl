@@ -22,7 +22,7 @@ end
   end
 
   def nowy
-        @uzytkownik = Uzytkownik.new
+    @uzytkownik = Uzytkownik.new
   end
 
   def utworz

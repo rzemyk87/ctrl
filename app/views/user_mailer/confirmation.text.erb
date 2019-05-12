@@ -1,0 +1,5 @@
+Witaj <%= @uzytkownik.imie %> <%= @uzytkownik.nazwisko %>,
+
+Dziękujemy za rejestrację! Aby dokończyć proces rejestracji wejdź adres URL poniżej!
+
+<%=  confirm_email_url(@uzytkownik.confirm_token, host: "http://localhost:5001")%>
