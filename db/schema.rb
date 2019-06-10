@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190507204428) do
+ActiveRecord::Schema.define(version: 20190606172123) do
 
   create_table "cache_items", force: :cascade do |t|
     t.string "key"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20190507204428) do
     t.integer "szkolenie_id"
     t.integer "nr_zaswiadczenia"
     t.integer "rodzaj_id"
+    t.string "stanowisko"
   end
 
   create_table "rodzaj_szkolenia", force: :cascade do |t|

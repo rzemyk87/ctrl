@@ -107,6 +107,28 @@ def pozar_pdf
 
 end
 
+def wstepne_pdf
+    
+  if params[:id_osoba]
+    @osoba = Osoba.joins(:szkolenie).find(params[:id_osoba])
+    @szkol1 = Szkolenie.find(params[:id_szkol])
+    @data = @osoba.created_at.strftime("%Y")
+  end
+
+  require 'prawn'
+      
+  respond_to do |format|
+    format.html
+    format.pdf do
+    pdf = ::WstepnePdf.new(@osoba, @szkol1)
+      send_data pdf.render, filename: "#{@osoba.nr_zaswiadczenia}/W/#{@szkol1.szkolenie_id}/#{@data}.pdf",
+                            type: "application/pdf",
+                            disposition: "inline"
+      end
+  end
+
+end
+
 def dzieci_pdf
     
   if params[:id_osoba]
@@ -281,6 +303,25 @@ def zaswiadczenia_ppd
   end
 
 end
+ 
+def zaswiadczenia_wstepne
+    
+  @szkol = Szkolenie.find(params[:id])
+  @osoba = @szkol.osobas
+ 
+  require 'prawn'
+      
+  respond_to do |format|
+    format.html
+    format.pdf do
+    pdf = ::ZaswWstepne.new(@osoba, @szkol)
+      send_data pdf.render, filename: "zaswiadczenia.pdf",
+                            type: "application/pdf",
+                            disposition: "inline"
+      end
+  end
+
+end
 
 def dokument
 
@@ -420,11 +461,11 @@ def szkolenie_parametry
 end
 
 def osoba_parametry
-    params.require(:osoba).permit(:osoba_imie,:osoba_nazwisko,:osoba_data,:osoba_miejsce,:osoba_ocena)
+    params.require(:osoba).permit(:osoba_imie,:osoba_nazwisko,:osoba_data,:osoba_miejsce,:osoba_ocena,:stanowisko)
 end
 
 def osoba_parametry_dodaj
-    params.require(:osoba).permit(:osoba_imie,:osoba_nazwisko,:osoba_data,:osoba_miejsce,:osoba_ocena,:szkolenie_id,:nr_zaswiadczenia, :rodzaj_id)
+    params.require(:osoba).permit(:osoba_imie,:osoba_nazwisko,:osoba_data,:osoba_miejsce,:osoba_ocena,:szkolenie_id,:nr_zaswiadczenia, :rodzaj_id, :stanowisko)
 end
 
 

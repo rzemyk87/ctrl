@@ -15,13 +15,14 @@ class Uzytkownik < ApplicationRecord
 
 	validates :uzytkownik,
 				:length => {:within => 4..25, :message => "nawza uzytkownika musi miec min 4 a max 25 znakow" },
-				:uniqueness => true
+				:uniqueness => {:in => true, :message => " - Dany login jest zajęty" }
 
 	validates :email,
 				:presence => true,
 				:length => {:maximum => 100},
 				:format => {:with => EMAIL_REGEX, :message => "niepoprawny format email" },
-				:confirmation => true
+				:confirmation => true,
+				:uniqueness => {:in => true, :message => " - Podany email istnieje już w bazie" }
 
 	scope :sortuj, lambda{order("nazwisko ASC, imie ASC")}
 

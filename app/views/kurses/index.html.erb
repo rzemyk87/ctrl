@@ -60,8 +60,12 @@
     <th class="text-center"><%= image_tag("text_akcja_small.png") %></th>
   </tr> 
 <% @kursy.all.each do |kursy| %>
-  <tr>
+  <tr> 
+    <% if kursy.rodzaj_id == 8 %>
+    <td class="text-center"><%= "#{kursy.szkolenie_id}/W" %></td>
+    <% else %>
     <td class="text-center"><%= kursy.szkolenie_id %></td>
+    <% end %>
     <td class="text-center"><%= kursy.data_od.strftime("%d.%m.%Y") %></td>
     <td class="text-center"><%= kursy.prowadzacy %></td>
     <td style="width: 350px; overflow: hidden" class="text-center"><%= kursy.firma %></td>

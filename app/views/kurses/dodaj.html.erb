@@ -3,8 +3,10 @@
 
 <%= form_for(:osoba, :url => {:action => 'dodaj_osobe', :id => @szkol.id}, :method => :POST) do |pole| %>
 
-<% if @szkol.rodzaj_id == 5 || @szkol.rodzaj_id == 6 %>
+<% if @szkol.rodzaj_id == 5 || @szkol.rodzaj_id == 6  || @szkol.rodzaj_id == 7 %>
 	<%= render(:partial => "pierwsza_osoba_form", :locals => {:pole => pole}) %>
+<% elsif @szkol.rodzaj_id == 8 %>
+	<%= render(:partial => "wstepne_osoba_form", :locals => {:pole => pole}) %>
 <% else %>
 	<%= render(:partial => "osoba_form", :locals => {:pole => pole}) %>
 <% end %>
@@ -23,4 +25,4 @@
 </div>
 
 	<% end %>
-</div>
+</div> 

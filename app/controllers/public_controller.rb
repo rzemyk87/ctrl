@@ -19,14 +19,15 @@ class PublicController < ApplicationController
 
   def utworz
 	@firma = Firma.new(firma_parametry)
-  @firma.data_wygasniecia = DateTime.now.to_date
+  @firma.data_wygasniecia = DateTime.now.to_date + 30
   @firma.aktywna = true
-  @firma.save!
+  @firma.valid?
+  #@firma.save!
 	 if @firma.save
       redirect_to(:action => "uzytkownik")
     else
-      flash[:notice] = "Ooooppss, coś poszło nie tak! Skontaktuj się z Nami, by rozwiązać problem :)"
-      render("index")
+      flash[:notice] = @firma.errors.full_messages.join(", ")
+      render("konto")
     end
   end
 
@@ -34,14 +35,14 @@ class PublicController < ApplicationController
 	@uzytkownik = Uzytkownik.new(uzytkownik_parametry)
 	@uzytkownik.email_confirmed = true
 	@uzytkownik.confirm_token = nil
-	@uzytkownik.save!
+	@uzytkownik.valid?
 	 if @uzytkownik.save
 	  UserMailer.registration_confirmation(@uzytkownik).deliver
       flash[:notice] = "Wysłaliśmy link aktywacyjny na Twojego maila, potwierdź go by kontynuować"
       redirect_to(:action => "index")
     else
-      flash[:notice] = "Ooooppss, coś poszło nie tak! Skontaktuj się z Nami, by rozwiązać problem :)"
-      render("index")
+      flash[:notice] = @uzytkownik.errors.full_messages.join(", ")
+      render("uzytkownik")
     end
   end
 

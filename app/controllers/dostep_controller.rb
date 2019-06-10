@@ -9,7 +9,7 @@ before_action :sprawdz_logowanie, :except => [:login, :logowanie, :logout]
   end
 
   def index
-    @przypomnienie = Osoba.joins(:szkolenie).where('data_waznosci BETWEEN ? AND ?',DateTime.now, DateTime.now+60).where('firma_id = ?', session[:firma_id]).order("data_waznosci ASC")
+    @przypomnienie = Osoba.joins(:szkolenie).where('data_waznosci BETWEEN ? AND ?',DateTime.now, DateTime.now+30).where('firma_id = ?', session[:firma_id]).order("data_waznosci ASC")
 
     koniec = Firma.where(:id => session[:firma_id]).last.data_wygasniecia
     @data = (koniec - DateTime.now.to_date).to_i
