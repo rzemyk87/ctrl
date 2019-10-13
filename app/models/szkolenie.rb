@@ -7,9 +7,8 @@ class Szkolenie < ApplicationRecord
     scope :sortuj, lambda{order("szkolenies.id ASC")}
     scope :najnowsze, lambda{order("szkolenies.id DESC")}
 
-def self.search(search_firma, search_prowadzacy, search_data, search_imie, search_nazwisko)
-	joins(:osobas).where("firma LIKE ? AND prowadzacy LIKE ? AND data_od LIKE ? AND osoba_imie LIKE ? AND osoba_nazwisko LIKE ?", "%#{search_firma}%", "%#{search_prowadzacy}%","%#{search_data}%","%#{search_imie}%", "%#{search_nazwisko}%") 
-end
-
+def self.search(search_firma, search_prowadzacy, search_data, search_imie, search_nazwisko, search_data_waznosci)
+	joins(:osobas).where("firma LIKE ? AND prowadzacy LIKE ? AND data_od LIKE ? AND osoba_imie LIKE ? AND osoba_nazwisko LIKE ? AND data_waznosci LIKE ?", "%#{search_firma}%", "%#{search_prowadzacy}%","%#{search_data}%","%#{search_imie}%", "%#{search_nazwisko}%", "%#{search_data_waznosci}%") 
+end 
 
 end

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<% @tytul_strony = "Załóż konto" %>
+</head> 
+  <body class="bck1">
+  
+ <div class="Userwrapper1 fadeInDown">
+  <div id="formUserContent1">
+	<div class="container emp-profile">
+        <form method="post">
+        <div class="row">
+            <div class="col-md-4">
+              <div class="profile-img">
+              	<br><br><br><br>
+                <div class="fadeIn first">
+               	<%= image_tag("info.jpg", :class => "shadow") %>
+               </div>
+               	<br><br><br><br>
+              </div>
+            </div>
+    <div class="col-md-1">
+    <div class="profile-head">
+      <div class="fadeIn second">
+              <%= image_tag("text_info1.png") %>
+      </div>
+      <br/><br/>
+
+
+
+      <div class="fadeIn fourth">
+    	 <div class="col-sm-3"> 
+          <%= link_to("Cofnij",{:action => 'index'},:class => 'btn btn-ml btn-info') %>
+      	</div>
+      </div>
+    </div>
+    </div>
+
+        </div>
+
+            </form>           
+        </div>
+    </div>
+</div>
+
+  	</body>
+  	</html>

@@ -207,27 +207,21 @@ element3.addEventListener('blur', function(e) {
     </script>
 
 </head>
-
-<div class="znak">
-<div class="fadeIn first">
-  <% if @rodzaj == 1 %>
-  <%= image_tag("rejestr2.jpg",:size => '200x200', :class => "img-circle center-block") %>
-<% elsif @rodzaj == 2 %>
-  <%= image_tag("szkolenia1.jpg",:size => '200x200', :class => "img-circle center-block") %>
-<% elsif @rodzaj == 3 %>
-  <%= image_tag("rejestr3.jpg",:size => '200x200', :class => "img-circle center-block") %>
-<% else %>
-  <%= image_tag("pracodawcow.jpg",:size => '200x200', :class => "img-circle center-block") %>
-<% end %>
-</div>
-</div>
-
 <div class="content2">
+    
 	<div class="row">
-  		<div class="col-md-2"></div>
+ 
   			<div class="col-md-2">
         <div class="fadeIn second">
-  				<h3 class="text-center"><%= @tytul %></h3>
+          <% if @rodzaj == 1 %>
+            <%= image_tag("text_BHP_AB_big.png", :class => "style_h") %>
+          <% elsif @rodzaj == 2 %>
+            <%= image_tag("text_BHP_R_big.png", :class => "style_h") %>
+          <% elsif @rodzaj == 3 %>
+            <%= image_tag("text_BHP_IT_big.png", :class => "style_h") %>          
+          <% else %>
+            <%= image_tag("text_BHP_P_big.png", :class => "style_h") %> 
+          <% end %>
         </div>
   			</div>
  
@@ -235,7 +229,7 @@ element3.addEventListener('blur', function(e) {
     <div class="fadeIn third">
   	<div class="row">
 	  <div class="form-group">
-  		<div class="col-md-2"></div>
+  		<div class="col-md-1"></div>
       <div class="col-md-2">
         <%= image_tag("text_nr_szkolenia.png") %>
       </div>
@@ -252,7 +246,7 @@ element3.addEventListener('blur', function(e) {
   		
 	<div class="row">
 	  <div class="form-group">
-  		<div class="col-md-2"></div>
+  		<div class="col-md-1"></div>
         <div class="col-md-2">
         <%= image_tag("text_prowadzacy.png") %>
         </div>
@@ -286,7 +280,7 @@ element3.addEventListener('blur', function(e) {
 	</div>
 	<div class="row">
 	  <div class="form-group">
-  		<div class="col-md-2"></div>
+  		<div class="col-md-1"></div>
         <div class="col-md-2">
         <%= image_tag("text_forma.png") %>
         </div>
@@ -309,7 +303,7 @@ element3.addEventListener('blur', function(e) {
   			<div class="col-md-2">
   			  <div class="form-group">
                 <div class='input-group date'>
-                	 <%= pole.text_field :data_do, class: 'form-control datetimepicker', :id => 'datetimepicker2', :required => 'required' %>
+                	 <%= pole.text_field :data_do, class: 'form-control datetimepicker', :id => 'datetimepicker2',:value => Date.today.strftime("%d.%m.%Y"), :required => 'required' %>
 
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
@@ -317,17 +311,72 @@ element3.addEventListener('blur', function(e) {
                 </div>
               </div>
         	</div>
+<% if @rodzaj == 1 %>
+  <script type="text/javascript">
+  $(function () {
+   $('#datetimepicker2').datetimepicker({
+    format: 'DD.MM.YYYY'}).on('dp.change', function() {
+        var data = document.getElementById('data_waznosci');
+        var dat = document.getElementById('datetimepicker2');
+        var parts = (dat.value).split('.');
+        var dat1 = parseInt(parts[2], 10);
+        var dat2 = parseInt((parts[1]), 10);
+        var dat3 = parseInt(parts[0], 10);
+        dat1 = dat1 + 6;        
+        var data1 = dat3 + "." + dat2 + "." + dat1;
+        data.value = data1;
+    });
+  });
+  </script>
+<% elsif @rodzaj == 2 %>
+<script type="text/javascript">
+  $(function () {
+   $('#datetimepicker2').datetimepicker({
+    format: 'DD.MM.YYYY'}).on('dp.change', function() {
+        var data1 = document.getElementById('data1');
+        var data2 = document.getElementById('data2');
+        var dat = document.getElementById('datetimepicker2');
+        var parts = (dat.value).split('.');
+        var dat1 = parseInt(parts[2], 10);
+        var dat2 = parseInt((parts[1]), 10);
+        var dat3 = parseInt(parts[0], 10);
+        var dat11 = dat1 + 3;
+        dat1 = dat1 + 1;       
+        var data0 = dat3 + "." + dat2 + "." + dat1;
+        var data01 = dat3 + "." + dat2 + "." + dat11; 
 
-            <script type="text/javascript">
-                $(function () {
-                 $('#datetimepicker2').datetimepicker({
-                    format: 'DD.MM.YYYY'});
-                 });
-       		</script>
+    $('#szkolenie_data_waznosci')
+    .empty()
+    .append('<option selected="selected">' + data0 + '</option> <option>' + data01 + '</option>');
+    });
+  });
+</script>
+<% else %>
+<script type="text/javascript">
+  $(function () {
+   $('#datetimepicker2').datetimepicker({
+    format: 'DD.MM.YYYY'}).on('dp.change', function() {
+        var data = document.getElementById('data_waznosci');
+        var dat = document.getElementById('datetimepicker2');
+        var parts = (dat.value).split('.');
+        var dat1 = parseInt(parts[2], 10);
+        var dat2 = parseInt((parts[1]), 10);
+        var dat3 = parseInt(parts[0], 10);
+        dat1 = dat1 + 5;        
+        var data1 = dat3 + "." + dat2 + "." + dat1;
+        data.value = data1;
+    });
+  });
+
+</script>
+<% end %>
+ 
+
+
   	  </div>
 	</div>
     <div class="row">
-       <div class="col-md-2"></div>
+       <div class="col-md-1"></div>
             <div class="col-md-2">
         <%= image_tag("text_data_wystawienia.png") %>
         </div>
@@ -346,11 +395,9 @@ $(document).ready(function() {
   $('#datetimepicker3').datetimepicker({
     format: 'DD.MM.YYYY'});
                  });
+         </script>
 
-
-          </script>
-
-
+ 
       </div>
            <div class="col-md-1"></div>
             <div class="col-md-2">
@@ -359,21 +406,23 @@ $(document).ready(function() {
       <div class="col-md-2">
 
 <% if @rodzaj == 1 %>
-      <%= pole.text_field(:data_waznosci, :class => 'form-control', :value => (Date.today + 2190).strftime("%d.%m.%Y"), readonly: true, data: { date_format: 'DD.MM.YYYY' } ) %>
+      <%= pole.text_field(:data_waznosci, :class => 'form-control', :id => "data_waznosci", :value => (Date.today.years_since(6)).strftime("%d.%m.%Y"), readonly: true, data: { date_format: 'MM.DD.YYYY' } ) %>
 <% elsif @rodzaj == 2 %>
 
-<%= pole.select :data_waznosci, options_for_select([(Date.today + 365).strftime("%d/%m/%Y"),(Date.today + 1095).strftime("%d/%m/%Y")], :class => "col-md-2"),:class => 'form-control' %>
+<%= pole.select :data_waznosci, options_for_select([[@data1, {:id => 'data1'}], [@data2, {:id => 'data2'}]], :class => "col-md-2"),:class => 'form-control' %>
 
 <% else %>
-      <%= pole.text_field(:data_waznosci, :class => 'form-control', :value => (Date.today + 1825).strftime("%d.%m.%Y"), readonly: true, data: { date_format: 'DD.MM.YYYY' } ) %>
+      <%= pole.text_field(:data_waznosci, :class => 'form-control', :value => (Date.today.years_since(5)).strftime("%d.%m.%Y"), readonly: true, data: { date_format: 'DD.MM.YYYY' } ) %>
 <% end %>
+
+
 
 </div>
     </div>
-
+ 
 	<div class="row">
 	  <div class="form-group">
-  		<div class="col-md-2"></div>
+  		<div class="col-md-1"></div>
 			<div class="col-md-2">
         <%= image_tag("text_firma.png") %>
   			</div>
@@ -386,7 +435,7 @@ $(document).ready(function() {
 
 
 </div>
-
+  
 <div class="content3">
 <div class="fadeIn fourth">
   <div class="hero-unit">	
@@ -432,7 +481,7 @@ $('#ocena1').on('keyup change click', function () {
     }        
 });
 
-
+ 
 </script>
 
 <% if @rodzaj == 1 %>

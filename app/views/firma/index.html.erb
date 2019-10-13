@@ -1,25 +1,131 @@
+<head>
+<% @tytul_strony = "Twoje konto" %>
+</head> 
+<%= form_for(:firma, local: true, :url => {:action => 'aktualizuj'}) do |pole| %>
+ <div class="Userwrapper fadeInDown">
+  <div id="formUserContent">
+  <div class="container emp-profile">
+        <form method="post">
+        <div class="row">
+            <div class="col-md-4">
+              <div class="profile-img">
+               <% if @firma.avatar.attached? %>
+                <%= image_tag @firma.avatar, :width=>150, :crop=>"fill" %>
+               <% else %>
+                  <%= image_tag("wykrzyknik.png") %>
+                  <div class="row">
+                  <div class="col-sm-2"></div> 
+                  <div class="col-sm-4">
+                    <%= pole.file_field :avatar, :url => {:action => 'click'} %>
+                  </div>
+                  </div>
+               <% end %>
+ 
+              </div>
+            </div>
+            <div class="col-md-6">
+            <div class="profile-head">
+              <%= image_tag("text_twoje_konto.png") %>
+              <br/><br/>
+   
+      <div class="row">
+          <div class="col-sm-4"> 
+             <%= image_tag("text_nazwa_firmy.png") %> 
+          </div>
+          <div class="col-sm-1"></div> 
+          <div class="col-sm-6">
+            <%= pole.text_field(:Nazwa, :class => 'form-control') %>
+          </div>
+      </div>
+        <br/>
+ 
+      <div class="row">
+        <div class="col-sm-4"> 
+          <%= image_tag("text_nazwa_login.png") %>  
+        </div>
+        <div class="col-sm-1"></div> 
+        <div class="col-sm-6">
+            <%= pole.text_field(:log_in, :class => 'form-control') %>
+        </div>
+      </div>
+        <br/>
 
-<div class="wrapper fadeInDown">
-  <div id="formContent">
-    <!-- Tabs Titles -->
+      <div class="row">
+        <div class="col-sm-4"> 
+          <%= image_tag("text_NIP.png") %>  
+        </div>
+        <div class="col-sm-1"></div> 
+        <div class="col-sm-6">
+            <%= pole.text_field(:NIP, :class => 'form-control') %>
+            </div>
+      </div>
+        <br/>
 
-    <!-- Icon -->
-    <div class="fadeIn first">
-      <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
+      <div class="row">
+        <div class="col-sm-4"> 
+          <%= image_tag("text_adres_firmy.png") %>  
+        </div>
+        <div class="col-sm-1"></div> 
+        <div class="col-sm-6">
+            <%= pole.text_field(:adres, :class => 'form-control') %>
+            </div>
+      </div>
+        <br/>
+
+      <div class="row">
+        <div class="col-sm-4"> 
+          <%= image_tag("text_kod_firmy.png") %>  
+        </div>
+        <div class="col-sm-1"></div> 
+        <div class="col-sm-6">
+            <%= pole.text_field(:poczta, :class => 'form-control') %>
+            </div>
+      </div>
+       <br/>
+ 
+      <div class="row">
+        <div class="col-sm-4"> 
+          <%= image_tag("text_miasto_firmy.png") %>  
+        </div>
+        <div class="col-sm-1"></div> 
+        <div class="col-sm-6">
+            <%= pole.text_field(:miasto, :class => 'form-control') %>
+            </div>
+      </div>
+       <br/>
+
+      <div class="col-sm-5"></div>
+      <div class="col-sm-6">
+          <%= image_tag("text_formatka.png") %>
+      </div>
+        <br/> 
+
+      <div class="row">
+        <div class="col-sm-4"> 
+          <%= image_tag("text_formatka_firmy.png") %>  
+        </div>
+        <div class="col-sm-1"></div> 
+        <div class="col-sm-6">
+            <%= pole.text_field(:tekst, :class => 'form-control') %>
+            </div>
+      </div>
+      
+      <div class="col-sm-5"></div>
+      <div class="col-sm-6">
+        <%= image_tag("text_formatka2.png") %>
+      </div>
+
+      <div class="col-sm-8"> 
+        <%= submit_tag("Aktualizuj",:class => 'btn btn-primary') %>
+      </div>
+            </div>
+            </div>
+
+        </div>
+
+            </form>           
+        </div>
     </div>
-
-    <!-- Login Form -->
-    <form>
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
-      <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
-      <input type="submit" class="fadeIn fourth" value="Log In">
-    </form>
-
-    <!-- Remind Passowrd -->
-    <div id="formFooter">
-      <a class="underlineHover" href="#">Forgot Password?</a>
-    </div>
-
-  </div>
 </div>
 
+<% end %>

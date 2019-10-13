@@ -1,5 +1,7 @@
 <div class="hero-unit">
-<h1>Edycja <%= %></h1>
+<div class="content21">
+<br>
+<%= image_tag("text_dodaj_osobe.png", :style => "margin-left: 25px") %>
 
 <%= form_for(:osoba, :url => {:action => 'dodaj_osobe', :id => @szkol.id}, :method => :POST) do |pole| %>
 
@@ -26,3 +28,4 @@
 
 	<% end %>
 </div> 
+</div>

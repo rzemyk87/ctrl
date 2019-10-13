@@ -4,11 +4,35 @@
     <title>Control Life <%= " | #{@tytul_strony}" if @tytul_strony %></title>
     <%= stylesheet_link_tag('application', :media => 'all') %>
     <%= javascript_include_tag('application') %>
-</head>
+</head> 
 <body class="bck2">
+<div class="row">
 
+  <div class="col-sm-1">
+    <div class="rej_button">
+  <%= link_to("REJESTRACJA", {:controller =>'public', :action => 'konto'}, :class => 'btn btn-sm button-rej') %>
+    </div>
+  </div>
+     
+  <div class="col-sm-1">
+    <div class="log_button">
+<%= link_to("LOGOWANIE", {:controller =>'dostep', :action => 'index'}, :class => 'btn btn-sm button-log') %>
+    </div>
+  </div> 
+
+  <div class="col-sm-2">
+    <div class="info_button">
+<%= link_to("INFO", {:controller =>'public', :action => 'info'}, :class => 'btn btn-sm button-info') %>
+    </div>
+  </div>
+
+</div>  
+
+    <div class="button-fcb">
+<%= link_to(image_tag("facebook.png", :size => "50x50"), "https://pl-pl.facebook.com/controllifepl") %>
+</div>
 	<!-- nawigacja poczatek -->
-	<%= render(:partial=>"menu") %>
+
 	<!-- nawigacja koniec -->
 
 	<!-- treść poczatek -->

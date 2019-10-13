@@ -3,8 +3,10 @@ class PublicController < ApplicationController
   layout 'public'
 
   def index
-
   end
+
+  def info
+  end 
 
   def uzytkownik
 	@uzytkownik = Uzytkownik.new
@@ -13,7 +15,7 @@ class PublicController < ApplicationController
 
   def konto
   	firma_last1 = Firma.limit(1).order('firma_id desc').pluck(:firma_id).map(&:to_i) 
-  	@firma_last = firma_last1.at(0) + 1
+  	$firma_last = firma_last1.at(0) + 1
   	@firma = Firma.new
   end
 
@@ -35,6 +37,7 @@ class PublicController < ApplicationController
 	@uzytkownik = Uzytkownik.new(uzytkownik_parametry)
 	@uzytkownik.email_confirmed = true
 	@uzytkownik.confirm_token = nil
+  @uzytkownik.firma_id = $firma_last 
 	@uzytkownik.valid?
 	 if @uzytkownik.save
 	  UserMailer.registration_confirmation(@uzytkownik).deliver
@@ -54,18 +57,24 @@ class PublicController < ApplicationController
     else
       flash[:notice] = "Użytkownik nie istnieje"
       redirect_to(:action=> 'index')
-    end
+    end 
 end
 
   def przypomnienie
-  	@uzytkownik = Uzytkownik.find_by_email(params[:email])
-  	if @uzytkownik.present?
-  			@uzytkownik.generate_password_token!
-  			UserMailer.forgot_password(@uzytkownik).deliver
-  		flash[:notice] = "Wysłaliśmy email z restartem hasła!"
-  	else
 
-  	end 
+  end
+
+  def przypomnienie_mail
+    @uzytkownik = Uzytkownik.find_by_email(params[:email])
+    if @uzytkownik.present?
+        @uzytkownik.generate_password_token!
+        UserMailer.forgot_password(@uzytkownik).deliver
+      flash[:notice] = "Wysłaliśmy email z restartem hasła!"
+            redirect_to(:action=> 'index')
+    else
+      flash[:notice] = "Podany email nie figuruje w Naszej bazie dancyh"
+      redirect_to(:action=> 'przypomnienie')
+    end 
   end
 
   def nowe_haslo
@@ -99,7 +108,7 @@ def uzytkownik_parametry
 end
 
 def firma_parametry
-    params.require(:firma).permit(:firma_id,:Nazwa,:log_in,:NIP)
+    params.require(:firma).permit(:firma_id,:Nazwa,:log_in,:NIP,:adres,:poczta,:miasto,:tekst)
 end
 
 end

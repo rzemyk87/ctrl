@@ -16,7 +16,7 @@ def confirm_email
       redirect_to( :controller => 'dostep', :action=> 'index')
     end
 end
-
+ 
   def index
     @uzytkownik = Uzytkownik.where(:firma_id => @current_user.firma_id, :email_confirmed => true).sortuj
   end

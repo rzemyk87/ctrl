@@ -131,6 +131,9 @@ class SzkoleniasController < ApplicationController
         @szkolenie_last = szkolenie_last1.at(0) + 1
     end
 
+    @data1 = Date.today.years_since(1).strftime("%d/%m/%Y")
+    @data2 = Date.today.years_since(3).strftime("%d/%m/%Y")
+
     #nr_zasw_r = Osoba.limit(1).where(rodzaj_id: 2).order('created_at desc').pluck(:nr_zaswiadczenia).map(&:to_i)
     $nr = 1
     $l = 0
@@ -141,7 +144,7 @@ class SzkoleniasController < ApplicationController
     @robotnicze.robotnicies.new
     @licznik =  Robotnicze.count + 1
   end
-
+ 
   def pracodawcow
 
     @szkolenie = Szkolenie.new()
@@ -186,6 +189,9 @@ class SzkoleniasController < ApplicationController
     else
         @szkolenie_last = szkolenie_last1.at(0) + 1
     end
+
+    @data1 = Date.today.months_since(6).strftime("%d/%m/%Y")
+    @data2 = Date.today.years_since(1).strftime("%d/%m/%Y")
 
     #nr_zasw_i = Osoba.limit(1).where(rodzaj_id: 3).order('created_at desc').pluck(:nr_zaswiadczenia).map(&:to_i)
     @nr = 1

@@ -3,8 +3,11 @@
 
 <%= form_for(@szkolenie, :url => {:action => 'aktualizuj', :id => @szkolenie.id}, :method => :POST) do |pole| %>
 <% @rodzaj = @szkolenie.rodzaj_id %>
+<% if @rodzaj == 5 || @rodzaj == 6 || @rodzaj == 8 %>
+<%= render(:partial => "szkolenie_form", :locals => {:pole => pole}) %>
+<% else %>
 <%= render(:partial => "szkol_form", :locals => {:pole => pole}) %>
-
+<% end %>
 <div style="text-align: center;">
 <br><br>
 

@@ -1,53 +1,205 @@
 <% @tytul_strony = "Kursy" %>
 <body class="bck1">
+ 
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<link href="dist/css/window-date-picker.css" rel="stylesheet">
+  <script src="dist/js/window-date-picker.js"></script>
+</head> 
+<style type="text/css">
+td, th {
+    vertical-align: middle !important;
+    }
+.left, .right {
+        float:left;
+        height:100vh;
+    }
+    
+.left {
+        background: #337ab7;
+        display: inline-block;
+        white-space: nowrap;
+        width: 50px;
+        transition: width 1s ;
+        margin-left:230px;
+        margin-top:50px;
+        position: absolute;
+        z-index: 3;
+    }
+
+.right {
+
+      background: #fff;
+      height: auto;
+      top:0;
+      left:0;
+      right:0;
+      margin-top:50px;
+      margin-left:280px;
+      transition: width 1s; 
+      position: absolute;
+      z-index: 1;
+    }   
+
+.selected {
+        width: 255px;
+        z-index: 2;
+    }
+    
+.item:hover {
+        background-color:#ccc;
+        }
+        
+.left .glyphicon {
+        margin:15px;
+        width:20px;
+        color:#fff;
+    }
+    
+.right .glyphicon {
+        color:#a9a9a9;
+    }
+span.glyphicon.glyphicon-refresh{
+    font-size:17px;
+    vertical-align: middle !important;
+    }
+     
+.item {
+        height:50px;
+        overflow:hidden;
+
+    }
+.title {
+        background-color:#eee;
+        border-style:solid;
+        border-color:#ccc;
+        border-width:1px;
+        box-sizing: border-box;
+    }
+.search:hover {
+        border-color:#4aa9fb;
+        border-width:1px;
+    }
+.search {
+    padding:3px 8px 3px !important;
+    }
+input[type=search] {
+    padding: 10px 0px 10px;
+  border: 0px solid #fff;
+  background: #eee;
+  -webkit-appearance: none;
+    width:90%;
+    float:none;
+}
+input[type=search]:focus {
+    outline:none;
+    }
+.type{
+    height: 47px;;
+    }
+.date{
+    background-color:#f7f7f7
+    }
+.docdate {
+    vertical-align:bottom !important;
+    }
+.distr {
+    margin: 0 0 5px;
+    font-size: 12px;
+    }
+.ndoc {
+    margin: 0 0 5px;
+    }
+.storage {
+    margin: 0;
+    color: #aaa !important;
+    font-size: 12px;
+    }
+        
+    
+    
+   
+ 
+    
+</style>
+<div class="left">
+<div id="gora">
+<%= form_tag(kurses_index_path, :method => "get", id: "search-form") do %>
+<div class="item">
+<a href="#">
+<span class="glyphicon glyphicon-search"></span></a>
+<span class="glyphicon glyphicon-ok" style="visibility: hidden;"></span>
+<span class="glyphicon glyphicon-ok" style="visibility: hidden;"></span>
+<span class="glyphicon glyphicon-ok" style="visibility: hidden;"></span>
+<a href="#"><span class="glyphicon glyphicon-remove"></span></a>
+</div>
+</div>
+<div class="item">
+<span class="glyphicon glyphicon-ok" style="visibility: hidden;"></span>
+<%= text_field_tag :search_firma, params[:search_firma], placeholder: "Firma", :size => 15 %>
+</div>
+<div class="item">
+<span class="glyphicon glyphicon-ok" style="visibility: hidden;"></span>
+<%= text_field_tag :search_prowadzacy, params[:search_prowadzacy], placeholder: "Prowadzący" , :size => 15 %>
+</div>
+<div class="item">
+<span class="glyphicon glyphicon-ok" style="visibility: hidden;"></span>
+
+<%= text_field_tag :search_data, params[:search_data], placeholder: 'Data', :id => 'datepicker', :size => 15 %>
+
+<script src="pikaday.js"></script>
+<script>
+var picker = new Pikaday({
+
+    field: document.getElementById('datepicker'),
+    format: 'YYYY-MM-DD',
+    firstDay: 1,
+    i18n: {
+    previousMonth : 'Poprzedni',
+    nextMonth     : 'Następny',
+    months        : [ 'Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień' ],
+    weekdays      : [ 'niedziela', 'poniedziałek', 'wtorek', 'środa', 'czwartek', 'piątek', 'sobota' ],
+    weekdaysShort : [ 'niedz.', 'pn.', 'wt.', 'śr.', 'cz.', 'pt.', 'sob.' ]
+
+}
+});
+</script>
+
+</div> 
+<div class="item">
+<span class="glyphicon glyphicon-ok" style="visibility: hidden;"></span>
+<%= text_field_tag :search_imie, params[:search_os], placeholder: "Imię", :size => 15 %>
+</div>
+<div class="item">
+<span class="glyphicon glyphicon-ok" style="visibility: hidden;"></span>
+ <%= text_field_tag :search_nazwisko, params[:search_os], placeholder: "Nazwisko", :size => 15 %>
+</div> 
+<div class="item">
+<span class="glyphicon glyphicon-ok" style="visibility: hidden;"></span>
+<%= submit_tag "Szukaj" %>
+</div> 
+<% end %>
+
+<script type="text/javascript">
+$('#gora').on('click', function() {
+$(".left").toggleClass('selected');
+});  
+</script>
+
+</div>
+<div class="right"> 
 
 <div class="hero-unit">
-  <br>
+  <br>   
   <div class="fadeIn first">
-        <%= image_tag("text_rejestr_big.png") %>
+        <%= image_tag("text_rejestr_big.png", :class => "style_text") %>
   </div>
-<div class="container">
+<div class="container-fluid">
 
-<!-- Wyszukiwanie -->
-<div class="input-group">
-
-<div class="content4">
-  <div class="fadeIn fourth">
-<%= form_tag(kurses_index_path, :method => "get", id: "search-form") do %>
-
-<%= text_field_tag :search_firma, params[:search_firma], placeholder: "Firma", :size => 15 %>
-<%= text_field_tag :search_prowadzacy, params[:search_prowadzacy], placeholder: "Prowadzący" , :size => 15 %>
-
-<div class="col-md-2">
-    <div class='input-group date'>
-        <%= text_field_tag :search_data, params[:search_data], class: 'form-control datetimepicker', :id => 'datetimepicker1', placeholder: "Data"%>
-    <span class="input-group-addon">
-        <span class="glyphicon glyphicon-calendar"></span>
-    </span>
-    </div>
-</div>
-                
-              
-            <script type="text/javascript">
-                $(function () {
-                 $('#datetimepicker1').datetimepicker({
-                    format: 'YYYY-MM-DD'});
-                 });
-          </script>
-<%= text_field_tag :search_imie, params[:search_os], placeholder: "Imię", :size => 15 %>
-<%= text_field_tag :search_nazwisko, params[:search_os], placeholder: "Nazwisko", :size => 15 %>
-<%= submit_tag "Szukaj" %>
-<% end %>
-            <script type="text/javascript">
-                $(function () {
-                 $('#datetimepicker1').datetimepicker({
-                    format: 'YYYY-MM-DD'});
-                 });
-          </script>
-</div>
-</div>
-</div>
 <br><br>
+<div class="content5">
 <div class="fadeIn second">
 <table class="table table-striped">
   
@@ -58,19 +210,19 @@
     <th class="text-center"><%= image_tag("text_firma_small.png") %></th>
     <th class="text-center"><%= image_tag("text_rodzaj_small.png") %></th>
     <th class="text-center"><%= image_tag("text_akcja_small.png") %></th>
-  </tr> 
+  </tr>  
 <% @kursy.all.each do |kursy| %>
   <tr> 
     <% if kursy.rodzaj_id == 8 %>
-    <td class="text-center"><%= "#{kursy.szkolenie_id}/W" %></td>
+    <td class="text-center" style="width: 25px;><%= "#{kursy.szkolenie_id}/W" %></td>
     <% else %>
     <td class="text-center"><%= kursy.szkolenie_id %></td>
     <% end %>
     <td class="text-center"><%= kursy.data_od.strftime("%d.%m.%Y") %></td>
     <td class="text-center"><%= kursy.prowadzacy %></td>
-    <td style="width: 350px; overflow: hidden" class="text-center"><%= kursy.firma %></td>
+    <td style="width: 250px; overflow: hidden" class="text-center"><%= kursy.firma %></td>
     <td class="text-center"><%= Rodzaj.find(kursy.rodzaj_id).rodzaj %></td>
-    <td class="text-center">
+    <td vertical-align="middle", width="20%">
       <%= link_to("Pokaż",{:action => 'nowy', :id => kursy.id},:class => 'btn btn-xs btn-success') %>
       <%= link_to("Edytuj",{:action => 'edycja', :id => kursy.id},:class => 'btn btn-xs btn-primary') %>
       <%= link_to("Usuń", {:action => 'usun', :id => kursy.id},:class => 'btn btn-xs btn-danger') %>
@@ -83,4 +235,5 @@
 </div>
 </div>
 
-</body>
+</div>
+

@@ -1,12 +1,20 @@
 <div class="hero-unit">
+<div class="content21">	
+<br> 
+<div class="row">
+<%= image_tag("text_uzytkownicy_big.png", :style => "margin-left: 25px") %>
+</div>
+<br>  
+<div class="row">	
+<div class="col-md-3">
+<%= link_to("Dodaj nowego Użytkownika", {:action => 'nowy'}, :class => 'btn btn-mini btn-primary', :style => "margin-left: 25px")%>
+</div>
+<div class="col-sm-4"></div>	
+<div class="col-md-4">
+<p style="text-align: right;"> Ilość Użytkownikow: <%= @uzytkownik.size%> </p>
+</div>
+</div>
 <br>
-<%= image_tag("text_uzytkownicy_big.png") %>
-<br><br>
-
-<%= link_to("Dodaj nowego Uzytkownika", {:action => 'nowy'}, :class => 'btn btn-mini btn-primary')%>
-
-<p style="text-align: right;"> Ilość Uzytkownikow: <%= @uzytkownik.size%> </p>
-
 <table class="table table-striped">
 	<tr class="info">
 		<th>Uzytkownik</th>
@@ -47,3 +55,4 @@
 </table>
 
 </div>
+</div> 

@@ -12,3 +12,6 @@
  *= require_tree .
  *= require bootstrap
  */
+@import "pickadate/default";
+@import "pickadate/default.date";  #for the date picker
+

@@ -13,11 +13,11 @@
 
 	<tr>
 		<th><%= pole.label(:uprawnienia) %></th>
-		<td><%= pole.select :uprawnienia,  options_for_select(["", ["Administratorskie", 1],["Użytkownik", 0]], :size =>'20'),:class => 'form-control', :id => 'upraw' %></td>
+		<td><%= pole.select :uprawnienia,  options_for_select([["Administratorskie", 1],["Użytkownik", 0]], :size =>'20'),:class => 'form-control', :id => 'upraw' %></td>
 	</tr>
 
 	<tr>
-		<th><%= pole.label(:uzytkownik) %></th>
+		<th>Login</th>
 		<td><%= pole.text_field(:uzytkownik, :class => 'form-control') %></td>
 	</tr>
 

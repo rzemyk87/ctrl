@@ -1,5 +1,8 @@
 <div class="hero-unit">
-<h1>Nowy Uzytkownik</h1>
+<div class="content21">  
+<br>
+<%= image_tag("text_nowy_uzytkownik.png", :style => "margin-left: 25px") %>
+
 
 <% if @current_user.uprawnienia == 1 %>
 	<%= form_for(:uzytkownik, :url => {:action => 'utworz'}) do |pole| %>
@@ -24,4 +27,5 @@
 
 	<% end %>
 <% end %>
+</div>
 </div>

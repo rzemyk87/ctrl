@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
-
+ 
   get 'firma/index'
-
+ 
   get 'kurses/index'
+
+  get 'kurses/index_wstepne'
 
   get 'kurses/nowy'
 
@@ -45,10 +47,22 @@ Rails.application.routes.draw do
   get 'szkolenias/robotnicze'
 
   get 'szkolenias/biurowe'
-
+ 
   get 'szkolenias/pracodawcow'
 
   get 'szkolenias/inzynieryjne'
+
+  get 'szkolenias/pierwsza'
+
+  get 'szkolenias/dzieci'
+
+  get 'szkolenias/pozar'
+
+  get 'szkolenias/wstepne'
+
+  get 'terminarz/index'
+
+  get 'terminarz/terminarz'
 
   get 'dostep/przypomnienie', :to => "dostep#przypomnienie"
 

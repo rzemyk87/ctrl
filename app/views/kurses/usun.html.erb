@@ -1,21 +1,47 @@
+
 <div class="hero-unit">
-<h1>Usun</h1>
+<div class="content21">	
+<div class="row">
+<div class="col-sm-1"></div>	
+<div class="col-md-2">
+<br>
+<%= image_tag("text_usun.png") %>
 
+</div>
+</div>
 <%= form_for(@szkolenie, :url => {:action => 'kasuj', :id => @szkolenie.id}, :method => :POST) do |pole| %>
-
+<div class="row">
+<div class="col-sm-1"></div>	
+<div class="col-md-3">
 <p>Czy na pewno chcesz usunąć?</p>
-
+</div>
+</div>
+<div class="row">
+<div class="col-sm-1"></div>	
+<div class="col-md-2">
 <p><%="Szkolenie nr: #{@szkolenie.szkolenie_id}"%></p>
-<br>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-1"></div>	
+<div class="col-md-3">
 <p><%= @szkolenie.prowadzacy %></p>
-<br>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-1"></div>	
+<div class="col-md-4">
 <p><%= @szkolenie.firma %></p>
+</div>
+</div>
 
-
-<div>
+<div class="row">
+<div class="col-sm-1"></div>	
+<div class="col-md-2">
 	<%= submit_tag("Usuń",:class => 'btn btn-danger') %>
 	<%= link_to("Powrót", {:action => 'index', :id => @szkolenie.id},:class => 'btn btn-primary')%>
 </div>
-
+</div>
 	<% end %>
+</div>
 </div>

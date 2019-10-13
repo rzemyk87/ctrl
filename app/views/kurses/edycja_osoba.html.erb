@@ -1,5 +1,7 @@
 <div class="hero-unit">
-<h1>Edycja <%= %></h1>
+<div class="content21">	
+<br>
+<%= image_tag("text_edycja.png", :style => "margin-left: 25px") %>
 
 <%= form_for(@osoba, :url => {:action => 'aktualizuj_osobe', :id_osoba => @osoba.id, :id => @szkol.id}, :method => :POST) do |pole| %>
 
@@ -15,7 +17,8 @@
 
 	<%= submit_tag("Aktualizuj",:class => 'btn btn-primary') %>
 	<%= link_to("Powrót", {:action => 'nowy', :id => @szkol.id},:class => 'btn btn-warning')%>
-</div>
+</div> 
 
 	<% end %>
+</div>
 </div>

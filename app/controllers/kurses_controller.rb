@@ -20,8 +20,28 @@ class KursesController < ApplicationController
       @data_sz = @szkol.created_at.strftime("%Y")
   	end
   end
-
+ 
   def index
+
+  search_firma = params[:search_firma]
+  search_prowadzacy = params[:search_prowadzacy]
+  search_imie = params[:search_imie]
+  search_nazwisko = params[:search_nazwisko]
+  search_data = params[:search_data]
+  search_data_waznosci = params[:search_data_waznosci]
+
+  kursy = Szkolenie.where(:firma_id => @current_user.firma_id).where.not(:rodzaj_id => 8).joins(:osobas)
+
+  if params[:search_firma || :search_prowadzacy || :search_data || :search_imie || :search_nazwisko || :search_data_waznosci]
+    @kursy = kursy.search(search_firma, search_prowadzacy, search_data, search_imie, search_nazwisko, search_data_waznosci).order("created_at DESC").distinct
+  else
+    @kursy = kursy.order("created_at DESC").distinct
+  end    
+
+
+  end
+
+  def index_wstepne
 
   search_firma = params[:search_firma]
   search_prowadzacy = params[:search_prowadzacy]
@@ -30,7 +50,7 @@ class KursesController < ApplicationController
   search_data = params[:search_data]
 
 
-  kursy = Szkolenie.where(:firma_id => @current_user.firma_id).joins(:osobas)
+  kursy = Szkolenie.where(:firma_id => @current_user.firma_id).where(:rodzaj_id => 8).joins(:osobas)
 
   if params[:search_firma || :search_prowadzacy || :search_data || :search_imie || :search_nazwisko]
     @kursy = kursy.search(search_firma, search_prowadzacy, search_data, search_imie, search_nazwisko).order("created_at DESC").distinct
@@ -47,6 +67,7 @@ def pdf
     @osoba = Osoba.joins(:szkolenie).find(params[:id_osoba])
     @szkol1 = Szkolenie.find(params[:id_szkol])
     @data = @osoba.created_at.strftime("%Y")
+    @firma = Firma.find_by_id(session[:firma_id])
   end
 
   require 'prawn'
@@ -54,7 +75,7 @@ def pdf
   respond_to do |format|
     format.html
     format.pdf do
-    pdf = ::ABPdf.new(@osoba, @szkol1)
+    pdf = ::ABPdf.new(@osoba, @szkol1, @firma)
       send_data pdf.render, filename: "#{@osoba.nr_zaswiadczenia}/#{@szkol1.szkolenie_id}/#{@data}.pdf",
                             type: "application/pdf",
                             disposition: "inline"
@@ -69,6 +90,7 @@ def pierwsza_pdf
     @osoba = Osoba.joins(:szkolenie).find(params[:id_osoba])
     @szkol1 = Szkolenie.find(params[:id_szkol])
     @data = @osoba.created_at.strftime("%Y")
+    @firma = Firma.find_by_id(session[:firma_id])
   end
 
   require 'prawn'
@@ -76,7 +98,7 @@ def pierwsza_pdf
   respond_to do |format|
     format.html
     format.pdf do
-    pdf = ::PierwszaPdf.new(@osoba, @szkol1)
+    pdf = ::PierwszaPdf.new(@osoba, @szkol1, @firma)
       send_data pdf.render, filename: "#{@osoba.nr_zaswiadczenia}/#{@szkol1.szkolenie_id}/#{@data}.pdf",
                             type: "application/pdf",
                             disposition: "inline"
@@ -91,14 +113,15 @@ def pozar_pdf
     @osoba = Osoba.joins(:szkolenie).find(params[:id_osoba])
     @szkol1 = Szkolenie.find(params[:id_szkol])
     @data = @osoba.created_at.strftime("%Y")
+    @firma = Firma.find_by_id(session[:firma_id])
   end
 
   require 'prawn'
-      
+       
   respond_to do |format|
     format.html
     format.pdf do
-    pdf = ::PozarPdf.new(@osoba, @szkol1)
+    pdf = ::PozarPdf.new(@osoba, @szkol1, @firma)
       send_data pdf.render, filename: "#{@osoba.nr_zaswiadczenia}/#{@szkol1.szkolenie_id}/#{@data}.pdf",
                             type: "application/pdf",
                             disposition: "inline"
@@ -135,6 +158,7 @@ def dzieci_pdf
     @osoba = Osoba.joins(:szkolenie).find(params[:id_osoba])
     @szkol1 = Szkolenie.find(params[:id_szkol])
     @data = @osoba.created_at.strftime("%Y")
+    @firma = Firma.find_by_id(session[:firma_id])
   end
 
   require 'prawn'
@@ -142,7 +166,7 @@ def dzieci_pdf
   respond_to do |format|
     format.html
     format.pdf do
-    pdf = ::DzieciPdf.new(@osoba, @szkol1)
+    pdf = ::DzieciPdf.new(@osoba, @szkol1, @firma)
       send_data pdf.render, filename: "#{@osoba.nr_zaswiadczenia}/#{@szkol1.szkolenie_id}/#{@data}.pdf",
                             type: "application/pdf",
                             disposition: "inline"
@@ -232,13 +256,14 @@ def zaswiadczenia_pdf
     
   @szkol = Szkolenie.find(params[:id])
   @osoba = @szkol.osobas
+  @firma = Firma.find_by_id(session[:firma_id])
 
   require 'prawn'
       
   respond_to do |format|
     format.html
     format.pdf do
-    pdf = ::ZaswPdf.new(@osoba, @szkol)
+    pdf = ::ZaswPdf.new(@osoba, @szkol, @firma)
       send_data pdf.render, filename: "zaswiadczenia.pdf",
                             type: "application/pdf",
                             disposition: "inline"
@@ -251,13 +276,14 @@ def zaswiadczenia_pp
     
   @szkol = Szkolenie.find(params[:id])
   @osoba = @szkol.osobas
+  @firma = Firma.find_by_id(session[:firma_id])
 
   require 'prawn'
       
   respond_to do |format|
     format.html
     format.pdf do
-    pdf = ::ZaswPP.new(@osoba, @szkol)
+    pdf = ::ZaswPP.new(@osoba, @szkol, @firma)
       send_data pdf.render, filename: "zaswiadczenia.pdf",
                             type: "application/pdf",
                             disposition: "inline"
@@ -270,13 +296,14 @@ def zaswiadczenia_pozar
     
   @szkol = Szkolenie.find(params[:id])
   @osoba = @szkol.osobas
+  @firma = Firma.find_by_id(session[:firma_id])
 
   require 'prawn'
       
   respond_to do |format|
     format.html
     format.pdf do
-    pdf = ::ZaswPozar.new(@osoba, @szkol)
+    pdf = ::ZaswPozar.new(@osoba, @szkol, @firma)
       send_data pdf.render, filename: "zaswiadczenia.pdf",
                             type: "application/pdf",
                             disposition: "inline"
@@ -289,13 +316,14 @@ def zaswiadczenia_ppd
     
   @szkol = Szkolenie.find(params[:id])
   @osoba = @szkol.osobas
+  @firma = Firma.find_by_id(session[:firma_id])
 
   require 'prawn'
       
   respond_to do |format|
     format.html
     format.pdf do
-    pdf = ::ZaswPPD.new(@osoba, @szkol)
+    pdf = ::ZaswPPD.new(@osoba, @szkol, @firma)
       send_data pdf.render, filename: "zaswiadczenia.pdf",
                             type: "application/pdf",
                             disposition: "inline"
@@ -328,17 +356,19 @@ def dokument
     @szkol = Szkolenie.find(params[:id])
     @osoba = Osoba.joins(:szkolenie).find(params[:id_osoba])
     @data = @osoba.created_at.strftime("%Y")
+    @firma = Firma.find_by_id(session[:firma_id])
 
     respond_to do |format|
       format.docx { headers["Content-Disposition"] = "attachment; filename=\"#{@osoba.nr_zaswiadczenia}/#{@szkol.szkolenie_id}/#{@data}.docx\"" }
     end
 end
-
+ 
 def pierwszapomoc
 
     @szkol = Szkolenie.find(params[:id])
     @osoba = Osoba.joins(:szkolenie).find(params[:id_osoba])
     @data = @osoba.created_at.strftime("%Y")
+    @firma = Firma.find_by_id(session[:firma_id])
 
     respond_to do |format|
       format.docx { headers["Content-Disposition"] = "attachment; filename=\"#{@osoba.nr_zaswiadczenia}/#{@szkol.szkolenie_id}/#{@data}.docx\"" }
@@ -350,12 +380,12 @@ def dziecipomoc
     @szkol = Szkolenie.find(params[:id])
     @osoba = Osoba.joins(:szkolenie).find(params[:id_osoba])
     @data = @osoba.created_at.strftime("%Y")
+    @firma = Firma.find_by_id(session[:firma_id])
 
     respond_to do |format|
       format.docx { headers["Content-Disposition"] = "attachment; filename=\"#{@osoba.nr_zaswiadczenia}/#{@szkol.szkolenie_id}/#{@data}.docx\"" }
     end
 end
-
 
 def edycja
     @szkolenie = Szkolenie.find(params[:id])

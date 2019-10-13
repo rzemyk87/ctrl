@@ -1,8 +1,9 @@
 class ZaswPPD < Prawn::Document
-  def initialize(osoba, szkol)
+  def initialize(osoba, szkol, firma)
   	super()
     @osoba = osoba
     @szkolenie = szkol
+    @firma = firma
       self.font_families.update("Geogrotesque"=>{:normal =>"app/assets/fonts/Geogrotesque-Rg.ttf",
                              :bold =>"app/assets/fonts/Geogrotesque-Sb.ttf"})
     font "Geogrotesque"  
@@ -67,7 +68,7 @@ end
   def tekst
 	text "Ukończył/a szkolenie Pierwsza Pomoc Dzieciom", size: 12, :indent_paragraphs => 60
 	move_down 5
-	text "zorganizowane przez Firmę Usługowo-Handlową Grzegorz Kobuszewski we Wrocławiu
+	text "zorganizowane przez #{@firma.tekst}
 w formie seminarium.", size: 12, :indent_paragraphs => 60
 	text "Celem szkolenia było uzupełnienie wiedzy z zakresu udzielania Pierwszej Pomocy.", size: 12, :indent_paragraphs => 60
    	move_down 40

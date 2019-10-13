@@ -1,21 +1,46 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head> 
   <title>Control Life <%= " | #{@tytul_strony}" if @tytul_strony %></title>
   <%= stylesheet_link_tag('application', :media => 'all' ) %>
   <%= javascript_include_tag('application') %>
-
-  
+   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <% if session[:uzytkownik_id] == nil %>
-  <body class="bck2">
-<% else %>
-<body class="bck1">
-<% end %>
+ <body class="bck2">
+<div class="row">
 
+  <div class="col-sm-1">
+    <div class="rej_button">
+  <%= link_to("REJESTRACJA", {:controller =>'public', :action => 'konto'}, :class => 'btn btn-sm button-rej') %>
+    </div>
+  </div>
+     
+  <div class="col-sm-1">
+    <div class="log_button">
+<%= link_to("LOGOWANIE", {:controller =>'dostep', :action => 'index'}, :class => 'btn btn-sm button-log') %>
+    </div>
+  </div> 
+  
+  <div class="col-sm-2">
+    <div class="info_button">
+<%= link_to("INFO", {:controller =>'public', :action => 'info'}, :class => 'btn btn-sm button-info') %>
+    </div>
+  </div>
+
+</div> 
+
+    <div class="button-fcb">
+<%= link_to(image_tag("facebook.png", :size => "50x50"), "https://pl-pl.facebook.com/controllifepl") %>
+</div>
+
+
+<% end %>
  
+  
  <!-- menu -->
+             <% if session[:uzytkownik_id] != nil %>
 <div class="navbar-wrapper">
   <div class="container">
 <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
@@ -25,29 +50,192 @@
         </div> 
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <% if session[:uzytkownik_id] == nil %>
-            <li><a href="/public">Home</a></li>
-            <% else %>
-            <li><a href="/dostep/index">Home</a></li>
-            <li class="dropdown navbar-inverse"><a>Szkolenia</a>
-              <ul class="dropdown-menu navbar-inverse">
-                <li>
-                  <a href="/szkolenias/index" style="color:white">BHP</a>
-                </li>
-                <li>
-                  <a href="/szkolenias/index_pomoc" style="color:white">Pierwsza Pomoc</a>
-                </li>
-                <li>
-                  <a href="/szkolenias/pozar" style="color:white">Ochrona Przeciwpożarowa</a>
-                </li>
-                <li>
-                  <a href="/szkolenias/wstepne" style="color:white">Wstępne</a>
-                </li>
-              </ul>
-            </li>
-            <li><a href="/kurses/index">Rejestr Szkoleń</a></li>
-            <li><a href="/terminarz/index">Terminarz</a></li>
+            <li>
+            <a href="/dostep/index" style="margin:auto; text-align:center; display:block;"><%= image_tag("6-01.png", :class => "style_image") %>   Home</a>
+          </li>
 
+          <% if current_page?(szkolenias_biurowe_path) %>
+          <li>
+            <a href="#"><span class="fa fa-angle-double-right" style="font-size:18px;"></span></a>
+          </li>
+          <li>
+            <a href="#">   Szkolenia</a>
+          </li>
+          <li>
+            <a href="#"><span class="fa fa-angle-double-right" style="font-size:18px;"></span></a>
+          </li>
+          <li>
+            <a href="#">   BHP</a>
+          </li>
+          <li>
+            <a href="#"><span class="fa fa-angle-double-right" style="font-size:18px;"></span></a>
+          </li>
+          <li>
+            <a href="#">   Administracyjno - Biurowe</a>
+          </li>
+
+          <% elsif current_page?(szkolenias_robotnicze_path) %>
+          <li>
+            <a href="#"><span class="fa fa-angle-double-right" style="font-size:18px;"></span></a>
+          </li>
+          <li>
+            <a href="#">   Szkolenia</a>
+          </li>
+          <li>
+            <a href="#"><span class="fa fa-angle-double-right" style="font-size:18px;"></span></a>
+          </li>
+          <li>
+            <a href="#">   BHP</a>
+          </li>
+          <li>
+            <a href="#"><span class="fa fa-angle-double-right" style="font-size:18px;"></span></a>
+          </li>
+          <li>
+            <a href="#">   Robotnicze</a>
+          </li>
+
+          <% elsif current_page?(szkolenias_inzynieryjne_path) %>
+          <li>
+            <a href="#"><span class="fa fa-angle-double-right" style="font-size:18px;"></span></a>
+          </li>
+          <li>
+            <a href="#">   Szkolenia</a>
+          </li>
+          <li>
+            <a href="#"><span class="fa fa-angle-double-right" style="font-size:18px;"></span></a>
+          </li>
+          <li>
+            <a href="#">   BHP</a>
+          </li>
+          <li>
+            <a href="#"><span class="fa fa-angle-double-right" style="font-size:18px;"></span></a>
+          </li>
+          <li>
+            <a href="#">   Inżynieryjno - Technicze</a>
+          </li>
+
+          <% elsif current_page?(szkolenias_pracodawcow_path) %>
+          <li>
+            <a href="#"><span class="fa fa-angle-double-right" style="font-size:18px;"></span></a>
+          </li>
+          <li>
+            <a href="#">   Szkolenia</a>
+          </li>
+          <li>
+            <a href="#"><span class="fa fa-angle-double-right" style="font-size:18px;"></span></a>
+          </li>
+          <li>
+            <a href="#">   BHP</a>
+          </li>
+          <li>
+            <a href="#"><span class="fa fa-angle-double-right" style="font-size:18px;"></span></a>
+          </li>
+          <li>
+            <a href="#">   Pracodawców</a>
+          </li>
+
+          <% elsif current_page?(szkolenias_pierwsza_path) %>
+          <li>
+            <a href="#"><span class="fa fa-angle-double-right" style="font-size:18px;"></span></a>
+          </li>  
+          <li>
+            <a href="#">   Szkolenia</a>
+          </li>
+          <li>
+            <a href="#"><span class="fa fa-angle-double-right" style="font-size:18px;"></span></a>
+          </li>
+          <li>
+            <a href="#">   Pierwsza Pomoc</a>
+          </li>
+          <li>
+            <a href="#"><span class="fa fa-angle-double-right" style="font-size:18px;"></span></a>
+          </li>
+          <li>
+            <a href="#">   Dorosłym</a>
+          </li>
+
+          <% elsif current_page?(szkolenias_dzieci_path) %>
+          <li>
+            <a href="#"><span class="fa fa-angle-double-right" style="font-size:18px;"></span></a>
+          </li>
+          <li>
+            <a href="#">   Szkolenia</a>
+          </li>
+          <li>
+            <a href="#"><span class="fa fa-angle-double-right" style="font-size:18px;"></span></a>
+          </li>
+          <li>
+            <a href="#">   Pierwsza Pomoc</a>
+          </li>
+          <li>
+            <a href="#"><span class="fa fa-angle-double-right" style="font-size:18px;"></span></a>
+          </li>
+          <li>
+            <a href="#">   Dzieciom</a>
+          </li>
+
+          <% elsif current_page?(szkolenias_pozar_path) %>
+          <li>
+            <a href="#"><span class="fa fa-angle-double-right" style="font-size:18px;"></span></a>
+          </li>
+          <li>
+            <a href="#">   Szkolenia</a>
+          </li>
+          <li>
+            <a href="#"><span class="fa fa-angle-double-right" style="font-size:18px;"></span></a>
+          </li>
+          <li>
+            <a href="#">   Ochrona Przeciwpożarowa</a>
+          </li>  
+          
+          <% elsif current_page?(kurses_index_wstepne_path) %>
+          <li>
+            <a href="#"><span class="fa fa-angle-double-right" style="font-size:18px;"></span></a>
+          </li>
+          <li>
+            <a href="#">   Rejestr szkoleń</a>
+          </li>
+          <li>
+            <a href="#"><span class="fa fa-angle-double-right" style="font-size:18px;"></span></a>
+          </li>
+          <li>
+            <a href="#">   Wstępne</a>
+          </li>
+
+          <% elsif current_page?(kurses_index_path) %>
+          <li>
+            <a href="#"><span class="fa fa-angle-double-right" style="font-size:18px;"></span></a>
+          </li>
+          <li>
+            <a href="#">   Rejestr szkoleń</a>
+          </li>
+
+          <% elsif current_page?(kurses_nowy_path) %>
+          <li>
+            <a href="#"><span class="fa fa-angle-double-right" style="font-size:18px;"></span></a>
+          </li>
+          <li>
+            <a href="#">   Rejestr szkoleń</a>
+          </li>
+ 
+          <% elsif current_page?(kurses_index_wstepne_path) %>
+          <li>
+            <a href="#"><span class="fa fa-angle-double-right" style="font-size:18px;"></span></a>
+          </li>
+          <li>
+            <a href="#">   Rejestr szkoleń</a>
+          </li>
+
+          <% elsif current_page?(terminarz_index_path) %>
+          <li>
+            <a href="#"><span class="fa fa-angle-double-right" style="font-size:18px;"></span></a>
+          </li>
+          <li>
+            <a href="#">   Terminarz</a>
+          </li>
+           
+
+          <% end %>
           </ul>
     <ul class="nav navbar-nav navbar-right">
     <span class="navbar-text white-text">
@@ -61,10 +249,116 @@
         <a href="#"><span class="glyphicon glyphicon-user"></span> ⮟</a>
           <ul class="dropdown-menu navbar-inverse">
             <li><a href="/uzytkowniks/index" style="color:white">Użytkownicy</a></li>
+            <li><a href="/firma/index" style="color:white">Firma</a></li>
             <li><a href="/dostep/logout" style="color:white">Wyloguj</a></li>
           </ul>
     </li>
-    
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="nav-side-menu">
+        <div class="navbar-header">
+           <a class="navbar-brand logo" href="https://pl-pl.facebook.com/controllifepl"></a>
+        </div> 
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+  
+        <div class="menu-list">
+            <ul id="menu-content" class="menu-content collapse out">
+              <li data-toggle="collapse" data-target="#products" class="collapsed">
+                <a href="#">
+                  <%= image_tag("2-01.png", height: 90) %>
+                </a>
+              </li>
+              
+                <ul class="sub-menu collapse" id="products">
+                  <li data-toggle="collapse" data-target="#BHP" id="B" class="collapsed" onclick="myFunction1()">
+                    <a href="#">BHP</a></li>
+
+<script>
+var clicked1 = 0;
+function myFunction1() {
+  clicked1++;
+  if (clicked1%2) 
+  {
+  document.getElementById("B").setAttribute("class", "collapsed active");
+  }
+  else
+  {
+  document.getElementById("B").setAttribute("class", "collapsed");   
+  }
+}
+</script>
+
+                      <ul class="sub-menu1 collapse" id="BHP">
+
+                        <li><a href="/szkolenias/biurowe">Administacyjno - Biurowe</a></li>
+                        <li><a href="/szkolenias/robotnicze">Robotnicze</a></li>
+                        <li><a href="/szkolenias/inzynieryjne">Inżynieryjno - Techniczne</a></li>
+                        <li><a href="/szkolenias/pracodawcow">Pracodawców</a></li>
+                      </ul>
+                  
+                  <li data-toggle="collapse" data-target="#Pomoc" class="collapsed" id="P" onclick="myFunction2()">
+                    <a href="#">Pierwsza Pomoc</a></li>
+
+<script>
+var clicked2 = 0;
+function myFunction2() {
+  clicked2++;
+  if (clicked2%2) 
+  {
+  document.getElementById("P").setAttribute("class", "collapsed active");
+  }
+  else
+  {
+  document.getElementById("P").setAttribute("class", "collapsed");   
+  }
+}
+</script>
+
+                      <ul class="sub-menu1 collapse" id="Pomoc">
+                        <li><a href="/szkolenias/pierwsza">Pierwsza Pomoc Dorosłym</a></li>
+                        <li><a href="/szkolenias/dzieci">Pierwsza Pomoc Dzieciom</a></li>
+                      </ul>
+
+                    <li><a href="/szkolenias/pozar">Ochrona Przeciwpożarowa</a></li>
+                    <li><a href="/szkolenias/wstepne">Wstępne</a></li>
+                </ul>
+ 
+             <li data-toggle="collapse" data-target="#rejestr" class="collapsed">
+                <a href="#">
+                  <%= image_tag("3-01.png", height: 90) %>
+                </a>
+              </li>
+              
+                <ul class="sub-menu collapse" id="rejestr">
+                  <li><a href="/kurses/index">Szkolenia</a></li>            
+                  <li><a href="/kurses/index_wstepne">Szkolenia wstępne</a></li>
+                </ul>
+
+            <li data-toggle="collapse" data-target="#Terminarz" class="collapsed">
+                <a href="#">
+                  <%= image_tag("4-01.png", height: 90) %>
+                </a>
+            </li>
+
+            <ul class="sub-menu collapse" id="Terminarz">
+
+              <li><a href="/terminarz/index">Przypomnienie</a></li>
+              <li><a href="/terminarz/terminarz">Terminarz</a></li>
+
+            </ul>
+
+
+
+
+
+
+
+            </ul>
+     </div>
+</div>
+
+      
              <% end %>
           </ul>
         </div>

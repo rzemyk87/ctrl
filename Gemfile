@@ -7,7 +7,7 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.4'
+gem 'rails', '~> 5.2'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
@@ -28,7 +28,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
-# Use ActiveModel has_secure_password
+# Use ActiveModel has_secure_password(https://mmenujs.com/tutorials/off-canvas/
 gem 'bcrypt', '~> 3.1.7'
 gem 'paperclip', '~> 6.0.0'
 gem 'jquery-rails'
@@ -44,9 +44,13 @@ gem "rename"
 gem 'uglifier'
 gem 'bootstrap3-rails'
 gem 'popper_js', '~> 1.14.5'
+gem 'devise', '~> 4.5'
+gem 'gravatar_image_tag', github: 'mdeering/gravatar_image_tag'
+gem 'mini_magick'
+gem 'activestorage'
+gem 'pickadate-rails'
 
 #gem 'jquery-turbolinks'
-
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

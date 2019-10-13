@@ -1,0 +1,87 @@
+<% @tytul_strony = "Terminarz" %>
+<body class="bck1">
+ <div class="content21">
+<div class="hero-unit">
+  <br>  
+  <div class="fadeIn first">
+        <%= image_tag("text_terminarz_big.png", :class => "style_text") %>
+  </div>
+<div class="container-fluid">
+  
+<!-- Wyszukiwanie -->
+<div class="input-group">
+
+<div class="content4">
+
+  <div class="fadeIn fourth">
+<%= form_tag(terminarz_terminarz_path, :method => "get", id: "search-form") do %>
+<div class="col-sm-2">
+<%= text_field_tag :search_firma, params[:search_firma], placeholder: "Firma", :size => 15 %></div>
+<div class="col-sm-2"></div>
+<div class="col-sm-4">
+    <div class='input-group date'>
+        <%= text_field_tag :search_data_waznosci, params[:search_data_waznosci], class: 'form-control datetimepicker', :id => 'datetimepicker1', placeholder: "Data ważności", :size => 20 %>
+    <span class="input-group-addon">
+        <span class="glyphicon glyphicon-calendar"></span>
+    </span>
+    </div>
+</div>
+ 
+              
+            <script type="text/javascript">
+                $(function () {
+                 $('#datetimepicker1').datetimepicker({
+                    format: 'YYYY-MM-DD'});
+                });
+          </script>
+
+<div class="col-sm-1">
+<%= submit_tag "Szukaj" %>
+</div>
+<% end %>
+ 
+</div>
+</div>
+</div> 
+<br><br>
+<div class="content5">
+<div class="fadeIn second">
+<table class="table table-striped">
+   
+  <tr class="info">
+    <th class="text-center"><%= image_tag("text_nr_szkolenia_small.png") %></th>
+    <th class="text-center"><%= image_tag("text_data_szkolenia_small.png") %></th>
+    <th class="text-center"><%= image_tag("text_data_waznosci_small.png") %></th>
+    <th class="text-center"><%= image_tag("text_firma_small.png") %></th>
+    <th class="text-center"><%= image_tag("text_rodzaj_small.png") %></th>
+    <th class="text-center"><%= image_tag("text_akcja_small.png") %></th>
+  </tr>  
+<% @kursy.all.each do |kursy| %>
+  <tr> 
+    <% if kursy.rodzaj_id == 8 %>
+    <td class="text-center"><%= "#{kursy.szkolenie_id}/W" %></td>
+    <% else %>
+    <td class="text-center"><%= kursy.szkolenie_id %></td>
+    <% end %>
+    <td class="text-center"><%= kursy.data_od.strftime("%d.%m.%Y") %></td>
+    <% if !kursy.data_waznosci.blank? %>
+    <td class="text-center"><%= kursy.data_waznosci.strftime("%d.%m.%Y") %></td>
+    <% else %>
+    <td class="text-center"></td>
+    <% end %>
+    <td style="width: 250px; overflow: hidden" class="text-center"><%= kursy.firma %></td>
+    <td class="text-center"><%= Rodzaj.find(kursy.rodzaj_id).rodzaj %></td>
+    <td vertical-align="middle", width="17%">
+      <%= link_to("Pokaż",{:controller => 'kurses', :action => 'nowy', :id => kursy.id},:class => 'btn btn-xs btn-success') %>
+      <%= link_to("Edytuj",{:action => 'edycja', :id => kursy.id},:class => 'btn btn-xs btn-primary') %>
+      <%= link_to("Usuń", {:action => 'usun', :id => kursy.id},:class => 'btn btn-xs btn-danger') %>
+    </td>
+  </tr> 
+<% end %>
+
+</table>
+</div>
+</div>
+</div>
+</div>
+</body> 

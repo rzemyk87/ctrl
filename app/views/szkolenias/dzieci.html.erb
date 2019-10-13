@@ -1,7 +1,6 @@
 <% @tytul_strony = "Pierwsza Dzieciom" %>
 
 <%= form_for(@szkolenie, :url=> {:action =>'utworz'}) do |pole| %>
-<% @tytul ="Administracyjno - Biurowe" %>
 <%= pole.hidden_field(:rodzaj_id, :value => 6) %>
 <%= pole.hidden_field(:firma_id, :value => @current_user.firma_id) %>
 <% @rodzaj = 6 %>

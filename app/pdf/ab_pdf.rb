@@ -1,8 +1,9 @@
 class ABPdf < Prawn::Document
-  def initialize(osoba, szkol)
+  def initialize(osoba, szkol, firma)
   	super()
     @osoba = osoba
     @szkolenie = szkol
+    @firma = firma
       self.font_families.update("Geogrotesque"=>{:normal =>"app/assets/fonts/Geogrotesque-Rg.ttf",
       											 :bold =>"app/assets/fonts/Geogrotesque-Sb.ttf"})
     font "Geogrotesque" 
@@ -22,7 +23,7 @@ class ABPdf < Prawn::Document
     tabela
     stopka
   end
-
+ 
 
   def logo
 	image "app/assets/images/control_bhp.png", :scale => 0.06, :position => 380
@@ -82,13 +83,13 @@ class ABPdf < Prawn::Document
 bounding_box([50, 400], :width => 450, :height => 300) do
 
 	if @szkolenie.forma == "Seminarium"
-		text "zorganizowane w formie seminarium przez Firma Usługowo Handlowa Grzegorz Kobuszewski w okresie od #{@data_od}r. do #{@data_do}r.", :align => :justify, size: 12
+		text "zorganizowane w formie seminarium przez #{@firma.tekst} w okresie od #{@data_od}r. do #{@data_do}r.", :align => :justify, size: 12
 	elsif @szkolenie.forma == "Samokształcenie Kier."
-		text "zorganizowane w formie samokształcenie kierowane przez Firma Usługowo Handlowa Grzegorz Kobuszewski w okresie od #{@data_od}r. do #{@data_do}r.", :align => :justify, size: 12
+		text "zorganizowane w formie samokształcenie kierowane przez #{@firma.tekst} w okresie od #{@data_od}r. do #{@data_do}r.", :align => :justify, size: 12
 	elsif @szkolenie.forma == "Seminarium + SK"
-		text "zorganizowane w formie seminarium oraz samokształcenie kierowane przez Firma Usługowo Handlowa Grzegorz Kobuszewski w okresie od #{@data_od}r. do #{@data_do}r.", :align => :justify, size: 12
+		text "zorganizowane w formie seminarium oraz samokształcenie kierowane przez #{@firma.tekst} w okresie od #{@data_od}r. do #{@data_do}r.", :align => :justify, size: 12
 	else
-		text "zorganizowane w formie instruktażu przez Firma Usługowo Handlowa Grzegorz Kobuszewski w okresie od #{@data_od}r. do #{@data_do}r.", :align => :justify, size: 12
+		text "zorganizowane w formie instruktażu przez #{@firma.tekst} w okresie od #{@data_od}r. do #{@data_do}r.", :align => :justify, size: 12
 	end
 
 	move_down 15

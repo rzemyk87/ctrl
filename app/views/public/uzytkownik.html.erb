@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!------ Include the above in your HEAD tag ---------->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <% @tytul_strony = "Załóż konto" %>
 </head>
   <body class="bck1">
@@ -36,8 +36,20 @@
 				</div>
 				<div class="col-sm-1"></div> 
 				<div class="col-sm-4">
-      		<%= pole.text_field(:uzytkownik, :class => 'form-control') %>
+      		<%= pole.text_field(:uzytkownik, :class => 'form-control', :required => 'required') %>
       			</div>
+      			<div class="col-sm-1"> 
+           <a href="#" id='login'><span class="fa fa-info-circle" style="font-size:18px; color: #003da5" ></span></a>
+          		</div>
+ 
+  <script type="text/javascript">
+$('#login').on('click', function(){
+$('#login').notify(
+  "Login głównego użytkownika \n o uprawnieniach administratorskich", 
+  { position:"bottom", className: "info"}
+  );    
+  });
+  </script>
 			  </div>
 			  <br/>
 			  <div class="row">
@@ -46,8 +58,20 @@
 				</div>
 				<div class="col-sm-1"></div> 
 				<div class="col-sm-4">
-      		<%= pole.text_field(:imie, :class => 'form-control') %>
+      		<%= pole.text_field(:imie, :class => 'form-control', :required => 'required') %>
       			</div>
+      			<div class="col-sm-1"> 
+           <a href="#" id='imie'><span class="fa fa-info-circle" style="font-size:18px; color: #003da5" ></span></a>
+          		</div>
+ 
+  <script type="text/javascript">
+$('#imie').on('click', function(){
+$('#imie').notify(
+  "Imię właściciela konta", 
+  { position:"bottom", className: "info"}
+  );    
+  });
+  </script>
 			  </div>
 			  <br/>
 			  <div class="row">
@@ -56,8 +80,20 @@
 				</div>
 				<div class="col-sm-1"></div> 
 				<div class="col-sm-4">
-      		<%= pole.text_field(:nazwisko, :class => 'form-control') %>
+      		<%= pole.text_field(:nazwisko, :class => 'form-control', :required => 'required') %>
       			</div>
+         		<div class="col-sm-1"> 
+           <a href="#" id='nazwisko'><span class="fa fa-info-circle" style="font-size:18px; color: #003da5" ></span></a>
+          		</div>
+ 
+  <script type="text/javascript">
+$('#nazwisko').on('click', function(){
+$('#nazwisko').notify(
+  "Nazwisko właściciela konta", 
+  { position:"bottom", className: "info"}
+  );    
+  });
+  </script>
 			  </div>
 			  <br/>
               <div class="row">
@@ -66,8 +102,20 @@
 				</div>
 				<div class="col-sm-1"></div> 
 				<div class="col-sm-4">
-      		<%= pole.text_field(:email, :class => 'form-control') %>
+      		<%= pole.text_field(:email, :class => 'form-control', :required => 'required') %>
       			</div>
+      			<div class="col-sm-1"> 
+           <a href="#" id='email'><span class="fa fa-info-circle" style="font-size:18px; color: #003da5" ></span></a>
+          		</div>
+ 
+  <script type="text/javascript">
+$('#email').on('click', function(){
+$('#email').notify(
+  "Poprawny email właściciela konta", 
+  { position:"bottom", className: "info"}
+  );    
+  });
+  </script>
 			  </div> 
 			  <br/>
               <div class="row">
@@ -78,6 +126,18 @@
 				<div class="col-sm-4">
       	<%= pole.password_field(:password, :class => 'form-control') %>
       			</div>
+      			<div class="col-sm-1"> 
+           <a href="#" id='haslo'><span class="fa fa-info-circle" style="font-size:18px; color: #003da5" ></span></a>
+          		</div>
+ 
+  <script type="text/javascript">
+$('#haslo').on('click', function(){
+$('#haslo').notify(
+  "Hasło musi zawierać liczbę, DUŻĄ literę \noraz znak specjalny", 
+  { position:"bottom", className: "info"}
+  );    
+  });
+  </script>
 			  </div>  
 			  <br/>
               <div class="row">
@@ -100,7 +160,6 @@
 
         </div>
 
-      
         </div>
     </div>
 </div>

@@ -13,8 +13,10 @@
 //= require bootstrap
 //= require_tree .
 //= require moment
+//= require moment/pl
 //= require bootstrap-datetimepicker
 //= require popper
-
+//= require pickadate/picker
+//= require pickadate/picker.date
 
 

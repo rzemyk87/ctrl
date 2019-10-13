@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!------ Include the above in your HEAD tag ---------->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <% @tytul_strony = "Załóż konto" %>
 </head>
   <body class="bck1">
@@ -13,55 +13,193 @@
         <form method="post">
         <div class="row">
             <div class="col-md-4">
-                <div class="profile-img">
-                   	<%= image_tag("wykrzyknik.png") %>
-<!--
-                            <div class="file btn btn-lg btn-primary">
-                               Zmień Logo
-                                <input type="file" name="file"/>
-                            </div>
- -->
-                </div>
+              <div class="profile-img">
+               	<%= image_tag("wykrzyknik.png") %>
+              </div>
             </div>
             <div class="col-md-6">
             <div class="profile-head">
+              <%= image_tag("text_konto_firma.png") %>
+              <br/><br/>
+ 
+      <div class="row">
+				  <div class="col-sm-4"> 
+					   <%= image_tag("text_nazwa_firmy.png") %>	
+				  </div>
+				  <div class="col-sm-1"></div> 
+				  <div class="col-sm-6">
+      			<%= pole.text_field(:Nazwa, :class => 'form-control', :required => 'required') %>
+      		</div> 
+          <div class="col-sm-1"> 
+           <a href="#" id='nazwa'><span class="fa fa-info-circle" style="font-size:18px; color: #003da5" ></span></a>
+          </div>
 
-                	<%= image_tag("text_konto.png") %>
-                <br/><br/>
-              <div class="row">
-				<div class="col-sm-4"> 
-					<%= image_tag("text_nazwa_firmy.png") %>	
-				</div>
-				<div class="col-sm-1"></div> 
-				<div class="col-sm-4">
-      			<%= pole.text_field(:Nazwa, :class => 'form-control') %>
-      			</div>
-			  </div>
+  <script type="text/javascript">
+$('#nazwa').on('click', function(){
+$('#nazwa').notify(
+  "Wpisz pełną nazwę firmy \nzgodną z Twoimi danymi CEIDG", 
+  { position:"bottom", className: "info" }
+  );    
+  });
+  </script>
+
+			</div>
 			  <br/>
-              <div class="row">
+
+      <div class="row">
 				<div class="col-sm-4"> 
 					<%= image_tag("text_nazwa_login.png") %>	
 				</div>
 				<div class="col-sm-1"></div> 
-				<div class="col-sm-4">
-      			<%= pole.text_field(:log_in, :class => 'form-control') %>
-      			</div>
+				<div class="col-sm-6">
+      			<%= pole.text_field(:log_in, :class => 'form-control', :required => 'required') %>
 			  </div>
+        <div class="col-sm-1"> 
+           <a href="#" id='login'><span class="fa fa-info-circle" style="font-size:18px; color: #003da5" ></span></a>
+          </div>
+
+  <script type="text/javascript">
+$('#login').on('click', function(){
+$('#login').notify(
+  "Login identyfikujący \nTwoją firmę. \nBędzie taki sam dla \nwszystkich użytkowników firmy", 
+  { position:"bottom", className: "info" }
+  );    
+  });
+  </script>
+			</div>
 			  <br/>
-              <div class="row">
+
+      <div class="row">
 				<div class="col-sm-4"> 
 					<%= image_tag("text_NIP.png") %>	
 				</div>
 				<div class="col-sm-1"></div> 
-				<div class="col-sm-4">
-      			<%= pole.text_field(:NIP, :class => 'form-control') %>
+				<div class="col-sm-6">
+      			<%= pole.text_field(:NIP, :class => 'form-control', :required => 'required') %>
       			</div>
-			  </div>
+        <div class="col-sm-1"> 
+           <a href="#" id='nip'><span class="fa fa-info-circle" style="font-size:18px; color: #003da5" ></span></a>
+          </div>
 
+  <script type="text/javascript">
+$('#nip').on('click', function(){
+$('#nip').notify(
+  "Wpisz pełny nip firmy \nzgodną z Twoim KRS'em", 
+  { position:"bottom", className: "info" }
+  );    
+  });
+  </script>
+			</div>
+        <br/>
+
+      <div class="row">
+        <div class="col-sm-4"> 
+          <%= image_tag("text_adres_firmy.png") %>  
+        </div>
+        <div class="col-sm-1"></div> 
+        <div class="col-sm-6">
+            <%= pole.text_field(:adres, :class => 'form-control', :required => 'required') %>
+            </div>
+          <div class="col-sm-1"> 
+           <a href="#" id='adres'><span class="fa fa-info-circle" style="font-size:18px; color: #003da5" ></span></a>
+          </div>
+
+  <script type="text/javascript">
+$('#adres').on('click', function(){
+$('#adres').notify(
+  "Wpisz pełen nazwę firmy", 
+  { position:"bottom", className: "info" }
+  );    
+  });
+  </script>
+      </div>
+        <br/>
+
+      <div class="row">
+        <div class="col-sm-4"> 
+          <%= image_tag("text_kod_firmy.png") %>  
+        </div>
+        <div class="col-sm-1"></div> 
+        <div class="col-sm-6">
+            <%= pole.text_field(:poczta, :class => 'form-control', :required => 'required') %>
+            </div>
+          <div class="col-sm-1"> 
+           <a href="#" id='kod'><span class="fa fa-info-circle" style="font-size:18px; color: #003da5" ></span></a>
+          </div>
+
+  <script type="text/javascript">
+$('#kod').on('click', function(){
+$('#kod').notify(
+  "Wpisz kod pocztowy firmy", 
+  { position:"bottom", className: "info" }
+  );    
+  });
+  </script>
+      </div>
 			 <br/>
-			<div class="col-sm-8"> 
- 				<%= submit_tag("Zapisz",:class => 'btn btn-primary') %>
- 			</div>
+ 
+      <div class="row">
+        <div class="col-sm-4"> 
+          <%= image_tag("text_miasto_firmy.png") %>  
+        </div>
+        <div class="col-sm-1"></div> 
+        <div class="col-sm-6">
+            <%= pole.text_field(:miasto, :class => 'form-control', :required => 'required') %>
+            </div>
+          <div class="col-sm-1"> 
+           <a href="#" id='miasto'><span class="fa fa-info-circle" style="font-size:18px; color: #003da5" ></span></a>
+          </div>
+
+  <script type="text/javascript">
+$('#miasto').on('click', function(){
+$('#miasto').notify(
+  "Wpisz miasto siedziby firmy", 
+  { position:"bottom", className: "info" }
+  );    
+  });
+  </script>
+      </div>
+       <br/>
+
+      <div class="col-sm-5"></div>
+      <div class="col-sm-6">
+          <%= image_tag("text_formatka.png") %>
+      </div>
+        <br/> 
+
+      <div class="row">
+        <div class="col-sm-4"> 
+          <%= image_tag("text_formatka_firmy.png") %>  
+        </div>
+        <div class="col-sm-1"></div> 
+        <div class="col-sm-6">
+            <%= pole.text_field(:tekst, :class => 'form-control', :required => 'required') %>
+            </div>
+        <div class="col-sm-1"> 
+           <a href="#" id='formatka'><span class="fa fa-info-circle" style="font-size:18px; color: #003da5" ></span></a>
+          </div>
+ 
+  <script type="text/javascript">
+$('#formatka').on('click', function(){
+$('#formatka').notify(
+  "Formatka pomaga przy \nprawidłowym wystawianiu \nzaświadczeń. \n Uzupełnij ją według wzoru: \n (Nazwa Firmy) z siedzibą \n w mieście (Miasto)", 
+  { position:"bottom", className: "info", delay: 6000 }
+  );    
+  });
+  </script>
+      </div>
+      
+      <div class="col-sm-5"></div>
+      <div class="col-sm-6">
+        <%= image_tag("text_formatka2.png") %>
+      </div>
+
+			<div class="col-sm-1"></div>
+
+ 				<%= submit_tag("Dalej",:class => 'btn btn-primary') %>
+
+          <%= link_to("Cofnij",{:action => 'index'},:class => 'btn btn-ml btn-info') %>
+
             </div>
             </div>
 

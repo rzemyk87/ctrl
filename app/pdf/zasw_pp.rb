@@ -1,8 +1,9 @@
 class ZaswPP < Prawn::Document
-  def initialize(osoba, szkol)
+  def initialize(osoba, szkol, firma)
   	super()
     @osoba = osoba
     @szkolenie = szkol
+    @firma = firma
       self.font_families.update("Geogrotesque"=>{:normal =>"app/assets/fonts/Geogrotesque-Rg.ttf",
                              :bold =>"app/assets/fonts/Geogrotesque-Sb.ttf"})
     font "Geogrotesque"  
@@ -11,7 +12,7 @@ class ZaswPP < Prawn::Document
     @data_od = @szkolenie.data_od.strftime("%d.%m.%Y")
     @data_do = @szkolenie.data_do.strftime("%d.%m.%Y")
     $licznik = @osoba.count - 1
-
+ 
 	while $licznik >= 0 do
 
     logo
@@ -68,7 +69,7 @@ end
   def tekst
 	text "Ukończył/a szkolenie Pierwsza Pomoc Przedmedyczna", size: 12, :indent_paragraphs => 60
 	move_down 5
-	text "zorganizowane przez Firmę Usługowo-Handlową Grzegorz Kobuszewski we Wrocławiu
+	text "zorganizowane przez #{@firma.tekst}
 w formie seminarium.", size: 12, :indent_paragraphs => 60
 	text "Celem szkolenia było uzupełnienie wiedzy z zakresu udzielania Pierwszej Pomocy.", size: 12, :indent_paragraphs => 60
    	move_down 40

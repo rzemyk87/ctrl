@@ -1,21 +1,14 @@
 <% @tytul_strony = "Terminarz" %>
-<body class="bck1">
-    <head>
-        <meta charset="utf-8" />
-        <title></title>
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-        <!-- Optional theme -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">  
-    </head>
+<div class="content23">
 <div class="hero-unit">
-  <br><br><br>
-        <%= image_tag("text_terminarz_big.png") %>
-
-<div class="container">
-
+  <br> 
+  <div class="col-sm-2">
+        <%= image_tag("text_przypomnienie_big.png") %>
+</div> 
+<div class="container-fluid">
+ 
 <!-- Wyszukiwanie -->
-
+ 
 <br><br>
 
 <% if @osoby.blank? %>
@@ -25,7 +18,7 @@
   <script src="bootbox.js"></script>
         <script>
           $(function(){
-
+ 
             bootbox.alert({
             message: "Nie masz zbliżających się terminów osób wymagających szkolenia",
             className: 'fadeInDown animated'
@@ -33,9 +26,10 @@
 
           });
         </script>
-
+ 
 <% else %>
-
+<div class="content6">
+<div class="fadeIn second"> 
 <table class="table table-striped">
   <tr class="info">
     <th class="text-center"><%= image_tag("text_imie_small.png") %></th>
@@ -52,17 +46,19 @@
   		<td class="text-center"><%= osoby.osoba_nazwisko %></td>
    	 	<td class="text-center"><%= osoby.szkolenie.data_od.strftime("%d.%m.%Y") %></td>
   		<td class="text-center"><%= osoby.szkolenie.data_waznosci.strftime("%d.%m.%Y") %></td>
-   		<td style="width: 350px; overflow: hidden" class="text-center"><%= osoby.szkolenie.firma %></td>
+   		<td style="width: 250px; overflow: hidden" class="text-center"><%= osoby.szkolenie.firma %></td>
     	<td class="text-center"><%= Rodzaj.find(osoby.rodzaj_id).rodzaj %></td>
-      <td class="text-center"><%= check_box_tag :confirmed %></td>
+      <td class="text-center">
+        <%= link_to("OK",{:action => 'confirm', :id => osoby.id},:class => 'btn btn-xs btn-success') %></td>
   	</tr> 
 	<% end %>
+</div> 
+</div>
 </table>
 
 <% end %>
 </div>
 </div>
-
+</div>
         
 
-</body>

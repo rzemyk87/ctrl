@@ -39,21 +39,21 @@ docx.p
     docx.p "szkolenie okresowe", align: :center, size: 30, bold: true
     docx.p "dla pracodawców i osób kierujących pracownikami", align: :center, size: 30, bold: true
   end 
-
+ 
 # zorganizowane
 docx.p
 
   if @szkol.forma == "Seminarium"
-    docx.p "zorganizowane w formie seminarium przez Firma Usługowo Handlowa Grzegorz Kobuszewski", align: :both, size: 22
+    docx.p 'zorganizowane w formie seminarium przez ' + @firma.tekst , align: :both, size: 22
     docx.p "w okresie od " + @szkol.data_od.strftime("%d.%m.%Y") + "r. do " + @szkol.data_do.strftime("%d.%m.%Y") + "r.", align: :both, size: 22
   elsif @szkol.forma == "Samokształcenie Kier."
-    docx.p "zorganizowane w formie samokształcenie kierowane przez Firma Usługowo Handlowa Grzegorz Kobuszewski", align: :both, size: 22
+    docx.p 'zorganizowane w formie samokształcenie kierowane przez ' + @firma.tekst , align: :both, size: 22
     docx.p "w okresie od " + @szkol.data_od.strftime("%d.%m.%Y") + "r. do " + @szkol.data_do.strftime("%d.%m.%Y") + "r.", align: :both, size: 22
   elsif @szkol.forma == "Seminarium + SK"
-    docx.p "zorganizowane w formie seminarium oraz samokształcenie kierowane przez Firma Usługowo Handlowa Grzegorz Kobuszewski", align: :both, size: 22
+    docx.p 'zorganizowane w formie seminarium oraz samokształcenie kierowane przez ' + @firma.tekst , align: :both, size: 22
     docx.p "w okresie od " + @szkol.data_od.strftime("%d.%m.%Y") + "r. do " + @szkol.data_do.strftime("%d.%m.%Y") + "r.", align: :both, size: 22
   else
-    docx.p "zorganizowane w formie instruktażu przez Firma Usługowo Handlowa Grzegorz Kobuszewski", align: :both, size: 22
+    docx.p 'zorganizowane w formie instruktażu przez ' + @firma.tekst , align: :both, size: 22
     docx.p "w okresie od " + @szkol.data_od.strftime("%d.%m.%Y") + "r. do " + @szkol.data_do.strftime("%d.%m.%Y") + "r.", align: :both, size: 22
   end
 

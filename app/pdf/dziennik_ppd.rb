@@ -43,10 +43,10 @@ class DziennikPPD < Prawn::Document
 	bounding_box([30, 700], :width => 200, :height => 75) do
 
 		text "Firma:", size: 16, :align => :left, style: :bold
-		text "#{@szkolenie.firma}", size: 14, :align => :left, style: :normal
+		text "#{@szkolenie.firma}", size: 14, :align => :left, style: :normal, :overflow => :shrink_to_fit
 	end
   end
-
+ 
   def nr_kursu
 	bounding_box([450, 700], :width => 75, :height => 75) do
 
@@ -123,17 +123,16 @@ def tabela2
 
 	ilosc = @osoba.count
 	@wysokosc = 40 + 25*ilosc
-	bounding_box([100, 680], :width => 500, :height => @wysokosc) do
 
-		table uczestnicy do
+
+		table uczestnicy, :position => :center do
 		row(0).font_style = :bold
 		row(1..ilosc).columns(0..2).size = 10
 		row(0).columns(1).width = 200
 		row(0).columns(2).width = 114
 		cells.align = :center
-		self.header = true
 		end
-	end
+	
 
 end
 
@@ -147,30 +146,25 @@ def uczestnicy
 end
 
 def podsumowanie
-	move_down 10
+	move_down 25
 	text "SPRAWOZDANIE Z KURSU:", :align => :left, size: 16, :indent_paragraphs => 50, style: :bold
-	ilosc = @osoba.count
-	wysokosc = 30 + 25*ilosc
-	@wys = 680 - wysokosc - 40
 
-	bounding_box([25,@wys], :width => 493, :height => 70) do
-	stroke_bounds
 	if @szkolenie.forma == "4 godzinne"
-			table podsumowanie_tabela_4 do
+			table podsumowanie_tabela_4, :position => :center do
 			row(0..2).font_style = :bold
 			row(0..2).size = 11
 			cells.align = :center
 			self.header = true
 			end
 		else
-			table podsumowanie_tabela do
+			table podsumowanie_tabela, :position => :center do
 			row(0..2).font_style = :bold
 			row(0..2).size = 11
 			cells.align = :center
 			self.header = true
 			end
 		end
-	end
+	
 end
 
 def podsumowanie_tabela_4

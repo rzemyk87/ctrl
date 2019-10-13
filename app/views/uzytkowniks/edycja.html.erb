@@ -1,8 +1,21 @@
 <div class="hero-unit">
-<h1>Edycja Uzytkownika: <%= @uzytkownik.imie + " " + @uzytkownik.nazwisko %></h1>
-
+<div class="content21">  
+<br>
+<%= image_tag("text_edycja_uzytkownika.png", :style => "margin-left: 25px") %>
+<% if @current_user.uprawnienia == 1 %>
 <%= form_for(:uzytkownik, :url => {:action => 'aktualizuj', :id => @uzytkownik.id}) do |pole| %>
+ 
+<%= render(:partial => "admin_form", :locals => {:pole => pole}) %>
 
+<div style="text-align: center;">
+	<%= submit_tag("aktualizuj",:class => 'btn btn-primary') %>
+	<%= link_to("Powrót", {:action => 'index'},:class => 'btn btn-warning')%>
+</div>
+
+	<% end %>
+<% else %>
+<%= form_for(:uzytkownik, :url => {:action => 'aktualizuj', :id => @uzytkownik.id}) do |pole| %>
+ 
 <%= render(:partial => "form", :locals => {:pole => pole}) %>
 
 <div style="text-align: center;">
@@ -11,4 +24,6 @@
 </div>
 
 	<% end %>
+<% end %>
+</div>
 </div>

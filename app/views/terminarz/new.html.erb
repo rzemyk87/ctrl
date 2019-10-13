@@ -1,0 +1,186 @@
+<% @tytul_strony = "Kursy" %>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<style type="text/css">
+td, th {
+    vertical-align: middle !important;
+    }
+.left, .right {
+        float:left;
+        height:100vh;
+    }
+    
+.left {
+        background: #337ab7;
+        display: inline-block;
+        white-space: nowrap;
+        width: 50px;
+        transition: width 1s ;
+  		margin-left:230px;
+  		margin-top:50px;
+    }
+
+.right {
+
+        background: #fff;
+        height: auto;
+  		top:0;
+  		left:0;
+  		right:0;
+  		margin-top:50px;
+  		margin-left:230px;
+        transition: width 1s; 
+        z-index: -1;
+        position: absolute;
+    }    
+
+.left:hover {
+        width: 250px;
+    }    
+    
+.item:hover {
+        background-color:#ccc;
+        }
+        
+.left .glyphicon {
+        margin:15px;
+        width:20px;
+        color:#fff;
+    }
+    
+.right .glyphicon {
+        color:#a9a9a9;
+    }
+span.glyphicon.glyphicon-refresh{
+    font-size:17px;
+    vertical-align: middle !important;
+    }
+    
+.item {
+        height:50px;
+        overflow:hidden;
+        color:#fff;
+    }
+.title {
+        background-color:#eee;
+        border-style:solid;
+        border-color:#ccc;
+        border-width:1px;
+        box-sizing: border-box;
+    }
+.search:hover {
+        border-color:#4aa9fb;
+        border-width:1px;
+    }
+.search {
+    padding:3px 8px 3px !important;
+    }
+input[type=search] {
+    padding: 10px 0px 10px;
+	border: 0px solid #fff;
+	background: #eee;
+	-webkit-appearance: none;
+    width:90%;
+    float:none;
+}
+input[type=search]:focus {
+    outline:none;
+    }
+.type{
+    height: 47px;;
+    }
+.date{
+    background-color:#f7f7f7
+    }
+.docdate {
+    vertical-align:bottom !important;
+    }
+.distr {
+    margin: 0 0 5px;
+    font-size: 12px;
+    }
+.ndoc {
+    margin: 0 0 5px;
+    }
+.storage {
+    margin: 0;
+    color: #aaa !important;
+    font-size: 12px;
+    }
+        
+    
+    
+   
+ 
+    
+</style>
+<div class="left">
+<div class="item">
+<span class="glyphicon glyphicon-search"></span>
+</div>
+<div class="item">
+<span class="glyphicon glyphicon-briefcase"></span>
+
+</div>
+<div class="item">
+<span class="glyphicon glyphicon-ok" style="visibility: hidden;"></span>
+    Prowadzący</div>
+<div class="item">
+<span class="glyphicon glyphicon-log-in"></span>
+    Приходные накладные</div> 
+<div class="item">
+<span class="glyphicon glyphicon-random"></span>
+    Акты переоценки</div>
+<div class="item">
+<span class="glyphicon glyphicon-remove"></span>
+    Акты списания</div>    
+</div>
+<div class="right" id="right">
+<script type="text/javascript">
+	$("#right").css("z-index", '1'); 
+</script>
+
+
+ <!-- Trzy kolumny zdjęcia + opis + linki początek -->
+  	<div class="row">
+  		<div class="col-sm-3"></div>
+  	    <div class="col-sm-3">
+    <div class="fadeIn first">
+  	      <%= image_tag("rejestr2.jpg",:size => '200x200', :class => "img-circle center-block") %>
+  	      <p> </p>
+		 <p class="text-center"> <%= link_to(image_tag("button_administracyjne.png"), {:action => 'biurowe'}, :class => 'btn btn-md btn-default') %></p>
+    </div>
+  	    </div>
+
+  	    <div class="col-sm-3">
+      <div class="fadeIn second">
+  	      <%= image_tag("szkolenia1.jpg",:size => '200x200', :class => "img-circle center-block") %>
+  	      <p> </p>
+		 <p class="text-center"> <%= link_to(image_tag("button_robotnicze.png"), {:action => 'robotnicze'}, :class => 'btn btn-md btn-default') %></p>
+      </div>
+  	    </div>
+	</div>
+
+	<br>
+	<br>
+  	
+  	<div class="row">
+  		<div class="col-sm-3"></div>
+  	    <div class="col-sm-3">
+          <div class="fadeIn third">
+  	      <%= image_tag("rejestr3.jpg",:size => '200x200', :class => "img-circle center-block") %>
+  	      <p> </p>
+		 <p class="text-center"> <%= link_to(image_tag("button_inzynieryjne.png"), {:action => 'inzynieryjne'}, :class => 'btn btn-md btn-default') %></p>
+            </div>
+  	    </div>
+
+  	    <div class="col-sm-3">
+        <div class="fadeIn fourth">
+  	      <%= image_tag("pracodawcow.jpg",:size => '200x200', :class => "img-circle center-block") %>
+  	      <p> </p>
+		 <p class="text-center"> <%= link_to(image_tag("button_pracodawcow.png"), {:action => 'pracodawcow'}, :class => 'btn btn-md btn-default') %></p>
+        </div>
+  	    </div>
+	</div>
+
+</div>

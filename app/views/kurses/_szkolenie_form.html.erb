@@ -1,0 +1,150 @@
+ <div class="znak">
+<% if @rodzaj == 6 %>
+  <%= image_tag("pierwsza.png",:size => '200x200', :class => "img-circle center-block") %> 
+<% else %>
+  <%= image_tag("wstepne.jpg",:size => '200x200', :class => "img-circle center-block") %>
+<% end %>
+</div>
+
+<div class="content2">
+  <div class="row">
+      <div class="col-md-2"></div>
+        <div class="col-md-2">
+          <h3 class="text-center"><%= @tytul %></h3>
+        </div>
+ 
+    </div>
+    <div class="row">
+    <div class="form-group">
+      <div class="col-md-2"></div>
+      <div class="col-md-2">
+          <h5 class="text-center">Szkolenie nr:</h5>
+        </div>
+      <div class="col-xs-2">
+      <%= pole.text_field(:szkolenie_id, :class => 'form-control', readonly: true ) %>
+        </div>
+                   <div class="col-md-2"></div>
+        <div class="col-md-1">
+          <h5 class="text-right">Data od:</h5>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+                <div class='input-group date'>
+                   <%= pole.text_field :data_od, class: 'form-control datetimepicker', :id => 'datetimepicker2', :required => 'required', :value => @szkolenie.data_od.strftime("%d.%m.%Y") %>
+
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+              </div>
+          </div>
+
+            <script type="text/javascript">
+                $(function () {
+                 $('#datetimepicker2').datetimepicker({
+                    format: 'DD.MM.YYYY'});
+                 });
+          </script>
+
+        </div>
+
+      </div>
+      
+  <div class="row">
+    <div class="form-group">
+      <div class="col-md-2"></div>
+        <div class="col-md-2">
+            <h5 class="text-center">Prowadzący:</h5> 
+        </div>
+        <div class="col-md-2">
+      <%= pole.text_field(:prowadzacy, :class => 'form-control') %>
+
+      </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-1">
+          <h5 class="text-right">Data do:</h5>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+                <div class='input-group date'>
+                <%= pole.text_field :data_do, class: 'form-control datetimepicker', :id => 'datetimepicker1', :required => 'required', :value => @szkolenie.data_do.strftime("%d.%m.%Y")  %>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+              </div>
+          </div>
+
+            <script type="text/javascript">
+                $(function () {
+                 $('#datetimepicker1').datetimepicker({
+                    format: 'DD.MM.YYYY'});
+                 });
+          </script>
+      </div>
+  </div>
+    <div class="row">
+       <div class="col-md-2"></div>
+            <div class="col-md-2">
+          <h5 class="text-center">Data wystawienia:</h5>
+        </div>
+      <div class="col-md-2">
+          <div class="form-group">
+                <div class='input-group date'>
+                <%= pole.text_field :data_wystawienia, class: 'form-control datetimepicker', :id => 'datetimepicker3', :required => 'required' %>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+              </div>
+
+            <script type="text/javascript">
+                $(function () {
+                 $('#datetimepicker3').datetimepicker({
+                    format: 'DD.MM.YYYY'});
+                 });
+          </script>
+
+
+      </div>
+<% if @rodzaj == 5 || @rodzaj == 6 %>
+
+<% else %>
+           <div class="col-md-1"></div>
+            <div class="col-md-2">
+          <h5 class="text-right">Ważność szkolenia:</h5>
+        </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <div class='input-group date'>
+      <%= pole.text_field(:data_waznosci, :class => 'form-control', :value => @szkolenie.data_waznosci.strftime("%d.%m.%Y"), :id => "waznosc", data: { date_format: 'DD.MM.YYYY' } ) %>
+       <span class="input-group-addon">
+          <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+        </div>
+      </div>
+
+
+                  <script type="text/javascript">
+                $(function () {
+                 $('#waznosc').datetimepicker({
+                    format: 'DD.MM.YYYY'});
+                 });
+          </script>
+
+
+</div>
+<% end %>
+    </div>
+
+  <div class="row">
+    <div class="form-group">
+      <div class="col-md-2"></div>
+      <div class="col-md-2">
+          <h5 class="text-center">Firma:</h5>
+        </div>
+      <div class="col-md-7">
+      <%= pole.text_field(:firma, :class => 'form-control') %>
+        </div>
+      </div>
+  </div>

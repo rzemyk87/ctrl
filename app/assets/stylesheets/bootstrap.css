@@ -3,7 +3,7 @@
  * Copyright 2011-2014 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
-
+ 
 /*! normalize.css v3.0.0 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
@@ -735,14 +735,14 @@ pre code {
 }
 .container {
   padding-right: 15px;
-  padding-left: 15px;
+  padding-left: 0px;
   margin-right: auto;
-  margin-left: auto;
+  margin-left: 0px;
 }
 @media (min-width: 768px) {
   .container {
     width: 750px;
-  }
+  } 
 }
 @media (min-width: 992px) {
   .container {
@@ -1407,9 +1407,10 @@ table {
 th {
   text-align: left;
 }
-.table {
-  width: 100%;
+.table {  
+  width: 97%;
   margin-bottom: 20px;
+  margin-left: 15px;
 }
 .table > thead > tr > th,
 .table > tbody > tr > th,
@@ -3127,7 +3128,7 @@ input[type="button"].btn-block {
     right: auto;
     left: 0;
   }
-}
+} 
 .btn-group,
 .btn-group-vertical {
   position: relative;
@@ -3652,6 +3653,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 @media (min-width: 768px) {
   .navbar-header {
+    background-color: #254051;
     float: left;
   }
 }
@@ -3750,7 +3752,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 @media (min-width: 768px) {
   .navbar > .container .navbar-brand,
   .navbar > .container-fluid .navbar-brand {
-    margin-left: -15px;
+    margin-left: 50px;
+    margin-right: 50px;
   }
 }
 .navbar-toggle {
@@ -4033,10 +4036,10 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   background-color: transparent;
 }
 .navbar-inverse .navbar-text {
-  color: #999;
+  color: #e1ffff;
 }
 .navbar-inverse .navbar-nav > li > a {
-  color: #999;
+  color: #e1ffff;
 }
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {

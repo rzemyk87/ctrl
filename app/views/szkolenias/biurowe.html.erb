@@ -1,8 +1,10 @@
 <% @tytul_strony = "Biurowe" %>
-<body class="bck3">
+
 
 <%= form_for(@szkolenie, :url=> {:action =>'utworz'}) do |pole| %>
-<% @tytul ="Administracyjno - Biurowe" %>
+
+        <%= image_tag("text_BHP_AB_big.png") %>
+
 <%= pole.hidden_field(:rodzaj_id, :value => 1) %>
 <%= pole.hidden_field(:firma_id, :value => @current_user.firma_id) %>
 <% @rodzaj = 1 %>
@@ -25,10 +27,10 @@
 	<div class="col-md-1">
 		<button type="button" class="btn btn-danger">Anuluj</button>
 	</div>
-	</div>
+</div>
 	
   </div>
 
 </div>
 	<% end %>
-</body>
+ 

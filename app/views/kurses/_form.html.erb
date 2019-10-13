@@ -1,5 +1,5 @@
-<div class="container">
-
+<div class="container-fluid">
+<div class="content5"> 
 <table class="table table-striped">
 <% if @szkol.rodzaj_id == 5 || @szkol.rodzaj_id == 6 || @szkol.rodzaj_id == 7 %>
 	<tr class="info">
@@ -59,7 +59,6 @@
 		<th class="text-center"><%= image_tag("text_nazwisko_small.png") %></th>
 		<th class="text-center"><%= image_tag("text_rodzaj_szkolenia_small.png") %></th>
 		<th class="text-center"><%= image_tag("text_stanowisko_small.png") %></th>
-		<th class="text-center"><%= image_tag("text_numer_small.png") %></th>
 		<th class="text-center"><%= image_tag("text_akcja_small.png") %></th>
 	</tr>	
 <% @kursy_b.each do |kursy| %>
@@ -68,7 +67,6 @@
 		<td class="text-center"><%= kursy.osoba_nazwisko %></td>
 		<td class="text-center">Wstępne</td>
 		<td class="text-center"><%= kursy.stanowisko %></td>
-		<td class="text-center"><%= "#{kursy.nr_zaswiadczenia}/W/#{@szkol.szkolenie_id}/#{@data_sz}" %></td>
 		<td class="text-center">
 			<%= link_to "PDF", {:action => "wstepne_pdf", :format => 'pdf', :id_osoba => kursy.id, :id_szkol => @szkol.id}, :class => 'btn btn-xs btn-success' %>
 			<%= link_to("Edytuj",{:action => 'edycja_osoba', :id_osoba => kursy.id, :id => @szkol.id},:class => 'btn btn-xs btn-primary') %>
@@ -154,8 +152,12 @@
 			<%= link_to("Drukuj Dziennik",{:action => 'dziennik_pdf', :format => 'pdf', :id => @szkol.id},:class => 'btn btn-ml btn-default') %>
 			<%= link_to("Drukuj Zaświadczenia",{:action => 'zaswiadczenia_pdf', :format => 'pdf', :id => @szkol.id},:class => 'btn btn-ml btn-danger') %>
 		<% end %>
-
+ 
 <br><br>
-			<%= link_to("Cofnij",{:action => 'index'},:class => 'btn btn-ml btn-info') %>
-
+	<% if @szkol.rodzaj_id == 8 %>
+		<%= link_to("Cofnij",{:action => 'index_wstepne'},:class => 'btn btn-ml btn-info') %>
+	<% else %>
+		<%= link_to("Cofnij",{:action => 'index'},:class => 'btn btn-ml btn-info') %>
+	<% end %>
+</div>
 </div>

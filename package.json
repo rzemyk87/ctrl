@@ -1,5 +1,8 @@
 {
   "name": "kurs",
   "private": true,
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "window-date-picker": "^1.0.1"
+  }
 }

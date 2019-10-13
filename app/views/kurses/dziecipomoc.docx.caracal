@@ -28,10 +28,9 @@ end
 # osoba
 
 docx.p 'Pan(i):', align: :left, size: 24
-docx.p @osoba.osoba_imie + ' ' + @osoba.osoba_nazwisko , align: :center, size: 30, bold: true, color: "009f4d"
-docx.p 'urodzony(a) dnia: ' + @osoba.osoba_data + 'r. w' + @osoba.osoba_miejsce, size: 24
+docx.p @osoba.osoba_imie + ' ' + @osoba.osoba_nazwisko , align: :left, size: 30, bold: true, color: "009f4d"
 docx.p "Ukończył/a szkolenie Pierwsza Pomoc Dzieciom", align: :left, size: 24
-docx.p "zorganizowane przez Firmę Usługowo-Handlową Grzegorz Kobuszewski we Wrocławiu w formie seminarium.", align: :left, size: 24
+docx.p "zorganizowane przez " + @firma.tekst + " w formie seminarium.", align: :left, size: 24
 docx.p "Celem szkolenia było uzupełnienie wiedzy z zakresu udzielania Pierwszej Pomocy.", align: :left, size: 24
 
 
@@ -64,6 +63,7 @@ docx.p
   docx.p "   organizatora kształcenia) ", align: :right, size: 16, color: "9e9e9e"
 
 # program
+docx.p
 docx.p "Program szkolenia:", size: 22, bold: true
 
 # tabela
