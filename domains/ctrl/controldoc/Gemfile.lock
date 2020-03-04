@@ -124,7 +124,7 @@ GEM
       prawn (>= 0.11.1)
       railties (>= 3.0.0)
     public_suffix (3.0.3)
-    puma (3.12.0)
+    puma (3.12.4)
     rack (2.0.5)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -219,7 +219,7 @@ DEPENDENCIES
   prawn
   prawn-table
   prawn_rails
-  puma (~> 3.7)
+  puma (~> 3.12)
   rails (~> 5.1.4)
   responders (~> 2.3)
   selenium-webdriver
